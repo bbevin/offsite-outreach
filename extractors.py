@@ -1,0 +1,232 @@
+from __future__ import annotations
+
+import json
+import re
+from urllib.parse import quote_plus
+
+from bs4 import BeautifulSoup
+
+from models import AuthorInfo, ContactInfo, TeamContact
+from scraper import Scraper, get_base_url, make_absolute, rate_limit
+
+# ---------------------------------------------------------------------------
+# Author extraction
+# ---------------------------------------------------------------------------
+
+def extract_author(soup: BeautifulSoup, page_url: str) -> AuthorInfo:
+    """Try multiple strategies to find the article author."""
+    base = get_base_url(page_url)
+
+    # 1. <meta name="author">
+    meta = soup.find("meta", attrs={"name": "author"})
+    if meta and meta.get("content", "").strip():
+        return AuthorInfo(name=meta["content"].strip())
+
+    # 2. JSON-LD schema
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string or "")
+            items = data if isinstance(data, list) else [data]
+            for item in items:
+                if item.get("@type") in ("Article", "NewsArticle", "BlogPosting", "WebPage"):
+                    author = item.get("author")
+                    if isinstance(author, list):
+                        author = author[0] if author else None
+                    if isinstance(author, dict):
+                        name = author.get("name", "")
+                        url = author.get("url", "")
+                        if name:
+                            return AuthorInfo(name=name, url=url)
+                    elif isinstance(author, str) and author:
+                        return AuthorInfo(name=author)
+        except (json.JSONDecodeError, TypeError, KeyError):
+            continue
+
+    # 3. Common CSS selectors
+    selectors = [
+        "[rel='author']",
+        ".author-name", ".author a", ".byline a", ".post-author a",
+        ".entry-author a", ".article-author a", ".contributor a",
+        ".author", ".byline", ".post-author", ".entry-author",
+    ]
+    for sel in selectors:
+        el = soup.select_one(sel)
+        if el:
+            name = el.get_text(strip=True)
+            href = el.get("href", "")
+            if name and len(name) < 80:
+                url = make_absolute(base, href) if href else ""
+                return AuthorInfo(name=name, url=url)
+
+    # 4. Look for "By <name>" pattern near article top
+    for tag in soup.find_all(["p", "span", "div", "a"], limit=50):
+        text = tag.get_text(strip=True)
+        m = re.match(r"^[Bb]y\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})$", text)
+        if m:
+            href = tag.get("href", "")
+            url = make_absolute(base, href) if href else ""
+            return AuthorInfo(name=m.group(1), url=url)
+
+    return AuthorInfo()
+
+
+# ---------------------------------------------------------------------------
+# Contact / affiliate program detection
+# ---------------------------------------------------------------------------
+
+AFFILIATE_KEYWORDS = [
+    "advertise", "advertising", "partner", "partnerships", "affiliate",
+    "sponsor", "sponsorship", "work with us", "media kit", "mediakit",
+    "become a partner", "join our program",
+]
+
+CONTACT_KEYWORDS = [
+    "contact us", "contact", "get in touch", "reach out",
+]
+
+COMMON_PATHS = [
+    "/advertise", "/advertising", "/partners", "/partnerships",
+    "/affiliate", "/affiliate-program", "/affiliates",
+    "/sponsor", "/sponsorship", "/media-kit",
+    "/contact", "/contact-us",
+]
+
+
+def detect_contact_method(soup: BeautifulSoup, page_url: str, scraper: Scraper) -> ContactInfo:
+    """Scan page links and common paths to find the best contact method."""
+    base = get_base_url(page_url)
+
+    # 1. Scan <a> tags on the page for affiliate/partner links
+    for a_tag in soup.find_all("a", href=True):
+        link_text = a_tag.get_text(strip=True).lower()
+        href = a_tag["href"].lower()
+        combined = f"{link_text} {href}"
+
+        for kw in AFFILIATE_KEYWORDS:
+            if kw in combined:
+                url = make_absolute(base, a_tag["href"])
+                return ContactInfo(
+                    contact_type="affiliate_form",
+                    contact_form_url=url,
+                    notes=f"Found affiliate/partner link: '{a_tag.get_text(strip=True)}'",
+                )
+
+    # 2. Check common paths on the domain
+    for path in COMMON_PATHS:
+        test_url = base + path
+        if scraper.check_url_exists(test_url):
+            is_affiliate = any(kw in path for kw in ["advertis", "partner", "affiliate", "sponsor", "media"])
+            ct = "affiliate_form" if is_affiliate else "contact_form"
+            return ContactInfo(
+                contact_type=ct,
+                contact_form_url=test_url,
+                notes=f"Found via path check: {path}",
+            )
+        rate_limit()
+
+    # 3. Scan for general contact links
+    for a_tag in soup.find_all("a", href=True):
+        link_text = a_tag.get_text(strip=True).lower()
+        for kw in CONTACT_KEYWORDS:
+            if kw in link_text:
+                url = make_absolute(base, a_tag["href"])
+                return ContactInfo(
+                    contact_type="contact_form",
+                    contact_form_url=url,
+                    notes=f"Found contact link: '{a_tag.get_text(strip=True)}'",
+                )
+
+    return ContactInfo(contact_type="direct_contact", notes="No form found; manual outreach needed")
+
+
+# ---------------------------------------------------------------------------
+# Company name extraction
+# ---------------------------------------------------------------------------
+
+def extract_company_name(soup: BeautifulSoup, domain: str) -> str:
+    """Extract the site/company name from meta tags or title."""
+    og = soup.find("meta", property="og:site_name")
+    if og and og.get("content", "").strip():
+        return og["content"].strip()
+
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string or "")
+            items = data if isinstance(data, list) else [data]
+            for item in items:
+                if item.get("@type") in ("Organization", "WebSite"):
+                    name = item.get("name", "")
+                    if name:
+                        return name
+        except (json.JSONDecodeError, TypeError):
+            continue
+
+    name = domain.replace("www.", "").split(".")[0]
+    return name.replace("-", " ").title()
+
+
+# ---------------------------------------------------------------------------
+# Team / about page extraction
+# ---------------------------------------------------------------------------
+
+ABOUT_PATHS = ["/about", "/about-us", "/team", "/our-team", "/people", "/staff"]
+
+MARKETING_KEYWORDS = [
+    "marketing", "digital marketing", "growth", "partnerships",
+    "content", "seo", "communications", "business development",
+]
+
+
+def find_team_contacts(page_url: str, scraper: Scraper) -> tuple[str, list[TeamContact]]:
+    """Check about/team pages for marketing-related contacts."""
+    base = get_base_url(page_url)
+    contacts = []
+    about_url = ""
+
+    for path in ABOUT_PATHS:
+        test_url = base + path
+        if scraper.check_url_exists(test_url):
+            about_url = test_url
+            rate_limit()
+            soup = scraper.fetch_page(test_url)
+            if soup:
+                contacts = _extract_marketing_people(soup, test_url)
+            break
+        rate_limit()
+
+    return about_url, contacts
+
+
+def _extract_marketing_people(soup: BeautifulSoup, page_url: str) -> list[TeamContact]:
+    """Scan a team/about page for people with marketing-related roles."""
+    contacts = []
+
+    for el in soup.find_all(["div", "li", "section", "article"], limit=200):
+        text = el.get_text(separator=" ", strip=True).lower()
+        if any(kw in text for kw in MARKETING_KEYWORDS):
+            lines = el.get_text(separator="\n", strip=True).split("\n")
+            name = ""
+            role = ""
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                if any(kw in line.lower() for kw in MARKETING_KEYWORDS):
+                    role = line
+                elif re.match(r"^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}$", line) and len(line) < 40:
+                    name = line
+            if name and role:
+                contacts.append(TeamContact(name=name, role=role))
+                if len(contacts) >= 5:
+                    break
+
+    return contacts
+
+
+# ---------------------------------------------------------------------------
+# LinkedIn search URL
+# ---------------------------------------------------------------------------
+
+def build_linkedin_search_url(company_name: str) -> str:
+    query = f"{company_name} marketing OR partnerships OR digital"
+    return f"https://www.linkedin.com/search/results/people/?keywords={quote_plus(query)}"
