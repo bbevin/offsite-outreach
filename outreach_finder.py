@@ -22,7 +22,7 @@ from extractors import (
     find_team_contacts,
 )
 from known_sites import get_known_site_result
-from classifier import classify_site, get_site_name
+from classifier import classify_site, classify_site_with_content, get_site_name
 
 
 def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
@@ -30,16 +30,17 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
     result = OutreachResult(url=url, priority=priority)
     domain = get_domain(url)
     result.domain = domain
-    result.site_type = classify_site(domain)
 
     print(f"\n{'='*60}")
     print(f"Processing: {url}")
     print(f"  Priority: {priority}")
-    print(f"  Site type: {result.site_type}")
 
     # 1. Fetch the page
     soup = scraper.fetch_page(url)
     if not soup:
+        # Classify with domain only (no page content)
+        result.site_type, classification_reason = classify_site_with_content(domain)
+        print(f"  Site type: {result.site_type} ({classification_reason})")
         # Check known sites directory as fallback
         known = get_known_site_result(domain)
         if known:
@@ -51,18 +52,24 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
         result.notes = "Failed to fetch page"
         return result
 
-    # 2. Extract company name
+    # 2. Classify using known lists + page content signals
+    result.site_type, classification_reason = classify_site_with_content(domain, soup)
+    print(f"  Site type: {result.site_type} ({classification_reason})")
+    if "needs_review" in classification_reason:
+        result.notes = "Classification uncertain — flagged for human review"
+
+    # 3. Extract company name
     result.company_name = extract_company_name(soup, domain)
     print(f"  Company: {result.company_name}")
 
-    # 3. Extract author
+    # 4. Extract author
     author = extract_author(soup, url)
     result.author_name = author.name
     result.author_url = author.url
     if author.name:
         print(f"  Author: {author.name}")
 
-    # 4. Detect contact method
+    # 5. Detect contact method
     rate_limit()
     contact = detect_contact_method(soup, url, scraper)
     result.contact_type = contact.contact_type
@@ -71,7 +78,7 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
     if contact.contact_form_url:
         print(f"  Contact URL: {contact.contact_form_url}")
 
-    # 5. Find team contacts
+    # 6. Find team contacts
     rate_limit()
     about_url, team = find_team_contacts(url, scraper)
     result.company_about_url = about_url
@@ -79,7 +86,7 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
         result.team_contacts = "; ".join(f"{t.name} ({t.role})" for t in team)
         print(f"  Team contacts: {result.team_contacts}")
 
-    # 6. LinkedIn search
+    # 7. LinkedIn search
     result.linkedin_search_url = build_linkedin_search_url(result.company_name)
 
     # Combine notes

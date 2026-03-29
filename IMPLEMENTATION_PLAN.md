@@ -18,7 +18,7 @@
   Use known site names from `classifier.py` when available instead of falling back to domain parsing. Ensure proper casing ("Capsule CRM" not "Capsulecrm").
   Spec: `specs/contact-identification.md`
 
-- [ ] **Task 5: Implement affiliate vs. outreach classification**
+- [x] **Task 5: Implement affiliate vs. outreach classification**
   Replace the old site_type system with the new two-bucket classification. Use the known affiliate site list (~80+ domains) as the primary signal. For unknown domains, detect affiliate signals from page content: affiliate disclosure language, tracking parameters in outbound links, "list your product" pages, content structure patterns. Vendor blogs and non-affiliate orgs (like US Chamber) must NOT be classified as affiliate just because they have a partner page. See classifier.py for the updated known site lists.
   Spec: `specs/affiliate-vs-outreach.md`
 
