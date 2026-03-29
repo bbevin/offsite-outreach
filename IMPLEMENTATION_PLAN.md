@@ -26,7 +26,7 @@
   For sites not in any known list, scan page content for affiliate signals: disclosure text ("we may earn a commission", "affiliate links"), affiliate tracking params in outbound links (?ref=, ?tag=, redirect domains), and content structure (comparison tables with CTA buttons). If no signals found, default to outreach and flag for human review.
   Spec: `specs/affiliate-vs-outreach.md`
 
-- [ ] **Task 7: Extract affiliate outreach instructions**
+- [x] **Task 7: Extract affiliate outreach instructions**
   For every affiliate site, scrape the partner/advertise/intake page (the URL in contact_form_url) and extract the specific instructions they provide for getting listed. Capture: submission process, required affiliate network, pricing if visible, contact info, eligibility requirements. Store in new `affiliate_instructions` output field.
   Spec: `specs/affiliate-vs-outreach.md`
 

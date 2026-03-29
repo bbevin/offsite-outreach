@@ -17,6 +17,7 @@ from scraper import Scraper, get_domain, rate_limit
 from extractors import (
     build_linkedin_search_url,
     detect_contact_method,
+    extract_affiliate_instructions,
     extract_author,
     extract_company_name,
     find_team_contacts,
@@ -77,6 +78,15 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
     print(f"  Contact type: {contact.contact_type}")
     if contact.contact_form_url:
         print(f"  Contact URL: {contact.contact_form_url}")
+
+    # 5b. Extract affiliate instructions for affiliate sites
+    if result.site_type == "Affiliate/Review" and contact.contact_form_url:
+        rate_limit()
+        result.affiliate_instructions = extract_affiliate_instructions(
+            contact.contact_form_url, scraper
+        )
+        if result.affiliate_instructions:
+            print(f"  Affiliate instructions: {result.affiliate_instructions[:100]}...")
 
     # 6. Find team contacts
     rate_limit()

@@ -362,6 +362,112 @@ def _extract_marketing_people(soup: BeautifulSoup, page_url: str) -> list[TeamCo
 # LinkedIn search URL
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Affiliate instructions extraction
+# ---------------------------------------------------------------------------
+
+_AFFILIATE_INSTRUCTION_KEYWORDS = [
+    "submit", "list your", "get listed", "add your", "claim your",
+    "sign up", "register", "apply", "join", "enroll",
+    "partner program", "affiliate program", "vendor program",
+    "advertise with", "sponsor", "media kit",
+    "pricing", "cost", "rate", "package", "tier", "plan",
+    "requirements", "eligibility", "criteria", "qualify",
+    "review process", "turnaround", "approval",
+    "contact us", "get in touch", "reach out", "email us",
+    "affiliate network", "impact", "shareasale", "cj affiliate",
+    "awin", "partnerize", "rakuten",
+]
+
+
+def extract_affiliate_instructions(contact_form_url: str, scraper: Scraper) -> str:
+    """Scrape the partner/advertise page and extract instructions for getting listed.
+
+    Returns a concise summary of the submission process, pricing, requirements,
+    and contact info found on the page.
+    """
+    if not contact_form_url:
+        return ""
+
+    rate_limit()
+    soup = scraper.fetch_page(contact_form_url)
+    if not soup:
+        return f"Partner page at {contact_form_url} could not be fetched"
+
+    instructions_parts = []
+
+    # Check if the page has a form
+    forms = soup.find_all("form")
+    if forms:
+        form_fields = []
+        for form in forms[:3]:
+            for inp in form.find_all(["input", "select", "textarea"], limit=20):
+                label = (
+                    inp.get("placeholder", "")
+                    or inp.get("aria-label", "")
+                    or inp.get("name", "")
+                )
+                if label and label.lower() not in ("submit", "csrf", "token", "hidden"):
+                    form_fields.append(label)
+        if form_fields:
+            instructions_parts.append(
+                f"Online form submission at {contact_form_url}. "
+                f"Fields: {', '.join(form_fields[:10])}"
+            )
+        else:
+            instructions_parts.append(f"Online form submission at {contact_form_url}")
+
+    # Extract relevant text blocks from the page
+    relevant_blocks = []
+    for el in soup.find_all(
+        ["p", "li", "h2", "h3", "h4", "div", "span", "td"], limit=300
+    ):
+        text = el.get_text(separator=" ", strip=True)
+        if not text or len(text) < 15 or len(text) > 500:
+            continue
+        lower = text.lower()
+        # Skip junk
+        if any(junk in lower for junk in _JUNK_TEXT_PATTERNS):
+            continue
+        # Check if the text contains relevant keywords
+        if any(kw in lower for kw in _AFFILIATE_INSTRUCTION_KEYWORDS):
+            # Avoid duplicates (substring check)
+            if not any(text in existing for existing in relevant_blocks):
+                relevant_blocks.append(text)
+
+    # Deduplicate and limit
+    if relevant_blocks:
+        # Take most relevant blocks, cap total length
+        summary_parts = []
+        total_len = 0
+        for block in relevant_blocks[:8]:
+            if total_len + len(block) > 800:
+                break
+            summary_parts.append(block)
+            total_len += len(block)
+        if summary_parts:
+            instructions_parts.append(" | ".join(summary_parts))
+
+    # Look for email addresses on the page
+    email_matches = set()
+    page_text = soup.get_text()
+    for match in re.finditer(r"[\w.+-]+@[\w-]+\.[\w.-]+", page_text):
+        email = match.group(0)
+        # Skip common junk emails
+        if not any(
+            junk in email.lower()
+            for junk in ["@example", "@sentry", "@wix", "noreply", "no-reply", "@2x"]
+        ):
+            email_matches.add(email)
+    if email_matches:
+        instructions_parts.append(f"Contact email(s): {', '.join(sorted(email_matches)[:3])}")
+
+    if not instructions_parts:
+        return f"Partner/advertise page found at {contact_form_url} but no specific instructions extracted"
+
+    return ". ".join(instructions_parts)
+
+
 def build_linkedin_search_url(company_name: str) -> str:
     query = f"{company_name} marketing OR partnerships OR digital"
     return f"https://www.linkedin.com/search/results/people/?keywords={quote_plus(query)}"
