@@ -16,6 +16,7 @@ from models import OutreachResult
 from scraper import Scraper, get_domain, rate_limit
 from extractors import (
     build_linkedin_search_url,
+    build_linkedin_profile_url,
     detect_contact_method,
     extract_affiliate_instructions,
     extract_author,
@@ -101,7 +102,7 @@ def process_url(url: str, priority: str, scraper: Scraper, send_override: str = 
             print(f"  Using known site data for {domain}")
             for field, value in known.items():
                 setattr(result, field, value)
-            result.linkedin_search_url = build_linkedin_search_url(result.company_name)
+            result.linkedin_search_url = build_linkedin_search_url(result.company_name, result.author_name)
             classify_send(result, send_override)
             return result
         result.notes = "Failed to fetch page"
@@ -157,8 +158,12 @@ def process_url(url: str, priority: str, scraper: Scraper, send_override: str = 
         if result.author_email_candidates:
             print(f"  Email candidates: {result.author_email_candidates}")
 
-    # 8. LinkedIn search
-    result.linkedin_search_url = build_linkedin_search_url(result.company_name)
+    # 8. LinkedIn search — use author name for targeted search when available
+    result.linkedin_search_url = build_linkedin_search_url(result.company_name, result.author_name)
+    if result.author_name:
+        profile_url = build_linkedin_profile_url(result.author_name)
+        if profile_url:
+            result.linkedin_search_url = f"{profile_url} | {result.linkedin_search_url}"
 
     # Combine notes
     notes_parts = []

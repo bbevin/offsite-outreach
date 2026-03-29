@@ -505,6 +505,30 @@ def generate_email_candidates(author_name: str, domain: str) -> str:
     return "; ".join(candidates)
 
 
-def build_linkedin_search_url(company_name: str) -> str:
-    query = f"{company_name} marketing OR partnerships OR digital"
+def build_linkedin_search_url(company_name: str, author_name: str = "") -> str:
+    """Build a LinkedIn people-search URL.
+
+    When an author name is available, search for that person at the company.
+    Otherwise fall back to a general marketing/partnerships search.
+    """
+    if author_name:
+        query = f"{author_name} {company_name}"
+    else:
+        query = f"{company_name} marketing OR partnerships OR digital"
     return f"https://www.linkedin.com/search/results/people/?keywords={quote_plus(query)}"
+
+
+def build_linkedin_profile_url(author_name: str) -> str:
+    """Attempt to construct a likely LinkedIn profile URL from an author name.
+
+    LinkedIn profile slugs are typically lowercase first-last or firstname-lastname.
+    Returns a best-guess URL (not guaranteed to resolve).
+    """
+    if not author_name:
+        return ""
+    connectors = {"de", "van", "von", "el", "al", "di", "le", "la", "del", "der", "den", "das", "do", "da", "and", "of"}
+    parts = [p.lower() for p in author_name.split() if p.lower() not in connectors]
+    if len(parts) < 2:
+        return ""
+    slug = "-".join(parts)
+    return f"https://www.linkedin.com/in/{slug}"

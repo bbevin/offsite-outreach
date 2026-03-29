@@ -40,7 +40,7 @@
   For outreach targets where we have an author name and domain, generate candidate emails using common patterns (first@domain, first.last@domain, firstl@domain). Store as `author_email_candidates` field.
   Spec: `specs/contact-identification.md`
 
-- [ ] **Task 10: Improve LinkedIn contact resolution**
+- [x] **Task 10: Improve LinkedIn contact resolution**
   Generate more targeted LinkedIn search URLs using author name (not just company name). Where possible, attempt to construct a direct profile URL from author metadata.
   Spec: `specs/contact-identification.md`
 
