@@ -23,10 +23,62 @@ from extractors import (
     find_team_contacts,
 )
 from known_sites import get_known_site_result
-from classifier import classify_site, classify_site_with_content, get_site_name
+from classifier import (
+    classify_site,
+    classify_site_with_content,
+    get_site_name,
+    KNOWN_OUTREACH_SITES,
+    KNOWN_NON_AFFILIATE_SITES,
+)
 
 
-def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
+def classify_send(result: OutreachResult, send_override: str = "") -> None:
+    """Set send_classification and authority_score on result.
+
+    Logic:
+    - If send_override is provided in the input CSV, use it directly.
+    - Affiliate/Review sites → not_applicable.
+    - Known brand domains (in KNOWN_OUTREACH_SITES or KNOWN_NON_AFFILIATE_SITES) → manual_send.
+    - Unknown domains that defaulted to Outreach → auto_send.
+    """
+    # Manual override from input CSV takes priority
+    if send_override:
+        result.send_classification = send_override
+        result.authority_score = "manual_override"
+        return
+
+    # Affiliate sites — outreach is via form, not email
+    if result.site_type == "Affiliate/Review":
+        result.send_classification = "not_applicable"
+        result.authority_score = "affiliate_site"
+        return
+
+    # Check if domain is a known brand (vendor or non-affiliate org)
+    clean_domain = result.domain.replace("www.", "")
+    is_known_brand = (
+        clean_domain in KNOWN_OUTREACH_SITES
+        or clean_domain in KNOWN_NON_AFFILIATE_SITES
+        or any(clean_domain.endswith("." + d) for d in KNOWN_OUTREACH_SITES)
+        or any(clean_domain.endswith("." + d) for d in KNOWN_NON_AFFILIATE_SITES)
+    )
+
+    if is_known_brand:
+        result.send_classification = "manual_send"
+        result.authority_score = "known_brand"
+        return
+
+    # Known-list classification (e.g. domain_pattern for blog.company.com)
+    if result.classification_reason == "domain_pattern":
+        result.send_classification = "manual_send"
+        result.authority_score = "heuristic:vendor_blog_pattern"
+        return
+
+    # Default: unknown/low-authority publisher → auto_send
+    result.send_classification = "auto_send"
+    result.authority_score = "heuristic:unknown_publisher"
+
+
+def process_url(url: str, priority: str, scraper: Scraper, send_override: str = "") -> OutreachResult:
     """Process a single URL and return an OutreachResult."""
     result = OutreachResult(url=url, priority=priority)
     domain = get_domain(url)
@@ -49,8 +101,10 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
             for field, value in known.items():
                 setattr(result, field, value)
             result.linkedin_search_url = build_linkedin_search_url(result.company_name)
+            classify_send(result, send_override)
             return result
         result.notes = "Failed to fetch page"
+        classify_send(result, send_override)
         return result
 
     # 2. Classify using known lists + page content signals
@@ -106,6 +160,10 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
     if contact.notes:
         notes_parts.append(contact.notes)
     result.notes = "; ".join(notes_parts)
+
+    # 8. Send classification
+    classify_send(result, send_override)
+    print(f"  Send classification: {result.send_classification} ({result.authority_score})")
 
     return result
 
@@ -165,7 +223,8 @@ def main():
     with Scraper() as scraper:
         for i, (url, priority, extras) in enumerate(entries, 1):
             print(f"\n[{i}/{len(entries)}]", end="")
-            result = process_url(url, priority, scraper)
+            send_override = extras.pop("send_override", "").strip()
+            result = process_url(url, priority, scraper, send_override=send_override)
             result.extras = extras
             results.append(result)
 

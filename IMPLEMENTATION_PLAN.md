@@ -30,7 +30,7 @@
   For every affiliate site, scrape the partner/advertise/intake page (the URL in contact_form_url) and extract the specific instructions they provide for getting listed. Capture: submission process, required affiliate network, pricing if visible, contact info, eligibility requirements. Store in new `affiliate_instructions` output field.
   Spec: `specs/affiliate-vs-outreach.md`
 
-- [ ] **Task 8: Add send_classification field**
+- [x] **Task 8: Add send_classification field**
   Add `send_classification` and `authority_score` fields to OutreachResult. For vendor/outreach targets: classify as `manual_send` (recognized brand, high authority) or `auto_send` (low authority, unknown publisher). For affiliate targets: set to `not_applicable`. Update CSV output.
   Spec: `specs/send-classification.md`
 
