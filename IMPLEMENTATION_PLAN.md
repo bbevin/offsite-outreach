@@ -6,7 +6,7 @@
   When DataForSEO fails to fetch a page, fall back to a direct `requests.get` with browser-like headers before returning None. This fixes the Salesflare-type failures where the page is accessible but DataForSEO can't reach it.
   Spec: `specs/scraping-reliability.md`
 
-- [ ] **Task 2: Fix author extraction quality**
+- [x] **Task 2: Fix author extraction quality**
   Reject author names that match common navigation terms (Home, Menu, About, Contact, etc.). Add a blocklist of junk names. Validate that extracted names look like real human names (capitalized words, 2-4 parts, no URLs).
   Spec: `specs/contact-identification.md`
 
