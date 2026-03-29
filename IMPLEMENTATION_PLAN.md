@@ -50,7 +50,7 @@
 
 ## Phase 3: Automated Outreach
 
-- [ ] **Task 12: Design email template system**
+- [x] **Task 12: Design email template system**
   Create a template system for auto_send outreach emails. Templates should support variable substitution (company name, author name, article URL, product name). Store templates in `templates/`.
   Spec: `specs/send-classification.md`
 
