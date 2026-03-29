@@ -230,11 +230,20 @@ def detect_contact_method(soup: BeautifulSoup, page_url: str, scraper: Scraper) 
 # ---------------------------------------------------------------------------
 
 def extract_company_name(soup: BeautifulSoup, domain: str) -> str:
-    """Extract the site/company name from meta tags or title."""
+    """Extract the site/company name from known sites, meta tags, or domain."""
+    from classifier import get_site_name
+
+    # 1. Use known site name when available (most reliable)
+    known = get_site_name(domain)
+    if known:
+        return known
+
+    # 2. og:site_name meta tag
     og = soup.find("meta", property="og:site_name")
     if og and og.get("content", "").strip():
         return og["content"].strip()
 
+    # 3. JSON-LD Organization/WebSite name
     for script in soup.find_all("script", type="application/ld+json"):
         try:
             data = json.loads(script.string or "")
@@ -247,6 +256,7 @@ def extract_company_name(soup: BeautifulSoup, domain: str) -> str:
         except (json.JSONDecodeError, TypeError):
             continue
 
+    # 4. Domain-based fallback with proper casing
     name = domain.replace("www.", "").split(".")[0]
     return name.replace("-", " ").title()
 

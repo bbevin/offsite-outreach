@@ -14,7 +14,7 @@
   Filter out cookie banner text, legal boilerplate, and other non-contact content from team_contacts extraction. Add a junk pattern blocklist.
   Spec: `specs/contact-identification.md`
 
-- [ ] **Task 4: Fix company name extraction**
+- [x] **Task 4: Fix company name extraction**
   Use known site names from `classifier.py` when available instead of falling back to domain parsing. Ensure proper casing ("Capsule CRM" not "Capsulecrm").
   Spec: `specs/contact-identification.md`
 
