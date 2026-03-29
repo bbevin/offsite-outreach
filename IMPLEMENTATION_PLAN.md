@@ -54,6 +54,6 @@
   Create a template system for auto_send outreach emails. Templates should support variable substitution (company name, author name, article URL, product name). Store templates in `templates/`.
   Spec: `specs/send-classification.md`
 
-- [ ] **Task 13: Integrate email sending**
+- [BLOCKED] **Task 13: Integrate email sending**
   Connect to an email sending service for auto_send targets. Send templated emails, log attempts and responses.
   Spec: `specs/send-classification.md`
