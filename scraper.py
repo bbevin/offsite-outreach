@@ -14,6 +14,18 @@ DATAFORSEO_INSTANT_URL = "https://api.dataforseo.com/v3/on_page/instant_pages"
 DATAFORSEO_RAW_HTML_URL = "https://api.dataforseo.com/v3/on_page/raw_html"
 
 
+DIRECT_FETCH_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+DIRECT_FETCH_TIMEOUT = 15
+
+
 class Scraper:
     """Fetches pages via the DataForSEO On-Page API."""
 
@@ -32,6 +44,7 @@ class Scraper:
         }
         self._session = requests.Session()
         self._session.headers.update(self._headers)
+        self.last_fetch_method: str | None = None
 
     def start(self):
         pass  # session is ready on init
@@ -46,7 +59,12 @@ class Scraper:
         self.stop()
 
     def fetch_page(self, url: str) -> BeautifulSoup | None:
-        """Fetch a URL via DataForSEO Instant Pages and return parsed HTML."""
+        """Fetch a URL via DataForSEO Instant Pages and return parsed HTML.
+
+        Falls back through: instant pages -> raw HTML -> content parsing -> direct HTTP GET.
+        Sets self.last_fetch_method to indicate which method succeeded.
+        """
+        self.last_fetch_method = None
         # Step 1: Submit instant page task with store_raw_html
         payload = [
             {
@@ -127,6 +145,7 @@ class Scraper:
                     else:
                         continue
                     if html:
+                        self.last_fetch_method = "dataforseo_raw_html"
                         return BeautifulSoup(html, "lxml")
 
             return self._fetch_via_content_parsing(url)
@@ -154,7 +173,7 @@ class Scraper:
             if not tasks or tasks[0].get("status_code") != 20000:
                 msg = tasks[0].get("status_message") if tasks else "no tasks"
                 print(f"  [warn] Content parsing failed: {msg}")
-                return None
+                return self._fetch_direct(url)
 
             result = tasks[0].get("result", [])
             if result:
@@ -162,11 +181,35 @@ class Scraper:
                 if isinstance(items, list) and items:
                     page_content = items[0].get("page_content", {})
                     # Build a minimal HTML doc from the parsed content
+                    self.last_fetch_method = "dataforseo_content_parsing"
                     return self._content_to_soup(page_content, url)
-            return None
+            return self._fetch_direct(url)
 
         except requests.RequestException as e:
             print(f"  [warn] Content parsing failed for {url}: {e}")
+            return self._fetch_direct(url)
+
+    def _fetch_direct(self, url: str) -> BeautifulSoup | None:
+        """Last-resort fallback: fetch the page directly via HTTP GET."""
+        print(f"  [info] Trying direct HTTP fallback for {url}")
+        try:
+            resp = requests.get(
+                url,
+                headers=DIRECT_FETCH_HEADERS,
+                timeout=DIRECT_FETCH_TIMEOUT,
+                allow_redirects=True,
+            )
+            resp.raise_for_status()
+            soup = BeautifulSoup(resp.text, "lxml")
+            # Sanity check: page should have some content
+            if soup.body and len(soup.body.get_text(strip=True)) > 100:
+                print(f"  [info] Direct HTTP fallback succeeded for {url}")
+                self.last_fetch_method = "direct_http"
+                return soup
+            print(f"  [warn] Direct HTTP returned minimal content for {url}")
+            return None
+        except requests.RequestException as e:
+            print(f"  [warn] Direct HTTP fallback failed for {url}: {e}")
             return None
 
     def _content_to_soup(self, page_content: dict, url: str) -> BeautifulSoup:

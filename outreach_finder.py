@@ -84,6 +84,8 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
 
     # Combine notes
     notes_parts = []
+    if scraper.last_fetch_method == "direct_http":
+        notes_parts.append("Fetched via direct HTTP fallback")
     if contact.notes:
         notes_parts.append(contact.notes)
     result.notes = "; ".join(notes_parts)
