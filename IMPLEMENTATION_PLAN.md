@@ -36,7 +36,7 @@
 
 ## Phase 2: Enrich Contact Data
 
-- [ ] **Task 9: Generate candidate email addresses**
+- [x] **Task 9: Generate candidate email addresses**
   For outreach targets where we have an author name and domain, generate candidate emails using common patterns (first@domain, first.last@domain, firstl@domain). Store as `author_email_candidates` field.
   Spec: `specs/contact-identification.md`
 

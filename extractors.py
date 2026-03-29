@@ -468,6 +468,43 @@ def extract_affiliate_instructions(contact_form_url: str, scraper: Scraper) -> s
     return ". ".join(instructions_parts)
 
 
+def generate_email_candidates(author_name: str, domain: str) -> str:
+    """Generate candidate email addresses from author name and domain.
+
+    Returns a semicolon-separated string of candidate emails using common
+    corporate email patterns.
+    """
+    if not author_name or not domain:
+        return ""
+
+    # Clean domain: strip www. prefix
+    domain = domain.replace("www.", "")
+
+    # Parse author name into parts, ignoring connectors
+    connectors = {"de", "van", "von", "el", "al", "di", "le", "la", "del", "der", "den", "das", "do", "da", "and", "of"}
+    parts = [p.lower() for p in author_name.split() if p.lower() not in connectors]
+    if len(parts) < 2:
+        return ""
+
+    first = parts[0]
+    last = parts[-1]
+    first_initial = first[0]
+    last_initial = last[0]
+
+    candidates = [
+        f"{first}@{domain}",
+        f"{first}.{last}@{domain}",
+        f"{first}{last}@{domain}",
+        f"{first_initial}{last}@{domain}",
+        f"{first}{last_initial}@{domain}",
+        f"{first}_{last}@{domain}",
+        f"{last}@{domain}",
+        f"{first_initial}.{last}@{domain}",
+    ]
+
+    return "; ".join(candidates)
+
+
 def build_linkedin_search_url(company_name: str) -> str:
     query = f"{company_name} marketing OR partnerships OR digital"
     return f"https://www.linkedin.com/search/results/people/?keywords={quote_plus(query)}"
