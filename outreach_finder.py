@@ -39,8 +39,8 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
     soup = scraper.fetch_page(url)
     if not soup:
         # Classify with domain only (no page content)
-        result.site_type, classification_reason = classify_site_with_content(domain)
-        print(f"  Site type: {result.site_type} ({classification_reason})")
+        result.site_type, result.classification_reason = classify_site_with_content(domain)
+        print(f"  Site type: {result.site_type} ({result.classification_reason})")
         # Check known sites directory as fallback
         known = get_known_site_result(domain)
         if known:
@@ -53,9 +53,9 @@ def process_url(url: str, priority: str, scraper: Scraper) -> OutreachResult:
         return result
 
     # 2. Classify using known lists + page content signals
-    result.site_type, classification_reason = classify_site_with_content(domain, soup)
-    print(f"  Site type: {result.site_type} ({classification_reason})")
-    if "needs_review" in classification_reason:
+    result.site_type, result.classification_reason = classify_site_with_content(domain, soup)
+    print(f"  Site type: {result.site_type} ({result.classification_reason})")
+    if "needs_review" in result.classification_reason:
         result.notes = "Classification uncertain — flagged for human review"
 
     # 3. Extract company name

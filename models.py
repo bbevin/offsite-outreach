@@ -29,6 +29,7 @@ class OutreachResult:
     domain: str = ""
     company_name: str = ""
     site_type: str = ""
+    classification_reason: str = ""
     contact_type: str = ""
     contact_form_url: str = ""
     author_name: str = ""
@@ -40,7 +41,7 @@ class OutreachResult:
     extras: dict = field(default_factory=dict)
 
     _BASE_HEADERS = [
-        "url", "priority", "domain", "company_name", "site_type",
+        "url", "priority", "domain", "company_name", "site_type", "classification_reason",
         "contact_type", "contact_form_url",
         "author_name", "author_url",
         "linkedin_search_url", "company_about_url",
@@ -54,7 +55,7 @@ class OutreachResult:
     def to_row(self) -> list[str]:
         base = [
             self.url, self.priority, self.domain, self.company_name,
-            self.site_type,
+            self.site_type, self.classification_reason,
             self.contact_type, self.contact_form_url,
             self.author_name, self.author_url,
             self.linkedin_search_url, self.company_about_url,

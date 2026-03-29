@@ -22,7 +22,7 @@
   Replace the old site_type system with the new two-bucket classification. Use the known affiliate site list (~80+ domains) as the primary signal. For unknown domains, detect affiliate signals from page content: affiliate disclosure language, tracking parameters in outbound links, "list your product" pages, content structure patterns. Vendor blogs and non-affiliate orgs (like US Chamber) must NOT be classified as affiliate just because they have a partner page. See classifier.py for the updated known site lists.
   Spec: `specs/affiliate-vs-outreach.md`
 
-- [ ] **Task 6: Add dynamic affiliate detection for unknown sites**
+- [x] **Task 6: Add dynamic affiliate detection for unknown sites**
   For sites not in any known list, scan page content for affiliate signals: disclosure text ("we may earn a commission", "affiliate links"), affiliate tracking params in outbound links (?ref=, ?tag=, redirect domains), and content structure (comparison tables with CTA buttons). If no signals found, default to outreach and flag for human review.
   Spec: `specs/affiliate-vs-outreach.md`
 

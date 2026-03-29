@@ -249,6 +249,84 @@ def _detect_affiliate_links(soup) -> bool:
     return affiliate_link_count >= 3
 
 
+def _detect_affiliate_content_structure(soup) -> bool:
+    """Check if page has structural patterns typical of affiliate listicles.
+
+    Looks for:
+    - Comparison tables (often with product names and pricing)
+    - Multiple CTA buttons linking to external products
+    - "Best X" style headings with numbered/ranked items
+    - Pros/cons lists paired with external links
+    """
+    signals = 0
+
+    # --- Signal 1: Comparison tables with external links ---
+    for table in soup.find_all("table"):
+        links_in_table = table.find_all("a", href=True)
+        external_links = [
+            a for a in links_in_table
+            if a["href"].startswith("http") and not a["href"].startswith("javascript")
+        ]
+        if len(external_links) >= 2:
+            signals += 1
+            break
+
+    # --- Signal 2: Multiple CTA-style buttons pointing to external products ---
+    cta_patterns = re.compile(
+        r"(visit\s+site|visit\s+website|try\s+(it\s+)?free|get\s+started|sign\s+up|"
+        r"go\s+to|view\s+deal|check\s+price|see\s+plans|start\s+free\s+trial|"
+        r"claim\s+offer|learn\s+more|view\s+pricing)",
+        re.IGNORECASE,
+    )
+    cta_count = 0
+    for a_tag in soup.find_all("a", href=True):
+        text = a_tag.get_text(strip=True)
+        if cta_patterns.search(text):
+            href = a_tag["href"]
+            if href.startswith("http"):
+                cta_count += 1
+    if cta_count >= 3:
+        signals += 1
+
+    # --- Signal 3: "Best X" style heading ---
+    best_heading_re = re.compile(
+        r"\bbest\b.{0,40}\b(software|tools?|apps?|platforms?|services?|solutions?|products?|"
+        r"providers?|companies|alternatives?|options?|picks?)\b",
+        re.IGNORECASE,
+    )
+    for tag in soup.find_all(["h1", "h2", "title"]):
+        if best_heading_re.search(tag.get_text()):
+            signals += 1
+            break
+
+    # --- Signal 4: Pros/cons lists (common in review listicles) ---
+    pros_cons_re = re.compile(r"\b(pros|cons|advantages|disadvantages|strengths|weaknesses)\b", re.IGNORECASE)
+    pros_cons_count = sum(
+        1 for tag in soup.find_all(["h2", "h3", "h4", "strong", "b"])
+        if pros_cons_re.search(tag.get_text())
+    )
+    if pros_cons_count >= 2:
+        signals += 1
+
+    # --- Signal 5: "List Your Product" / vendor listing page language ---
+    listing_re = re.compile(
+        r"(list\s+your\s+(product|company|tool|software|business)|"
+        r"submit\s+your\s+(product|listing|tool|software)|"
+        r"get\s+listed|add\s+your\s+(product|company|listing)|"
+        r"advertise\s+with\s+us|sponsor(ship)?\s+packages?|"
+        r"cost\s+per\s+(click|lead|acquisition)|"
+        r"CPC\s+rat|CPL\s+rat|CPA\s+rat|"
+        r"featured\s+listing|premium\s+listing|sponsored\s+listing)",
+        re.IGNORECASE,
+    )
+    page_text = soup.get_text(separator=" ", strip=True)
+    if listing_re.search(page_text):
+        signals += 1
+
+    # Need at least 2 structural signals to classify as affiliate content
+    return signals >= 2
+
+
 def _detect_vendor_blog(domain: str) -> bool:
     """Check if domain pattern suggests a vendor blog."""
     # blog.company.com or company.com (will be checked in context)
@@ -284,6 +362,9 @@ def classify_site_with_content(domain: str, soup=None) -> tuple[str, str]:
     # Check for affiliate tracking links
     has_affiliate_links = _detect_affiliate_links(soup)
 
+    # Check for affiliate content structure (comparison tables, CTAs, "Best X" headings)
+    has_affiliate_structure = _detect_affiliate_content_structure(soup)
+
     # If both disclosure AND affiliate links present, high confidence affiliate
     if has_disclosure and has_affiliate_links:
         return "Affiliate/Review", "content_signals:disclosure+links"
@@ -295,6 +376,14 @@ def classify_site_with_content(domain: str, soup=None) -> tuple[str, str]:
     # If many affiliate links but no disclosure, still likely affiliate
     if has_affiliate_links:
         return "Affiliate/Review", "content_signals:affiliate_links"
+
+    # Affiliate content structure with any other signal = affiliate
+    if has_affiliate_structure and (has_disclosure or has_affiliate_links):
+        return "Affiliate/Review", "content_signals:structure+other"
+
+    # Strong structural signals alone (multiple patterns) suggest affiliate
+    if has_affiliate_structure:
+        return "Affiliate/Review", "content_signals:structure"
 
     # Check vendor blog pattern
     if _detect_vendor_blog(domain):
