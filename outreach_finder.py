@@ -17,6 +17,7 @@ from scraper import Scraper, get_domain, rate_limit
 from extractors import (
     build_linkedin_search_url,
     build_linkedin_profile_url,
+    detect_affiliate_networks,
     detect_contact_method,
     extract_affiliate_instructions,
     extract_author,
@@ -143,6 +144,12 @@ def process_url(url: str, priority: str, scraper: Scraper, send_override: str = 
         )
         if result.affiliate_instructions:
             print(f"  Affiliate instructions: {result.affiliate_instructions[:100]}...")
+
+    # 5c. Detect affiliate networks from article page content
+    if result.site_type == "Affiliate/Review":
+        result.affiliate_network = detect_affiliate_networks(soup)
+        if result.affiliate_network:
+            print(f"  Affiliate network(s): {result.affiliate_network}")
 
     # 6. Find team contacts
     rate_limit()

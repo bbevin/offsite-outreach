@@ -468,6 +468,108 @@ def extract_affiliate_instructions(contact_form_url: str, scraper: Scraper) -> s
     return ". ".join(instructions_parts)
 
 
+# ---------------------------------------------------------------------------
+# Affiliate network detection
+# ---------------------------------------------------------------------------
+
+# Maps network identifiers (link domains, script sources, text mentions) to
+# a canonical network name.
+_AFFILIATE_NETWORK_LINK_PATTERNS: dict[str, str] = {
+    # Impact (Impact Radius / impact.com)
+    "tracking.impact.com": "Impact",
+    "impact.com": "Impact",
+    "impactradius.com": "Impact",
+    "sjv.io": "Impact",  # Impact short-link domain
+    # ShareASale
+    "shareasale.com": "ShareASale",
+    # CJ Affiliate (Commission Junction)
+    "commission-junction.com": "CJ Affiliate",
+    "anrdoezrs.net": "CJ Affiliate",
+    "jdoqocy.com": "CJ Affiliate",
+    "tkqlhce.com": "CJ Affiliate",
+    "dpbolvw.net": "CJ Affiliate",
+    "kqzyfj.com": "CJ Affiliate",
+    "cj.com": "CJ Affiliate",
+    "cjaffiliate.com": "CJ Affiliate",
+    # Awin
+    "awin1.com": "Awin",
+    "awin.com": "Awin",
+    "zenaps.com": "Awin",
+    # Partnerize
+    "partnerize.com": "Partnerize",
+    "prf.hn": "Partnerize",  # Partnerize short-link domain
+    # Rakuten Advertising
+    "click.linksynergy.com": "Rakuten",
+    "linksynergy.com": "Rakuten",
+    "rakuten.com": "Rakuten",
+    # AvantLink
+    "avantlink.com": "AvantLink",
+    # FlexOffers
+    "flexoffers.com": "FlexOffers",
+    # Skimlinks / go.redirectingat.com (content monetization layer, not a
+    # specific network, but worth surfacing)
+    "go.redirectingat.com": "Skimlinks",
+    "go.skimresources.com": "Skimlinks",
+    "skimlinks.com": "Skimlinks",
+}
+
+# Text patterns that mention affiliate networks by name (for disclosure
+# sections that say "we are part of the X affiliate program").
+_AFFILIATE_NETWORK_TEXT_PATTERNS: list[tuple[re.Pattern, str]] = [
+    (re.compile(r"\bimpact\s*(radius|\.com|affiliate)?\b", re.I), "Impact"),
+    (re.compile(r"\bshareasale\b", re.I), "ShareASale"),
+    (re.compile(r"\b(commission\s*junction|cj\s*affiliate)\b", re.I), "CJ Affiliate"),
+    (re.compile(r"\bawin\b", re.I), "Awin"),
+    (re.compile(r"\bpartnerize\b", re.I), "Partnerize"),
+    (re.compile(r"\brakuten\s*(advertising|marketing)?\b", re.I), "Rakuten"),
+    (re.compile(r"\bavantlink\b", re.I), "AvantLink"),
+    (re.compile(r"\bflexoffers\b", re.I), "FlexOffers"),
+]
+
+
+def detect_affiliate_networks(soup: BeautifulSoup, partner_soup: BeautifulSoup | None = None) -> str:
+    """Detect which affiliate networks a page uses.
+
+    Scans outbound links, script/iframe sources, and page text for network
+    indicators. Checks both the main article page and the partner/advertise
+    page (if available).
+
+    Returns a semicolon-separated string of detected network names, or empty
+    string if none found.
+    """
+    networks: set[str] = set()
+
+    soups = [soup]
+    if partner_soup is not None:
+        soups.append(partner_soup)
+
+    for s in soups:
+        # 1. Check outbound link hrefs
+        for a_tag in s.find_all("a", href=True):
+            href = a_tag["href"]
+            for domain_pattern, network in _AFFILIATE_NETWORK_LINK_PATTERNS.items():
+                if domain_pattern in href:
+                    networks.add(network)
+
+        # 2. Check script src and iframe src attributes
+        for tag in s.find_all(["script", "iframe"], src=True):
+            src = tag.get("src", "")
+            for domain_pattern, network in _AFFILIATE_NETWORK_LINK_PATTERNS.items():
+                if domain_pattern in src:
+                    networks.add(network)
+
+        # 3. Check page text for network name mentions (in disclosure areas)
+        page_text = s.get_text(separator=" ", strip=True)
+        for pattern, network in _AFFILIATE_NETWORK_TEXT_PATTERNS:
+            if pattern.search(page_text):
+                networks.add(network)
+
+    if not networks:
+        return ""
+
+    return "; ".join(sorted(networks))
+
+
 def generate_email_candidates(author_name: str, domain: str) -> str:
     """Generate candidate email addresses from author name and domain.
 

@@ -35,6 +35,7 @@ class OutreachResult:
     contact_type: str = ""
     contact_form_url: str = ""
     affiliate_instructions: str = ""
+    affiliate_network: str = ""
     author_name: str = ""
     author_url: str = ""
     author_email_candidates: str = ""
@@ -47,7 +48,7 @@ class OutreachResult:
     _BASE_HEADERS = [
         "url", "priority", "domain", "company_name", "site_type", "classification_reason",
         "send_classification", "authority_score",
-        "contact_type", "contact_form_url", "affiliate_instructions",
+        "contact_type", "contact_form_url", "affiliate_instructions", "affiliate_network",
         "author_name", "author_url", "author_email_candidates",
         "linkedin_search_url", "company_about_url",
         "team_contacts", "notes",
@@ -62,7 +63,7 @@ class OutreachResult:
             self.url, self.priority, self.domain, self.company_name,
             self.site_type, self.classification_reason,
             self.send_classification, self.authority_score,
-            self.contact_type, self.contact_form_url, self.affiliate_instructions,
+            self.contact_type, self.contact_form_url, self.affiliate_instructions, self.affiliate_network,
             self.author_name, self.author_url, self.author_email_candidates,
             self.linkedin_search_url, self.company_about_url,
             self.team_contacts, self.notes,

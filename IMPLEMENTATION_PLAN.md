@@ -44,7 +44,7 @@
   Generate more targeted LinkedIn search URLs using author name (not just company name). Where possible, attempt to construct a direct profile URL from author metadata.
   Spec: `specs/contact-identification.md`
 
-- [ ] **Task 11: Detect affiliate networks**
+- [x] **Task 11: Detect affiliate networks**
   For affiliate/review pages, scan for affiliate network indicators (Impact, ShareASale, CJ Affiliate, Awin, Partnerize, Rakuten). Surface which network the site uses so the outreach team knows if they need to be on that network.
   Spec: `specs/affiliate-vs-outreach.md`
 
