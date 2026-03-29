@@ -283,28 +283,67 @@ def find_team_contacts(page_url: str, scraper: Scraper) -> tuple[str, list[TeamC
     return about_url, contacts
 
 
+_JUNK_TEXT_PATTERNS = [
+    # Cookie consent language
+    "we use cookies", "accept all", "cookie policy", "cookie settings",
+    "cookie preferences", "manage cookies", "cookies help us",
+    "by continuing", "consent to cookies", "this website uses cookies",
+    "we and our partners", "accept cookies", "reject all",
+    # Legal boilerplate
+    "privacy policy", "terms of service", "terms of use",
+    "terms and conditions", "all rights reserved", "copyright ©",
+    "gdpr", "data protection", "legal notice", "disclaimer",
+    # Other non-contact junk
+    "subscribe to", "sign up for", "newsletter", "unsubscribe",
+    "follow us on", "share this", "powered by",
+]
+
+
+def _is_junk_element(text: str) -> bool:
+    """Return True if text looks like cookie banner, legal, or other junk."""
+    lower = text.lower()
+    return any(pat in lower for pat in _JUNK_TEXT_PATTERNS)
+
+
+def _is_junk_role(role: str) -> bool:
+    """Return True if the role text is junk rather than a real job title."""
+    if len(role) > 100:
+        return True
+    lower = role.lower()
+    return any(pat in lower for pat in _JUNK_TEXT_PATTERNS)
+
+
 def _extract_marketing_people(soup: BeautifulSoup, page_url: str) -> list[TeamContact]:
     """Scan a team/about page for people with marketing-related roles."""
     contacts = []
 
     for el in soup.find_all(["div", "li", "section", "article"], limit=200):
-        text = el.get_text(separator=" ", strip=True).lower()
-        if any(kw in text for kw in MARKETING_KEYWORDS):
-            lines = el.get_text(separator="\n", strip=True).split("\n")
-            name = ""
-            role = ""
-            for line in lines:
-                line = line.strip()
-                if not line:
-                    continue
-                if any(kw in line.lower() for kw in MARKETING_KEYWORDS):
+        text = el.get_text(separator=" ", strip=True)
+        lower_text = text.lower()
+
+        if not any(kw in lower_text for kw in MARKETING_KEYWORDS):
+            continue
+
+        # Skip elements that are cookie banners, legal text, etc.
+        if _is_junk_element(text):
+            continue
+
+        lines = el.get_text(separator="\n", strip=True).split("\n")
+        name = ""
+        role = ""
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            if any(kw in line.lower() for kw in MARKETING_KEYWORDS):
+                if not _is_junk_role(line):
                     role = line
-                elif re.match(r"^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}$", line) and len(line) < 40:
-                    name = line
-            if name and role:
-                contacts.append(TeamContact(name=name, role=role))
-                if len(contacts) >= 5:
-                    break
+            elif re.match(r"^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}$", line) and len(line) < 40:
+                name = line
+        if name and role:
+            contacts.append(TeamContact(name=name, role=role))
+            if len(contacts) >= 5:
+                break
 
     return contacts
 

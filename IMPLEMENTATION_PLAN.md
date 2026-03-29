@@ -10,7 +10,7 @@
   Reject author names that match common navigation terms (Home, Menu, About, Contact, etc.). Add a blocklist of junk names. Validate that extracted names look like real human names (capitalized words, 2-4 parts, no URLs).
   Spec: `specs/contact-identification.md`
 
-- [ ] **Task 3: Fix team contacts junk text**
+- [x] **Task 3: Fix team contacts junk text**
   Filter out cookie banner text, legal boilerplate, and other non-contact content from team_contacts extraction. Add a junk pattern blocklist.
   Spec: `specs/contact-identification.md`
 
