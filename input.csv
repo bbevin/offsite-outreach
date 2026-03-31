@@ -1,4 +1,445 @@
-url,priority
-https://www.nerdwallet.com/article/finance/what-is-a-savings-account,high
-https://www.wirecutter.com/reviews/best-credit-cards/,high
-https://www.pcmag.com/picks/the-best-vpn-services,medium
+url,priority,rank,category,mentioned,share,share_delta
+https://techradar.com/best/the-best-crm-for-startups,high,1,Earned Media,Not Mentioned,4.77,0.93
+https://crm.org/crmland/best-crm-for-startups,high,2,Other,Not Mentioned,3.94,0.92
+https://capsulecrm.com/blog/best-crm-for-founders/,high,3,Other,Not Mentioned,3.48,2.25
+https://reddit.com/r/CRM/comments/1ncf59q/whats_the_best_crm_for_an_early_stage/,high,4,Social,Not Mentioned,2.79,0.87
+https://boringbusinessnerd.com/post/best-crms-for-startups,high,5,Earned Media,Not Mentioned,2.47,0.17
+https://forbes.com/advisor/business/software/best-crm-software/,high,6,Earned Media,Not Mentioned,2.22,0.76
+https://forbes.com/advisor/business/software/best-crm-small-business/,high,7,Earned Media,Not Mentioned,2.2,0.09
+https://uschamber.com/co/start/strategy/low-cost-crm-tools,high,8,Other,Not Mentioned,2.06,0.22
+https://pcmag.com/picks/the-best-small-business-crm-software,high,9,Earned Media,Not Mentioned,2.04,0
+https://blog.salesflare.com/best-crm-for-startups,medium,10,Other,Not Mentioned,1.71,-0.39
+https://zendesk.com/sell/crm/startups/,medium,11,Other,Not Mentioned,1.58,0.28
+https://clearcrm.com/crm-roles/best-crm-for-business-owner-founder-2025/,medium,12,Other,Not Mentioned,1.21,0.29
+https://hubspot.com/products/crm/startups,medium,13,Competition,Not Mentioned,1.07,0.19
+https://clarify.ai/blog/top-7-crms-for-founders-in-2026,medium,14,Competition,Not Mentioned,1.06,1.06
+https://checkcharm.com/best/crm-for-founders/,medium,15,Earned Media,Not Mentioned,1.04,0.32
+https://folk.app/articles/best-crms-software-for-startups,low,16,Other,Not Mentioned,0.97,0.11
+https://salesforce.com/crm/startup-crm/,low,17,Competition,Not Mentioned,0.94,0.54
+https://startup.unitelvoice.com/simple-crm-systems,low,18,Other,Not Mentioned,0.92,0.8
+https://hubspot.com/products/crm,low,19,Competition,Not Mentioned,0.9,0.31
+https://monday.com/blog/crm-and-sales/crm-for-small-business/,low,20,Other,Not Mentioned,0.9,0.53
+https://emailtooltester.com/en/best-crm-for-small-business/,low,21,Earned Media,Not Mentioned,0.89,-0.05
+https://adamenfroy.com/crm-software,low,22,Earned Media,Not Mentioned,0.88,0.88
+https://techradar.com/best/best-crm-for-small-business,low,23,Earned Media,Not Mentioned,0.87,-0.12
+https://clarify.ai/blog/crms-for-startup-founders,low,24,Competition,Mentioned,0.85,-0.71
+https://zapier.com/blog/best-crms-for-small-business/,low,25,Other,Not Mentioned,0.84,0.04
+https://techradar.com/reviews/freshworks-review,low,26,Earned Media,Not Mentioned,0.83,-0.05
+https://pcmag.com/picks/the-best-crm-software,low,27,Earned Media,Not Mentioned,0.77,-0.3
+https://techradar.com/best/the-best-crm-software,low,28,Earned Media,Not Mentioned,0.76,0.47
+https://crm.org/crmland/best-crm-software,low,29,Other,Not Mentioned,0.76,0.61
+https://bigcontacts.com/blog/crm-for-startups/,low,30,Other,Not Mentioned,0.71,0.18
+https://toolradar.com/guides/best-crm-for-startups,low,31,Social,Not Mentioned,0.7,0.28
+https://instantly.ai/blog/best-crm-for-startups/,low,32,Other,Not Mentioned,0.65,-0.06
+https://youtube.com/watch?v=GCMdLB82FXg,low,33,Social,Not Mentioned,0.62,-0.04
+https://teamgate.com/blog/4-best-crm-for-startups/,low,34,Other,Not Mentioned,0.62,0.4
+https://clarify.ai/blog/top-7-low-cost-crms-every-founder-should-evaluate-in-2025,low,35,Competition,Mentioned,0.62,-0.01
+https://routine-automation.com/blog/best-crm-for-small-business/,low,36,Other,Not Mentioned,0.61,-0.09
+https://youtube.com/watch?v=RIRyuq-AKOU,low,37,Social,Not Mentioned,0.6,-0.22
+https://youtube.com/watch?v=UkY6lWoQqjE,low,38,Social,Not Mentioned,0.57,0.19
+https://blog.hubspot.com/sales/startup-crm,low,39,Competition,Not Mentioned,0.57,0.03
+https://close.com/blog/crms-for-startups,low,40,Other,Not Mentioned,0.56,-0.02
+https://fayedigital.com/blog/best-crm-for-small-business/,low,41,Other,Not Mentioned,0.56,0.13
+https://innowise.com/blog/best-crm-for-small-business/,low,42,Other,Not Mentioned,0.54,-0.14
+https://zendesk.com/in/sell/crm/startups/,low,43,Other,Not Mentioned,0.54,0.44
+https://crmsreviewed.com/the-10-best-crms-for-startups-in-2025/,low,44,Earned Media,Not Mentioned,0.53,-0.37
+https://clearout.io/blog/crm-software-tools/,low,45,Other,Not Mentioned,0.53,0.53
+https://etsy.com/listing/1553553813/salesmate-notion-sales-management-crm?gpla=1&gao=1,low,46,Other,Not Mentioned,0.53,0.25
+https://folk.app/articles/best-crm-for-entrepreneurs,low,47,Other,Not Mentioned,0.5,-0.25
+https://tech.co/crm-software/best-crm-startups,low,48,Earned Media,Not Mentioned,0.48,0.13
+https://toolpilot.dev/blog/best-crm-software-2026/,low,49,Earned Media,Not Mentioned,0.47,0.47
+https://onepagecrm.com/,low,50,Other,Not Mentioned,0.47,0.25
+https://techradar.com/reviews/pipedrive-crm-review,low,51,Earned Media,Not Mentioned,0.47,-0.2
+https://bigcontacts.com/blog/best-crm-for-small-business/,low,52,Other,Not Mentioned,0.45,-0.03
+https://clickup.com/features/crm/startup-founders,low,53,Other,Not Mentioned,0.44,-0.18
+https://forbes.com/advisor/business/software/best-simple-crm/,low,54,Earned Media,Not Mentioned,0.42,0.15
+https://mogulnetworking.com/startup-founders,low,55,Other,Not Mentioned,0.42,0.13
+https://salesforce.com/blog/top-free-crms-for-startups/,low,56,Competition,Not Mentioned,0.41,-0.1
+https://reddit.com/r/SaaS/comments/1rcewlg/hubspot_pipedrive_zoho_why_do_crms_still_feel/,low,57,Social,Not Mentioned,0.41,0.03
+https://forbes.com/advisor/personal-finance/best-crm-small-business/,low,58,Earned Media,Not Mentioned,0.41,0.25
+https://digitalocean.com/resources/articles/best-crm-tools,low,59,Other,Not Mentioned,0.41,0.15
+https://podium.com/article/best-crm-for-startups,low,60,Other,Not Mentioned,0.41,-0.36
+https://technologyadvice.com/blog/crm/easiest-crm-to-use/,low,61,Earned Media,Not Mentioned,0.39,-0.05
+https://stackfix.com/best/best-crm-for-founder-led-sales-teams,low,62,Other,Not Mentioned,0.36,0.03
+https://vibegrowthstack.io/blog/best-crm-for-startups,low,63,Other,Not Mentioned,0.36,-1.01
+https://reddit.com/r/Brief_Reviews/comments/1iotvkv/best_crm_tools_for_startups_in_2025_a/,low,64,Social,Not Mentioned,0.36,-0.06
+https://fitsmallbusiness.com/best-simple-crm/,low,65,Earned Media,Not Mentioned,0.35,0.07
+https://shawngraham.me/blog/affordable-crm-solutions-for-small-business,low,66,Other,Not Mentioned,0.32,-0.1
+https://zendesk.co.uk/sell/crm/small-business/,low,67,Other,Not Mentioned,0.32,0.1
+https://monday.com/blog/crm-and-sales/simple-crm/,low,68,Other,Not Mentioned,0.31,0.23
+https://salesforce.com/blog/best-free-crms-for-startups/,low,69,Competition,Not Mentioned,0.31,0.09
+https://en.wikipedia.org/wiki/Streak_%28company%29,low,70,Institution,Not Mentioned,0.31,-0.02
+https://pipermind.com/blog/best-crms-for-startups-2026/,low,71,Other,Not Mentioned,0.31,-0.08
+https://vcbacked.co/blog/best-crm-for-startup-sales-2026,low,72,Other,Not Mentioned,0.31,0.31
+https://makersfuel.com/blog/sales/best-crm-tools-for-first-time-founders-that-won-t-break-the-bank,low,73,Other,Not Mentioned,0.31,0.08
+https://reddit.com/r/BrightestHR/comments/1inmy8s/best_cloudbased_crms_for_new_businesses/,low,74,Social,Not Mentioned,0.29,0.06
+https://pipedrive.com/en/blog/crm-for-startups,low,75,Competition,Not Mentioned,0.29,-0.19
+https://onepagecrm.com/crm-solution/fundraising-crm/,low,76,Other,Not Mentioned,0.28,0.06
+https://teamgate.com/blog/best-crm-for-small-business/,low,77,Other,Not Mentioned,0.28,0.16
+https://streak.com/industries/startup-founders,low,78,Other,Not Mentioned,0.28,0.05
+https://gritt.io/blog/best-crm-for-fundraising,low,79,Other,Not Mentioned,0.27,-0.05
+https://nutshell.com/blog/best-affordable-crm,low,80,Other,Not Mentioned,0.27,-0.05
+https://crowdspring.com/blog/best-crm-small-business/,low,81,Other,Not Mentioned,0.26,-0.25
+https://fueler.io/blog/best-crm-tools-for-us-founders-and-agencies,low,82,Other,Not Mentioned,0.26,-0.08
+https://techradar.com/best/best-client-management-software-of-year,low,83,Earned Media,Not Mentioned,0.26,0.26
+https://zapier.com/blog/best-crm-app/,low,84,Other,Not Mentioned,0.26,-0.29
+https://onepagecrm.com/blog/best-affordable-crms/,low,85,Other,Not Mentioned,0.26,0.26
+https://youtube.com/watch?v=jtT5EHUaAsM,low,86,Social,Not Mentioned,0.25,0.19
+https://youtube.com/watch?v=REcfDpvUreg,low,87,Social,Not Mentioned,0.25,-0.15
+https://sbdc.uh.edu/sbdc/small-business-crm.asp,low,88,Institution,Not Mentioned,0.25,0.13
+https://pipedrive.com/en/industries/crm-solutions-for-small-business,low,89,Competition,Not Mentioned,0.23,0.2
+https://withallo.com/blog/best-crms-for-startups,low,90,Other,Not Mentioned,0.23,-0.08
+https://crm.org/crmland/best-crm-for-small-business,low,91,Other,Not Mentioned,0.23,-0.2
+https://youtube.com/watch?v=lNnwqPERTc8,low,92,Social,Not Mentioned,0.23,0
+https://staxpayments.com/blog/best-crm-for-small-business/,low,93,Other,Not Mentioned,0.23,0
+https://reddit.com/r/mondaydotcom/comments/15nmrti/the_best_crm_software_for_small_businesses_in_2023/,low,94,Social,Not Mentioned,0.23,0
+https://clarify.ai/blog/the-5-best-crms-for-founder-led-sales-in-2025,low,95,Competition,Not Mentioned,0.23,0
+https://nethunt.com/blog/the-best-crms-for-small-business/,low,96,Other,Not Mentioned,0.23,0
+https://tech.co/crm-software/simplest-crm-systems,low,97,Earned Media,Not Mentioned,0.23,0
+https://reddit.com/r/CRM/comments/1k0vjbz/best_crm_for_founder_led_sales_does_apollo/,low,98,Social,Not Mentioned,0.23,-0.19
+https://hubspot.com/comparisons/best-crm,low,99,Competition,Not Mentioned,0.23,0
+https://reelunlimited.com/blog/crm-for-startups/,low,100,Other,Not Mentioned,0.23,0.03
+https://founderuniversity.substack.com/p/a-tight-crm-is-your-secret-weapon,low,101,Social,Not Mentioned,0.23,0
+https://softwareadvice.com/crm/startup-comparison/,low,102,Other,Not Mentioned,0.23,0
+https://youtube.com/watch?v=0p92peQETVk,low,103,Social,Not Mentioned,0.23,-0.12
+https://zendesk.com/sell/crm/small-business/,low,104,Other,Not Mentioned,0.23,0.1
+https://reddit.com/r/CRM/comments/1mpucpt/whats_a_good_simple_crm_for_a_startup_thats_just/,low,105,Social,Not Mentioned,0.22,-0.3
+https://ventureharbour.com/best-free-or-cheap-crm-platforms/,low,106,Other,Not Mentioned,0.22,0.07
+https://addtocrm.com/tools/crm-tools-for-startups,low,107,Other,Not Mentioned,0.22,-1.1
+https://nimble.com/blog/top-crms-for-small-business-owners/,low,108,Other,Not Mentioned,0.22,0
+https://expertmarket.com/crm/best-crm-systems-for-small-businesses,low,109,Earned Media,Not Mentioned,0.21,-0.11
+https://visible.vc/blog/best-crm-for-fundraising/,low,110,Other,Not Mentioned,0.21,0.15
+https://techradar.com/reviews/insightly-crm-review,low,111,Earned Media,Not Mentioned,0.21,0.21
+https://bigin.com/small-business-express/top-CRMs-of-2026-for-small-businesses.html,low,112,Other,Not Mentioned,0.21,0.07
+https://reddit.com/r/CRM/comments/1prfdyl/what_is_the_best_crm_software_for_2026/,low,113,Social,Not Mentioned,0.21,0.15
+https://bestcrmix.com/comparison/top-crm-systems-for-startups-entrepreneurs/,low,114,Earned Media,Not Mentioned,0.21,0.15
+https://reddit.com/r/BusinessVault/comments/1obio2z,low,115,Social,Not Mentioned,0.21,-0.18
+https://act.com/blog/what-is-the-best-crm-for-startup-businesses/,low,116,Other,Not Mentioned,0.2,0.1
+https://freshworks.com/crm/startups/,low,117,Other,Not Mentioned,0.2,0.17
+https://nfx.com/post/signal-to-fix-fundraising,low,118,Other,Not Mentioned,0.2,0.17
+https://jivochat.com/blog/tools/best-crm-for-startups.html,low,119,Other,Not Mentioned,0.19,-0.03
+https://reddit.com/r/Entrepreneur/comments/xbxzzd/entrepreneurs_using_crms_how_helpful_is_your_crm/,low,120,Social,Not Mentioned,0.19,0.06
+https://openvc.app/CRM,low,121,Other,Not Mentioned,0.19,-0.08
+https://salesforce.com/ap/blog/best-free-crms-for-startups/,low,122,Competition,Not Mentioned,0.19,0.06
+https://salesforce.com/crm/crm-for-small-business/,low,123,Competition,Not Mentioned,0.18,0.18
+https://waveup.com/blog/5-best-crms-for-startups-in-2025/,low,124,Other,Not Mentioned,0.18,0.03
+https://etsy.com/listing/4298729914/ultimate-crm-excel-template-customer?gpla=1&gao=1,low,125,Other,Not Mentioned,0.18,0.18
+https://engagebay.com/blog/best-crm-for-startups/,low,126,Other,Not Mentioned,0.18,0.03
+https://appvizer.com/magazine/customer/client-relationship-mgt/crm-startup,low,127,Earned Media,Not Mentioned,0.18,-0.25
+https://investglass.com/crm-software-list-30-leading-platforms-in-2026-and-how-to-choose-the-right-one/,low,128,Other,Not Mentioned,0.18,0.18
+https://etsy.com/listing/4428044616/simple-business-crm-system-customer?gpla=1&gao=1,low,129,Other,Not Mentioned,0.18,0.18
+https://antus.de/products/zoho-umfassende-business-software-suite-crm-e-mail-projektmanagement-mehr?variant=52334273724748&_gsid=VrgMrEK4wRmE,low,130,Other,Not Mentioned,0.18,0.18
+https://capterra.com/customer-relationship-management-software/,low,131,Social,Not Mentioned,0.18,0.18
+https://toolpilot.ai/products/freshsales?variant=46494617174294&_gsid=1oR9roks2NnK,low,132,Earned Media,Not Mentioned,0.18,0.18
+https://authencio.com/blog/6-best-crms-for-startups-in-ranked-reviewed,low,133,Earned Media,Not Mentioned,0.18,0.03
+https://etsy.com/listing/1696540479/crm-professional-turbocharge-your?gpla=1&gao=1,low,134,Other,Not Mentioned,0.18,0.03
+https://topaicatalog.com/products/hubspot?variant=49889245856079&_gsid=uDyFdfYHidji,low,135,Earned Media,Not Mentioned,0.18,0.18
+https://cloudtalk.io/blog/best-crm-software-for-small-businesses/,low,136,Other,Not Mentioned,0.18,-0.02
+https://etsy.com/listing/4376474757/contact-management-system-a-minimalist?gpla=1&gao=1,low,137,Other,Not Mentioned,0.18,0.18
+https://worldofbooks.com/products/salesforce-essentials-for-administrators-book-mohith-shrivastava-9781784398071?sku=NIN9781784398071,low,138,Other,Not Mentioned,0.18,0.18
+https://dealfuel.com/seller/saleswizard-sales-crm-software/,low,139,Earned Media,Not Mentioned,0.18,-0.11
+https://shop.photoboothint.com/products/blackfriday-1-year-lead-fuel-crm-special?variant=43099099693130&_gsid=YrS67UGNVwMH,low,140,Other,Not Mentioned,0.18,0.18
+https://etsy.com/listing/4439585975/excel-based-pipeline-tracker-small?gpla=1&gao=1,low,141,Other,Not Mentioned,0.18,0.18
+https://etsy.com/listing/4339005729/notion-crm-template-small-business?gpla=1&gao=1,low,142,Other,Not Mentioned,0.18,0.18
+https://toolpilot.ai/products/monday-com?variant=47046765281558&_gsid=sxjbXNoJhZPr,low,143,Earned Media,Not Mentioned,0.18,0.18
+https://toolpilot.ai/products/pipedrive?variant=46869472477462&_gsid=SpyVPPMWFhFP,low,144,Earned Media,Not Mentioned,0.18,0.18
+https://techjockey.com/detail/monday-sales-crm,low,145,Other,Not Mentioned,0.18,0.18
+https://shop.founderacquisition.com/products/founder-acquisition-pro-all-in-one-marketing-platform?variant=48051594657947&_gsid=6A92trTw47ih,low,146,Other,Not Mentioned,0.18,0.18
+https://stacksocial.com/sales/convergehub-sales-crm-enterprise-plan-lifetime-subscription,low,147,Other,Not Mentioned,0.18,0.03
+https://etsy.com/listing/4457932934/small-business-crm-spreadsheet-template?gpla=1&gao=1,low,148,Other,Not Mentioned,0.18,0.18
+https://stacksocial.com/sales/convergehub-sales-crm-premium-plan-lifetime-subscription,low,149,Other,Not Mentioned,0.18,0.03
+https://onepagecrm.com/blog/best-crm-tools/,low,150,Other,Not Mentioned,0.18,-0.3
+https://folk.app/articles/best-crm-startups-free,low,151,Other,Not Mentioned,0.17,0.01
+https://smith.ai/blog/the-top-10-crms-for-small-businesses-solopreneurs-on-a-budget-free-and-cheap-solutions-for-customer-relationship-management-without-compromise,low,152,Other,Not Mentioned,0.17,0.11
+https://youtube.com/watch?v=tuv8Uqy7skA,low,153,Social,Not Mentioned,0.17,0.08
+https://zoho.com/crm/small-business-crm-software/,low,154,Other,Not Mentioned,0.17,-0.05
+https://reddit.com/r/Entrepreneur/comments/113auqm/crms_that_dont_cost_a_kidney/,low,155,Social,Not Mentioned,0.16,0
+https://broadly.com/blog/crm-for-small-business/,low,156,Other,Not Mentioned,0.16,-0.03
+https://zendesk.co.uk/sell/crm/startups/,low,157,Other,Not Mentioned,0.16,-0.26
+https://smallbusinesshq.co/best-crm-for-startups/,low,158,Earned Media,Not Mentioned,0.16,0.03
+https://reddit.com/r/smallbusiness/comments/1r71vm8/honestly_what_is_the_best_crm_for_small_business/,low,159,Social,Not Mentioned,0.16,-0.07
+https://en.wikipedia.org/wiki/Dolibarr,low,160,Institution,Not Mentioned,0.16,0.1
+https://ten-stack.com/2025/11/04/top-10-small-business-crm-software-for-2026/,low,161,Earned Media,Not Mentioned,0.16,-0.59
+https://bestcrmforstartups.com/,low,162,Other,Not Mentioned,0.16,0.01
+https://adratechsystems.com/en/resources/best-crm-small-business-2026,low,163,Other,Not Mentioned,0.16,0.05
+https://techradar.com/reviews/freshsales-crm-review,low,164,Earned Media,Not Mentioned,0.16,0.1
+https://reddit.com/r/GrowthHacking/comments/1r2kiwa/best_crm_tools_for_a_small_bootstrap_startup/,low,165,Social,Not Mentioned,0.16,0.16
+https://iknowplus.com/10-best-crm-for-small-business-2026/,low,166,Earned Media,Not Mentioned,0.16,-0.18
+https://leader.net/2026/02/01/best-crm-for-small-business-2026-comparison/,low,167,Other,Not Mentioned,0.16,0.16
+https://techradar.com/pro/software-services/less-annoying-crm-review,low,168,Earned Media,Not Mentioned,0.16,-0.07
+https://clarify.ai/blog/the-best-crm-for-small-business-a-founders-guide-to-choosing-the-right-platform,low,169,Competition,Not Mentioned,0.14,-0.19
+https://youtube.com/watch?v=Zq1kfwRWkmk,low,170,Social,Not Mentioned,0.14,-0.23
+https://youtube.com/watch?v=-cTLzxdnmgw,low,171,Social,Not Mentioned,0.14,0.05
+https://baserow.io/blog/best-crm-tools-for-startups,low,172,Other,Not Mentioned,0.14,0.02
+https://notion.com/use-case/fundraising/a-fundraising-crm-for-startups-the-complete-notion-guide,low,173,Other,Not Mentioned,0.14,0.11
+https://youtube.com/watch?v=8RS1s7yC4G4,low,174,Social,Not Mentioned,0.14,-0.08
+https://youtube.com/watch?v=mVvZPIPz4Rg,low,175,Social,Not Mentioned,0.14,0.14
+https://hubspot.com/products/crm/small-business,low,176,Competition,Not Mentioned,0.14,0.14
+https://monday.com/blog/crm-and-sales/free-crm/,low,177,Other,Not Mentioned,0.13,0.1
+https://nutshell.com/blog/best-crms-for-small-businesses,low,178,Other,Not Mentioned,0.13,-0.26
+https://primeloop.co/blog/best-crm-software-for-startups,low,179,Other,Not Mentioned,0.13,0.1
+https://jetpack.com/resources/best-crm-for-startups/,low,180,Other,Not Mentioned,0.11,0.11
+https://quora.com/What-are-the-most-commonly-used-CRM-tools-by-startups-both-free-and-paid,low,181,Social,Not Mentioned,0.11,0.05
+https://larksuite.com/en_us/blog/crm-for-startups,low,182,Other,Not Mentioned,0.11,0.05
+https://youtube.com/shorts/9gceENY0jaQ,low,183,Social,Not Mentioned,0.11,0.11
+https://ventureharbour.com/crm-software-small-business/,low,184,Other,Not Mentioned,0.11,0.08
+https://reddit.com/r/u_Nimble_CRM/comments/1mo6ajl,low,185,Social,Not Mentioned,0.1,0.1
+https://capsulecrm.com/blog/low-cost-CRM-for-small-business/,low,186,Other,Not Mentioned,0.1,0.1
+https://launchtry.com/blog/best-crm-for-startups-saas-2026,low,187,Other,Not Mentioned,0.1,0.1
+https://techradar.com/reviews/hubspot-crm-review,low,188,Earned Media,Not Mentioned,0.1,0.05
+https://blog.coffee.ai/best-crm-small-businesses-2026/,low,189,Other,Not Mentioned,0.1,-0.12
+https://uschamber.com/co/grow/customers/choosing-the-best-crm-software,low,190,Other,Not Mentioned,0.1,0.1
+https://reddit.com/r/CRMSoftware/comments/1rlhjwo/good_crm_software_to_consider_in_2026/,low,191,Social,Not Mentioned,0.1,-0.17
+https://reddit.com/r/Startup_Ideas/comments/1rolz6j/best_tools_for_startups_2026_our_full_stack_at_12/,low,192,Social,Not Mentioned,0.1,0.05
+https://forbes.com/advisor/business/software/best-crm-software-zx1fa/,low,193,Earned Media,Not Mentioned,0.1,0.05
+https://reddit.com/r/CRMSoftware/comments/1jgn7mg,low,194,Social,Not Mentioned,0.1,0.05
+https://talkroute.com/best-crm-for-small-business-in-2026/,low,195,Other,Not Mentioned,0.1,0.07
+https://zeeg.me/en/blog/post/best-crms-for-start-ups,low,196,Other,Not Mentioned,0.1,-0.06
+https://techradar.com/reviews/zoho-crm-review,low,197,Earned Media,Not Mentioned,0.1,-0.06
+https://morriscountyedc.org/10-best-crm-software-of-2025/,low,198,Institution,Not Mentioned,0.1,0.1
+https://gain.io/blog/crm-platforms-for-new-startups,low,199,Other,Not Mentioned,0.1,0.07
+https://gurussolutions.com/crm-comparison-chart,low,200,Other,Not Mentioned,0.1,0.1
+https://biztechscout.com/en/article/best-crm-for-small-business-2026,low,201,Earned Media,Not Mentioned,0.1,0.1
+https://sybill.ai/blogs/best-crm-software-for-small-business,low,202,Other,Not Mentioned,0.1,0.05
+https://reddit.com/r/Sales_n_Stuff/comments/1r0eslk/what_is_the_best_crm_right_now_and_why/,low,203,Social,Not Mentioned,0.1,0.1
+https://appeq.ai/use-cases/founders,low,204,Other,Not Mentioned,0.1,-0.13
+https://linkedin.com/pulse/best-crm-software-startups-free-cheap-ajibola-busari-t3kaf,low,205,Social,Not Mentioned,0.1,0.1
+https://reddit.com/r/CRM/comments/1bs0o65/crm_for_small_business/,low,206,Social,Not Mentioned,0.1,0.1
+https://superoffice.com/blog/crm-instead-of-spreadsheets/,low,207,Other,Not Mentioned,0.08,0.08
+https://yena.ai/blog/the-12-best-crm-software-for-startups-in-2025,low,208,Other,Not Mentioned,0.08,0.02
+https://zdnet.com/article/best-small-business-crm-software/,low,209,Earned Media,Not Mentioned,0.08,-0.31
+https://jotform.com/blog/crm-for-small-businesses/,low,210,Other,Not Mentioned,0.08,-0.04
+https://youtube.com/watch?v=7Lqe62U-Tfc,low,211,Social,Not Mentioned,0.08,-0.26
+https://insidea.com/blog/hubspot/crm-for-construction-companies/,low,212,Other,Not Mentioned,0.08,0.08
+https://fitsmallbusiness.com/best-personal-crm/,low,213,Earned Media,Not Mentioned,0.08,0.08
+https://superoffice.com/blog/ditch-spreadsheets-for-crm/,low,214,Other,Not Mentioned,0.08,0.08
+https://solutionsreview.com/crm/2026/01/05/best-crm-companies-to-know-about/,low,215,Earned Media,Not Mentioned,0.08,-0.18
+https://youtube.com/watch?v=WxsFQpRRshc,low,216,Social,Not Mentioned,0.08,0.02
+https://youtube.com/watch?v=wkTtcnYWoAM,low,217,Social,Not Mentioned,0.08,0.05
+https://blog.salesflare.com/best-crm-for-startups?mc_eid=bdb5d8d29b,low,218,Other,Not Mentioned,0.08,-0.48
+https://jetpack.com/resources/cheap-affordable-crm-software/,low,219,Other,Not Mentioned,0.08,0.08
+https://invoice.2go.com/learn/customer-retention/crm-for-small-business/,low,220,Social,Not Mentioned,0.08,0.08
+https://onepagecrm.com/crm-reviews/,low,221,Other,Not Mentioned,0.08,0.08
+https://maximizer.com/blog/best-simple-crm-software/,low,222,Other,Not Mentioned,0.08,-0.01
+https://reddit.com/r/CRMSoftware/comments/1kwu7er/best_crm_software_for_small_businesses_currently/,low,223,Social,Not Mentioned,0.08,0.05
+https://zendesk.com/sell/crm/simple/,low,224,Other,Not Mentioned,0.08,0.02
+https://forecom-solutions.com/en/blog/comparison-of-the-most-popular-crms,low,225,Other,Not Mentioned,0.06,0.03
+https://fitsmallbusiness.com/best-crm-for-startups/,low,226,Earned Media,Not Mentioned,0.06,0.06
+https://startups.co.uk/crm-software/best-crm-for-small-business-uk/,low,227,Earned Media,Not Mentioned,0.06,0.03
+https://blog.salesflare.com/best-simple-crm,low,228,Other,Not Mentioned,0.06,-0.01
+https://lindy.ai/blog/best-crm-software-small-business,low,229,Other,Not Mentioned,0.06,-0.47
+https://cxtoday.com/crm/the-best-crm-for-small-businesses-the-ultimate-guide/,low,230,Earned Media,Not Mentioned,0.06,-0.01
+https://zdnet.com/article/best-crm-software/,low,231,Earned Media,Not Mentioned,0.06,0.06
+https://zoflowx.com/blogs/best-crm-for-startups,low,232,Other,Not Mentioned,0.06,-0.19
+https://pitchwise.se/blog/crm-for-fundraising,low,233,Other,Not Mentioned,0.06,0.06
+https://youtube.com/watch?v=qAwlJrX-4ww,low,234,Social,Not Mentioned,0.06,-0.04
+https://crmjio.com/blog-page/best-crm-programs-for-small-business-in-2026,low,235,Other,Not Mentioned,0.06,0.06
+https://nethunt.com/blog/best-simple-crm-solutions/,low,236,Other,Not Mentioned,0.06,0.03
+https://nutshell.com/blog/best-simple-crms,low,237,Other,Not Mentioned,0.06,-0.08
+https://medium.com/@nathanbeckord/advanced-tips-tactics-and-strategies-for-startups-raising-angel-or-venture-capital-76eb7cb7501e,low,238,Social,Not Mentioned,0.06,0.06
+https://assetmule.ai/blog/sales-tool-recommendations-for-founder-led-selling,low,239,Other,Not Mentioned,0.06,0.06
+https://leadloft.com/blog/best-crm-for-startup-fundraising,low,240,Other,Not Mentioned,0.06,-0.01
+https://reddit.com/r/CRMSoftware/comments/1jgn7mg/how_to_choose_the_best_crm_software_for_startups/,low,241,Social,Not Mentioned,0.06,-0.07
+https://monday.com/blog/crm-and-sales/crm-software/,low,242,Other,Not Mentioned,0.06,-0.06
+https://supportbench.com/top-crm-tools-for-small-businesses/,low,243,Other,Not Mentioned,0.06,0.03
+https://reddit.com/r/startups/comments/1r2khw4/i_will_not_promote_best_crm_tools_for_a_small/,low,244,Social,Not Mentioned,0.06,0
+https://xero.com/us/guides/crm-for-small-business/,low,245,Other,Not Mentioned,0.06,-0.03
+https://scoro.com/blog/crm-tools-for-consulting/,low,246,Other,Not Mentioned,0.06,0.06
+https://ringcentral.com/us/en/blog/best-crm-for-small-business/,low,247,Other,Not Mentioned,0.06,0.06
+https://reddit.com/r/CRM/comments/1pdbeqn/what_is_the_best_crm_for_a_single_entrepreneur/,low,248,Social,Not Mentioned,0.05,0.05
+https://reddit.com/r/Entrepreneur/comments/1okknos/what_crm_do_small_business_owners_actually_use/,low,249,Social,Not Mentioned,0.05,0.02
+https://omr.com/en/reviews/category/crm/enterprise-market-segment,low,250,Earned Media,Not Mentioned,0.05,0.05
+https://crmexpertshub.com/best-crm-tools-for-startups/,low,251,Other,Not Mentioned,0.05,0.05
+https://forbes.com/advisor/uk/business/software/best-crm-small-business/,low,252,Earned Media,Not Mentioned,0.05,0.05
+https://startupsavant.com/service-reviews/netsuite-vs-salesforce,low,253,Earned Media,Not Mentioned,0.05,0.05
+https://capsulecrm.com/blog/best-crm-for-startups/,low,254,Other,Not Mentioned,0.05,-0.15
+https://expertmarket.com/crm/best-cheap-crm-systems,low,255,Earned Media,Not Mentioned,0.05,0.05
+https://smartxcrm.com/10-free-or-low-cost-crm-tools-for-small-businesses-transform-your-customer-management-without-breaking-the-bank/,low,256,Other,Not Mentioned,0.05,0.05
+https://brandorai.com/blogs/news/best-crm-software-2025-comparison,low,257,Other,Not Mentioned,0.05,0
+https://forbes.com/advisor/business/software/hubspot-vs-zoho/,low,258,Earned Media,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRM/comments/1e5141p/best_and_inexpensive_crm_for_small_business/,low,259,Social,Not Mentioned,0.05,0.02
+https://expertmarket.com/crm/best-crm-software,low,260,Earned Media,Not Mentioned,0.05,0.05
+https://rocketmvp.io/best-startup-tools/crm-tools,low,261,Other,Not Mentioned,0.05,-0.22
+https://elevatiq.com/post/zoho-crm-vs-pipedrive/,low,262,Other,Not Mentioned,0.05,0.05
+https://monday.com/blog/crm-and-sales/affordable-crm-options-for-small-businesses/,low,263,Other,Not Mentioned,0.05,0
+https://creatio.com/glossary/crm-software,low,264,Other,Not Mentioned,0.05,0.05
+https://rtdynamic.com/blog/top-free-low-cost-crms-for-pre-seed-startups/,low,265,Other,Not Mentioned,0.05,-0.03
+https://softr.io/create/crm-for-startups,low,266,Other,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRM/comments/1ne8y3d/zoho_vs_hubspot_vs_salesforce/,low,267,Social,Not Mentioned,0.05,0.05
+https://efficient.app/best/crm,low,268,Other,Not Mentioned,0.05,0.05
+https://pipedrive.com/en/blog/crm-tool,low,269,Competition,Not Mentioned,0.05,-0.06
+https://b2breviews.com/crm-software/,low,270,Earned Media,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRM/comments/1ptbxa2/whats_a_decent_simple_crm_for_a_startup_thats/,low,271,Social,Not Mentioned,0.05,0
+https://reddit.com/r/CRM/comments/1s28ga6/whats_the_best_crm_for_2026_with_ai_and/,low,272,Social,Not Mentioned,0.05,0.05
+https://datastackguide.com/best/best-crm-for-startups/,low,273,Earned Media,Not Mentioned,0.05,-0.22
+https://salesforce.com/crm/best-crm/,low,274,Competition,Not Mentioned,0.05,0.05
+https://nethunt.com/crm-for-startups,low,275,Other,Not Mentioned,0.05,0.05
+https://en.wikipedia.org/wiki/Pipedrive,low,276,Institution,Not Mentioned,0.05,0.05
+https://pipedrive.com/en/crm-comparison,low,277,Competition,Not Mentioned,0.05,0.05
+https://zyner.io/blog/best-invester-crm-for-founders,low,278,Other,Not Mentioned,0.05,0.05
+https://tech.yahoo.com/business/articles/best-crm-software-2026-162739551.html/,low,279,Earned Media,Not Mentioned,0.05,-0.06
+https://nimble.com/blog/top-features-to-consider-when-buying-a-crm-for-your-startup/,low,280,Other,Not Mentioned,0.05,0.05
+https://blog.toysbazar.in/best-crm-tools-for-small-businesses-in-2025/,low,281,Other,Not Mentioned,0.05,0.05
+https://stackedcrm.com/blog/easy-crms,low,282,Earned Media,Not Mentioned,0.05,-0.17
+https://zoho.com/crm/verticals/startups.html,low,283,Other,Not Mentioned,0.05,-0.03
+https://techradar.com/reviews/bitrix24-crm-review,low,284,Earned Media,Not Mentioned,0.05,0.05
+https://techradar.com/reviews/capsule-crm-review,low,285,Earned Media,Not Mentioned,0.05,-0.06
+https://kellylynnecoaching.com/top-4-crms-for-entrepreneurs,low,286,Other,Not Mentioned,0.05,0.02
+https://consumersadvocate.org/crm-software,low,287,Earned Media,Not Mentioned,0.05,0.05
+https://breakcold.com/blog/crm-for-bootstrapped-startups,low,288,Other,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRMSoftware/comments/1rz38zh/are_smaller_teams_better_off_with_simpler_crms/,low,289,Social,Not Mentioned,0.05,0.05
+https://reddit.com/r/SaaS/comments/1mc4i1i,low,290,Social,Not Mentioned,0.05,0.05
+https://onepagecrm.com/blog/best-small-business-crms/,low,291,Other,Not Mentioned,0.05,-0.07
+https://saleshousestack.com/comparisons/pipedrive-hubspot-salesforce,low,292,Other,Not Mentioned,0.05,0.05
+https://reddit.com/r/Entrepreneur/comments/1r7vo0s/best_crm_for_small_businesses_honest_opinions_and/,low,293,Social,Not Mentioned,0.05,0.02
+https://blog.hubspot.com/sales/all-in-one-crm,low,294,Competition,Not Mentioned,0.05,0
+https://reddit.com/r/CRM/comments/1olfzro,low,295,Social,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRM/comments/1r257q6/best_affordable_crm_leadmarketing_tools_for_small/,low,296,Social,Not Mentioned,0.05,0
+https://microsoft.com/en-us/dynamics-365/resources/crm-software-for-small-business,low,297,Other,Not Mentioned,0.05,0.05
+https://tech.co/crm-software/best-crm-software-small-business,low,298,Earned Media,Not Mentioned,0.05,0
+https://monsterinsights.com/which-is-the-best-crm-for-small-business/,low,299,Other,Not Mentioned,0.05,0.05
+https://reddit.com/r/ycombinator/comments/1ai0t0g/best_crm_at_preseed/,low,300,Social,Not Mentioned,0.05,0.05
+https://doindigital.com/best-crm-software-for-small-business-2025/,low,301,Earned Media,Not Mentioned,0.05,0.05
+https://reddit.com/r/smallbusinessowner/comments/1pyb7vx/whats_the_best_crm_for_a_small_business_looking/,low,302,Social,Not Mentioned,0.05,0.05
+https://insightly.com/blog/best-crm-for-software-companies/,low,303,Other,Not Mentioned,0.05,0.02
+https://lessannoyingcrm.com/affordable-crm,low,304,Other,Not Mentioned,0.05,0.05
+https://pitch.pe/10-best-crm-software-for-entrepreneurs-to-grow-their-business/,low,305,Earned Media,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRMSoftware/comments/1rjphsk/looking_for_crm_tools_for_a_small_bootstrapped/,low,306,Social,Not Mentioned,0.05,-0.09
+https://en.wikipedia.org/wiki/Capsule_%28CRM%29,low,307,Institution,Not Mentioned,0.05,0.05
+https://heyorange.co/blog-posts/hubspot-vs-salesforce-which-crm-fits-smbs-best-in-2026,low,308,Other,Not Mentioned,0.05,0.05
+https://costbench.com/software/crm,low,309,Other,Not Mentioned,0.05,-0.11
+https://sales.foundershistoryclub.com/affordable-crm-software-startups/,low,310,Earned Media,Not Mentioned,0.05,-0.56
+https://bestcrmforconsultants.com/best-crm-software-for-small-businesses/,low,311,Earned Media,Not Mentioned,0.05,0.05
+https://en.wikipedia.org/wiki/Insightly,low,312,Institution,Not Mentioned,0.05,0.05
+https://nutshell.com/blog/easy-to-use-crms,low,313,Other,Not Mentioned,0.05,0.05
+https://reddit.com/r/CRMSoftware/comments/1rcl4iq/every_crm_is_built_for_small_business_but_none_of/,low,314,Social,Not Mentioned,0.05,0.05
+https://saascrmreview.com/best-crm-for-startups/,low,315,Earned Media,Not Mentioned,0.05,0
+https://flowii.com/en/blog/crm-software-price-comparison/,low,316,Other,Not Mentioned,0.05,0.05
+https://sales-leads-crm.com/blog/best-crm-software-for-small-businesses-features-pricing-and-reviews/,low,317,Earned Media,Not Mentioned,0.05,-0.11
+https://purshology.com/2026/02/hubspot-vs-salesforce-best-crm-for-startups-in-2026/,low,318,Other,Not Mentioned,0.05,0.05
+https://medium.com/%40jefferySEO/the-9-best-crms-for-startups-in-2025-ranked-by-stage-true-cost-57fffa3d8d1d,low,319,Social,Not Mentioned,0.05,0.05
+https://saasly.online/10-best-crm-software-for-startups-2025/,low,320,Other,Not Mentioned,0.05,-0.22
+https://crm.fpresumes.com/affordable-crm-software-startups/,low,321,Earned Media,Not Mentioned,0.05,0.05
+https://linkedin.com/pulse/top-10-crm-systems-small-businesses-tested-2026-suryanshu-pathak-u1mvc,low,322,Social,Not Mentioned,0.05,-0.23
+https://brevo.com/blog/crm-software-for-small-business/,low,323,Other,Not Mentioned,0.03,0.03
+https://mailchimp.com/resources/best-crm-for-small-business/,low,324,Other,Not Mentioned,0.03,0.03
+https://salesmate.io/blog/crm-for-small-business/,low,325,Other,Not Mentioned,0.03,0.03
+https://reddit.com/r/DigitalMarketing/comments/z8t8w1/what_is_the_best_affordable_crm_to_use_for_a/,low,326,Social,Not Mentioned,0.03,-0.1
+https://klipy.ai/blog/top-crm-platforms-2025/best-crm-for-startups,low,327,Other,Not Mentioned,0.03,0.03
+https://hugoinc.com/resources/top-crm-options-for-startups-guide/,low,328,Other,Not Mentioned,0.03,-0.03
+https://blog.hubspot.com/sales/real-estate-crm,low,329,Competition,Not Mentioned,0.03,0.03
+https://salesmate.io/blog/best-crm-for-startups/,low,330,Other,Not Mentioned,0.03,0.03
+https://zoho.com/crm/free-crm.html,low,331,Other,Not Mentioned,0.03,0.03
+https://startups.co.uk/crm-software/best-free-crm-software/,low,332,Earned Media,Not Mentioned,0.03,0.03
+https://nethunt.com/blog/choosing-the-best-crm-system-for-startup-a-comprehensive-guide/,low,333,Other,Not Mentioned,0.03,0.03
+https://larksuite.com/en_us/blog/best-crm,low,334,Other,Not Mentioned,0.03,-0.03
+https://salesforce.com/crm/worlds-number-one-crm/,low,335,Competition,Not Mentioned,0.03,0.03
+https://croclub.com/tools/streak-review/,low,336,Earned Media,Not Mentioned,0.03,0.03
+https://ringcentral.com/us/en/blog/crms-for-startups/,low,337,Other,Not Mentioned,0.03,0.03
+https://planetweb.ng/crm-for-nigerian-businesses/,low,338,Other,Not Mentioned,0.03,0.03
+https://zapier.com/blog/best-free-crm/,low,339,Other,Mentioned,0.03,0.03
+https://offer.lp-crm.biz/rating-crm/en/rating-crm-dlya-startapiv-i-faunderiv/,low,340,Other,Not Mentioned,0.03,-0.07
+https://chapmanbright.com/resources/sales-use-cases/streamline-meeting-logs-in-your-crm-with-automation/,low,341,Other,Not Mentioned,0.03,0.03
+https://onepagecrm.com/blog/best-crm-for-small-business/,low,342,Other,Not Mentioned,0.03,0.03
+https://4degrees.ai/blog/venture-capital-crm-the-complete-guide,low,343,Other,Not Mentioned,0.03,0.03
+https://axongarside.com/blog/best-crm-systems,low,344,Other,Not Mentioned,0.03,0.03
+https://zenmedia.com/blog/b2b-crm-strategies-guide/,low,345,Other,Not Mentioned,0.03,0.03
+https://cloudeagle.ai/blogs/10-best-crm-software-to-grow-your-small-business-in-2021,low,346,Other,Not Mentioned,0.03,0.03
+https://techtarget.com/searchcustomerexperience/tip/Microsoft-Dynamics-365-vs-Salesforce-How-do-they-differ,low,347,Earned Media,Not Mentioned,0.03,0.03
+https://nutshell.com/blog/best-crm-for-travel-agency,low,348,Other,Not Mentioned,0.03,0.03
+https://armanino.com/articles/erp-crm-integration-key-benefits-how-to-get-started/,low,349,Other,Not Mentioned,0.03,0.03
+https://text.com/blog/salesforce-alternatives/,low,350,Other,Not Mentioned,0.03,0.03
+https://viasocket.com/discovery/blog/cth8cq/sales-and-crm/top-crm-tools-to-supercharge-startup-lead-generation,low,351,Other,Not Mentioned,0.03,0.03
+https://lessannoyingcrm.com/,low,352,Other,Not Mentioned,0.03,-0.03
+https://bigcontacts.com/blog/crm-pricing/,low,353,Other,Not Mentioned,0.03,0.03
+https://folk.app/articles/best-crm-networking-professionals,low,354,Other,Not Mentioned,0.03,0.03
+https://softwareadvice.com.au/directory/3235/startup/software,low,355,Earned Media,Not Mentioned,0.03,0.03
+https://dialllog.co/best-crm-for-venture-capital,low,356,Other,Not Mentioned,0.03,0.03
+https://startups.co.uk/crm-software/best-crm-for-healthcare-marketing/,low,357,Earned Media,Not Mentioned,0.03,0.03
+https://commence.com/blog/2016/02/09/is-crm-software-big-scam/,low,358,Other,Not Mentioned,0.03,0.03
+https://croclub.com/tools/best-zoho-crm-alternatives/,low,359,Earned Media,Not Mentioned,0.03,0.03
+https://blog.sharpai.app/comparing-crm-software/,low,360,Other,Not Mentioned,0.03,0.03
+https://monday.com/blog/crm-and-sales/sales-tracking-software/,low,361,Other,Not Mentioned,0.03,0.03
+https://pipedrive.com/en/crm-comparison/pipedrive-vs-monday,low,362,Competition,Not Mentioned,0.03,0.03
+https://business.com/categories/crm-software/,low,363,Earned Media,Not Mentioned,0.03,-0.03
+https://syncmatters.com/blog/best-crm-for-sales,low,364,Other,Not Mentioned,0.03,0.03
+https://ventureharbour.com/growth-marketing-software/,low,365,Other,Not Mentioned,0.03,0.03
+https://inmotionhosting.com/blog/wordpress-crm-system/,low,366,Other,Not Mentioned,0.03,0.03
+https://theciotimes.com/8-popular-free-crm-tools-for-small-business-owners/,low,367,Earned Media,Not Mentioned,0.03,-0.03
+https://solutions.trustradius.com/buyer-blog/crm-pros-cons/,low,368,Social,Not Mentioned,0.03,0.03
+https://getvoip.com/blog/crm-software-examples/,low,369,Earned Media,Not Mentioned,0.03,0.03
+https://urdhva-tech.com/blogs,low,370,Other,Not Mentioned,0.03,0.03
+https://sdsol.com/blog/crm-software-examples/,low,371,Other,Not Mentioned,0.03,-0.1
+https://salesmate.io/blog/inside-sales-software/,low,372,Other,Not Mentioned,0.03,0.03
+https://webfx.com/blog/marketing/best-crm-for-small-business/,low,373,Other,Not Mentioned,0.03,0.03
+https://reddit.com/r/CRMSoftware/comments/1m5o4t0/best_beginnerfriendly_crm/,low,374,Social,Not Mentioned,0.03,-0.1
+https://expertmarket.com/ca/crm/best-crm-for-customer-service,low,375,Earned Media,Not Mentioned,0.03,0.03
+https://nutshell.com/blog/best-crm-for-coaches,low,376,Other,Not Mentioned,0.03,0.03
+https://nikaconsulting.co.nz/best-crm-software-for-small-business/,low,377,Other,Not Mentioned,0.03,0.03
+https://recruiterslineup.com/best-customer-relationship-management-software/,low,378,Other,Not Mentioned,0.03,0.03
+https://evnedev.com/blog/development/crm-for-startup/,low,379,Other,Not Mentioned,0.03,0.03
+https://softhealer.com/blog/articals-11/7-reasons-why-every-business-needs-a-crm-system-12667,low,380,Other,Not Mentioned,0.03,0.03
+https://youtube.com/watch?v=YWaDmxayrIE,low,381,Social,Not Mentioned,0.03,0.03
+https://fulminoussoftware.com/best-crm-software-for-startups,low,382,Other,Not Mentioned,0.03,0
+https://enginy.ai/blog/pipelines-management-software,low,383,Other,Not Mentioned,0.03,0.03
+https://marketerhire.com/blog/marketing-operations,low,384,Other,Not Mentioned,0.03,0.03
+https://europeanbusinessmagazine.com/european-news/best-crm-software-for-european-businesses-2025/,low,385,Earned Media,Not Mentioned,0.03,0.03
+https://rings.ai/blog/the-best-crms-for-venture-capital-firms,low,386,Other,Not Mentioned,0.03,0.03
+https://capsulecrm.com/blog/best-crm-for-a-growing-tech-startup/,low,387,Other,Not Mentioned,0.03,-0.28
+https://bigcontacts.com/blog/best-capsule-crm-alternatives/,low,388,Other,Not Mentioned,0.03,0.03
+https://emarketingplatform.com/blog/customer-relationship-management-strategies-that-will-drive-your-business-forward/,low,389,Other,Not Mentioned,0.03,0.03
+https://streak.com/post/best-crm-for-startups,low,390,Other,Not Mentioned,0.03,-0.06
+https://youtube.com/watch?v=rLeqvO7-cDo,low,391,Social,Not Mentioned,0.03,0.03
+https://maximizer.com/blog/best-crm-for-startups/,low,392,Other,Not Mentioned,0.03,0.03
+https://keap-pro.com/best-crm-for-entrepreneurs/,low,393,Other,Not Mentioned,0.03,0.03
+https://relab.co.nz/post/best-marketing-tools-for-real-estate-agents,low,394,Other,Not Mentioned,0.03,0.03
+https://medium.com/@jefferySEO/best-crm-software-for-startups-in-2026-a-growth-operators-no-bs-guide-98f1c9fd2402,low,395,Social,Not Mentioned,0.03,0.03
+https://anyleads.com/is-there-a-free-version-of-salesforce-crm,low,396,Other,Not Mentioned,0.03,0.03
+https://solutionsreview.com/crm/2021/10/15/the-best-zoho-crm-tutorials-and-demos-to-watch-on-youtube/,low,397,Earned Media,Not Mentioned,0.03,0.03
+https://reddit.com/r/CRMSoftware/comments/1rhtbds/new_to_crms_and_feeling_overwhelmed_what_crm_is/,low,398,Social,Not Mentioned,0.03,0.03
+https://techrepublic.com/article/best-crm-startups/,low,399,Earned Media,Not Mentioned,0.03,-0.25
+https://dynamicssquare.co.uk/blog/what-crm-software-is-best-for-small-startups/,low,400,Other,Not Mentioned,0.03,0.03
+https://nutshell.com/blog/the-best-crm-for-insurance-agents,low,401,Other,Not Mentioned,0.03,0.03
+https://xero.com/ca/guides/crm-for-small-business/,low,402,Other,Not Mentioned,0.03,0.03
+https://thecmo.com/tools/best-brand-management-software/,low,403,Earned Media,Not Mentioned,0.03,0.03
+https://nextiva.com/blog/customer-service-software-for-small-business.html,low,404,Other,Not Mentioned,0.03,0.03
+https://capterra.com/p/76390/Infusionsoft/pricing/,low,405,Social,Not Mentioned,0.03,0.03
+https://ringcentral.com/gb/en/blog/best-crm-software-for-small-businesses-and-startups/,low,406,Other,Not Mentioned,0.03,0.03
+https://limble.com/learn/cmms/simple-affordable-cmms/,low,407,Other,Not Mentioned,0.03,0.03
+https://apyhub.com/blog/essential-startup-tools,low,408,Other,Not Mentioned,0.03,0.03
+https://capterra.in/directory/2/customer-relationship-management/software,low,409,Social,Not Mentioned,0.03,0.03
+https://capsulecrm.com/industries/crm-for-wholesaleing/,low,410,Other,Not Mentioned,0.03,0.03
+https://blog.serchen.com/cloud-based-crm-software/,low,411,Other,Not Mentioned,0.03,0.03
+https://goiq.com/blog/7-must-know-features-of-the-best-crm-for-small-businesses-solutions/,low,412,Other,Not Mentioned,0.03,0.03
+https://invesho.com/blog/top-crm-tools-startups,low,413,Other,Not Mentioned,0.03,0.03
+https://salesmate.io/lead-management-software/,low,414,Other,Not Mentioned,0.03,0.03
+https://rtdynamic.com/blog/affordable-crm-software-2026/,low,415,Other,Not Mentioned,0.03,-0.08
+https://research.com/software/cheap-crm-software,low,416,Earned Media,Not Mentioned,0.03,0.03
+https://4degrees.ai/blog/best-crm-for-deal-flow-what-to-look-for-and-top-options-for-private-market-teams,low,417,Other,Not Mentioned,0.03,0
+https://damcogroup.com/blogs/salesforce-crm-implementation-challenges-and-steps-for-success,low,418,Other,Not Mentioned,0.03,0.03
+https://hellobonsai.com/blog/crm-for-accountants,low,419,Other,Not Mentioned,0.03,0
+https://citationbuilderpro.com/cbp-leads/,low,420,Other,Not Mentioned,0.03,0.03
+https://investglass.com/top-5-best-crm-for-startups-in-2025-essential-tools-for-growth/,low,421,Other,Not Mentioned,0.03,0.03
+https://youtube.com/shorts/hfFwbuIGwjs,low,422,Social,Not Mentioned,0.03,0.03
+https://close.com/crm-for-startups,low,423,Other,Not Mentioned,0.03,0.03
+https://folk.app/articles/best-crms-for-pre-seed-startups,low,424,Other,Not Mentioned,0.03,0.03
+https://maximizer.com/blog/best-crm-for-insurance-brokers-in-canada/,low,425,Other,Not Mentioned,0.03,0.03
+https://capsulecrm.com/blog/an-honest-guide-to-choosing-a-crm/,low,426,Other,Not Mentioned,0.03,0.03
+https://legalgps.com/solo-attorney/legal-crm-software-for-small-law-firms,low,427,Other,Not Mentioned,0.03,0.03
+https://insightly.com/,low,428,Other,Not Mentioned,0.03,0.03
+https://banjaxed.com/salesforce-for-small-business/,low,429,Other,Not Mentioned,0.03,0.03
+https://ascendix.com/blog/best-crm-for-ma/,low,430,Other,Not Mentioned,0.03,0.03
+https://guideflow.com/blog/best-sales-analytics-software-tools,low,431,Other,Mentioned,0.03,0.03
+https://thena.ai/post/10-best-lightweight-crm-platforms-for-modern-companies-in-2025,low,432,Other,Not Mentioned,0.03,0.03
+https://bigcontacts.com/blog/what-is-saas-crm/,low,433,Other,Not Mentioned,0.03,0.03
+https://zendesk.com/sell/crm/,low,434,Other,Not Mentioned,0.03,0.03
+https://svitla.com/blog/what-is-a-crm-system-and-why-does-your-ecommerce-need-one/,low,435,Other,Not Mentioned,0.03,0.03
+https://theknowledgeacademy.com/blog/crm-for-small-business/,low,436,Other,Not Mentioned,0.03,0
+https://salescaptain.io/blog/linkedin-outreach-automation-tools,low,437,Other,Not Mentioned,0.03,0.03
+https://crmsystems.net.au/why-zoho-crm/,low,438,Other,Not Mentioned,0.03,0.03
+https://softr.io/blog/best-crm-software-for-small-business,low,439,Other,Not Mentioned,0.03,0
+https://smartsuite.com/blog/project-management-tools-for-startups?338ea48f_page=8,low,440,Other,Not Mentioned,0.03,0.03
+https://helloleads.io/blog/all/best-practices/why-does-your-start-up-need-a-crm/,low,441,Other,Not Mentioned,0.03,0.03
+https://mopinion.com/best-crm-software-for-small-businesses-smb/,low,442,Other,Not Mentioned,0.03,0.03
+https://fahimai.com/best-crm-software,low,443,Earned Media,Not Mentioned,0.03,0.03
+https://affinity.co/guides/how-to-choose-the-best-crm-for-venture-capital,low,444,Other,Not Mentioned,0.03,0.03
