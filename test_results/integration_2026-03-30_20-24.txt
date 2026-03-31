@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/ubuntu/offsite-outreach
+plugins: anyio-4.12.1
+collecting ... collected 15 items
+
+tests/test_integration.py::TestSingleUrlProcessing::test_classification_correct[https://techradar.com/best/the-best-crm-for-startups-Affiliate/Review-not_applicable] SKIPPED [  6%]
+tests/test_integration.py::TestSingleUrlProcessing::test_classification_correct[https://capsulecrm.com/blog/best-crm-for-founders/-Vendor Blog-manual_send] SKIPPED [ 13%]
+tests/test_integration.py::TestSingleUrlProcessing::test_classification_correct[https://pcmag.com/picks/the-best-small-business-crm-software-Affiliate/Review-not_applicable] SKIPPED [ 20%]
+tests/test_integration.py::TestSingleUrlProcessing::test_classification_correct[https://forbes.com/advisor/business/software/best-crm-software/-Affiliate/Review-not_applicable] SKIPPED [ 26%]
+tests/test_integration.py::TestSingleUrlProcessing::test_classification_correct[https://uschamber.com/co/start/strategy/low-cost-crm-tools-Outreach-manual_send] SKIPPED [ 33%]
+tests/test_integration.py::TestSingleUrlProcessing::test_required_fields_populated[https://techradar.com/best/the-best-crm-for-startups-Affiliate/Review-not_applicable] SKIPPED [ 40%]
+tests/test_integration.py::TestSingleUrlProcessing::test_required_fields_populated[https://capsulecrm.com/blog/best-crm-for-founders/-Vendor Blog-manual_send] SKIPPED [ 46%]
+tests/test_integration.py::TestSingleUrlProcessing::test_required_fields_populated[https://pcmag.com/picks/the-best-small-business-crm-software-Affiliate/Review-not_applicable] SKIPPED [ 53%]
+tests/test_integration.py::TestSingleUrlProcessing::test_required_fields_populated[https://forbes.com/advisor/business/software/best-crm-software/-Affiliate/Review-not_applicable] SKIPPED [ 60%]
+tests/test_integration.py::TestSingleUrlProcessing::test_required_fields_populated[https://uschamber.com/co/start/strategy/low-cost-crm-tools-Outreach-manual_send] SKIPPED [ 66%]
+tests/test_integration.py::TestSingleUrlProcessing::test_affiliate_has_no_email_candidates SKIPPED [ 73%]
+tests/test_integration.py::TestSingleUrlProcessing::test_vendor_blog_generates_email_candidates SKIPPED [ 80%]
+tests/test_integration.py::TestSingleUrlProcessing::test_no_junk_author_names SKIPPED [ 86%]
+tests/test_integration.py::TestBatchProcessing::test_process_first_10_urls SKIPPED [ 93%]
+tests/test_integration.py::TestBatchProcessing::test_no_duplicate_classifications SKIPPED [100%]
+
+============================= 15 skipped in 0.20s ==============================

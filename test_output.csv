@@ -1,0 +1,4 @@
+﻿url,priority,domain,company_name,site_type,classification_reason,send_classification,authority_score,contact_type,contact_form_url,affiliate_instructions,author_name,author_url,linkedin_search_url,company_about_url,team_contacts,notes
+https://g2.com/test,high,g2.com,G2,Affiliate/Review,known_list,not_applicable,affiliate_site,,,,,,,,,
+https://capsulecrm.com/blog/test,medium,capsulecrm.com,Capsule CRM,Vendor Blog,known_list,manual_send,known_brand,,,,,,,,,
+https://somerandom.com/test,low,somerandom.com,Some Random,Outreach,unknown_default:needs_review,auto_send,heuristic:unknown_publisher,,,,,,,,,
