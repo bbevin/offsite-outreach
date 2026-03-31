@@ -30,7 +30,7 @@ class TestOutreachResult:
         assert "site_type" in headers
         assert "send_classification" in headers
         assert "affiliate_network" in headers
-        assert len(headers) == 19  # base headers count
+        assert len(headers) == 21  # base headers count (19 + verified_email, email_source)
 
     def test_csv_headers_with_extras(self):
         r = OutreachResult(extras={"rank": "1", "category": "Earned Media"})
@@ -38,7 +38,7 @@ class TestOutreachResult:
         assert "category" in headers
         assert "rank" in headers
         # extras are sorted alphabetically
-        extra_part = headers[19:]
+        extra_part = headers[21:]
         assert extra_part == ["category", "rank"]
 
     def test_to_row_length_matches_headers(self):

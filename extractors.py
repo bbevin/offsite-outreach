@@ -6,6 +6,7 @@ from urllib.parse import quote_plus
 
 from bs4 import BeautifulSoup
 
+import hunter
 from models import AuthorInfo, ContactInfo, TeamContact
 from scraper import Scraper, get_base_url, make_absolute, rate_limit
 
@@ -582,14 +583,9 @@ def generate_email_candidates(author_name: str, domain: str) -> str:
     # Clean domain: strip www. prefix
     domain = domain.replace("www.", "")
 
-    # Parse author name into parts, ignoring connectors
-    connectors = {"de", "van", "von", "el", "al", "di", "le", "la", "del", "der", "den", "das", "do", "da", "and", "of"}
-    parts = [p.lower() for p in author_name.split() if p.lower() not in connectors]
-    if len(parts) < 2:
+    first, last = _parse_author_name(author_name)
+    if not first or not last:
         return ""
-
-    first = parts[0]
-    last = parts[-1]
     first_initial = first[0]
     last_initial = last[0]
 
@@ -605,6 +601,47 @@ def generate_email_candidates(author_name: str, domain: str) -> str:
     ]
 
     return "; ".join(candidates)
+
+
+_NAME_CONNECTORS = {"de", "van", "von", "el", "al", "di", "le", "la", "del", "der", "den", "das", "do", "da", "and", "of"}
+
+
+def _parse_author_name(author_name: str) -> tuple[str, str]:
+    """Parse author name into (first_name, last_name), stripping connectors."""
+    parts = [p.lower() for p in author_name.split() if p.lower() not in _NAME_CONNECTORS]
+    if len(parts) < 2:
+        return ("", "")
+    return (parts[0], parts[-1])
+
+
+def enrich_contact_email(author_name: str, domain: str) -> tuple[str, str, str]:
+    """Attempt Hunter.io email lookup, fall back to pattern generation.
+
+    Returns:
+        (verified_email, candidate_emails, email_source) where:
+        - verified_email: Hunter-verified email or ""
+        - candidate_emails: semicolon-separated email list
+        - email_source: "hunter", "pattern", or ""
+    """
+    if not author_name or not domain:
+        return ("", "", "")
+
+    first, last = _parse_author_name(author_name)
+    if not first or not last:
+        return ("", "", "")
+
+    # Try Hunter.io first
+    result = hunter.find_email(domain.replace("www.", ""), first, last)
+    if result and result.get("email") and result.get("score", 0) >= 50:
+        verified = result["email"]
+        return (verified, verified, "hunter")
+
+    # Fall back to pattern generation
+    candidates = generate_email_candidates(author_name, domain)
+    if candidates:
+        return ("", candidates, "pattern")
+
+    return ("", "", "")
 
 
 def build_linkedin_search_url(company_name: str, author_name: str = "") -> str:

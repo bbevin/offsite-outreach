@@ -13,6 +13,7 @@ from extractors import (
     extract_author,
     extract_company_name,
     generate_email_candidates,
+    enrich_contact_email,
     build_linkedin_search_url,
     build_linkedin_profile_url,
     detect_affiliate_networks,
@@ -335,3 +336,41 @@ class TestJunkFiltering:
 
     def test_valid_role(self):
         assert _is_junk_role("VP of Marketing") is False
+
+
+# ── Enrich contact email ────────────────────────────────────────────────
+
+class TestEnrichContactEmail:
+    @patch("extractors.hunter.find_email")
+    def test_uses_hunter_when_available(self, mock_find):
+        mock_find.return_value = {"email": "john@example.com", "score": 95}
+        verified, candidates, source = enrich_contact_email("John Smith", "example.com")
+        assert verified == "john@example.com"
+        assert candidates == "john@example.com"
+        assert source == "hunter"
+        mock_find.assert_called_once_with("example.com", "john", "smith")
+
+    @patch("extractors.hunter.find_email")
+    def test_falls_back_to_patterns_on_failure(self, mock_find):
+        mock_find.return_value = None
+        verified, candidates, source = enrich_contact_email("John Smith", "example.com")
+        assert verified == ""
+        assert "john@example.com" in candidates
+        assert "john.smith@example.com" in candidates
+        assert source == "pattern"
+
+    @patch("extractors.hunter.find_email")
+    def test_falls_back_on_low_score(self, mock_find):
+        mock_find.return_value = {"email": "j@example.com", "score": 20}
+        verified, candidates, source = enrich_contact_email("John Smith", "example.com")
+        assert verified == ""
+        assert "john.smith@example.com" in candidates
+        assert source == "pattern"
+
+    @patch("extractors.hunter.find_email")
+    def test_empty_inputs(self, mock_find):
+        verified, candidates, source = enrich_contact_email("", "example.com")
+        assert verified == ""
+        assert candidates == ""
+        assert source == ""
+        mock_find.assert_not_called()
