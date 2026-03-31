@@ -22,7 +22,7 @@ mkdir -p "$RESULTS_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
 RESULTS_FILE="$RESULTS_DIR/test_run_${TIMESTAMP}.txt"
 
-python3 -m pytest tests/ "$@" 2>&1 | tee "$RESULTS_FILE"
+python3 -m pytest tests/ --ignore=tests/test_hunter_integration.py "$@" 2>&1 | tee "$RESULTS_FILE"
 exit_code=${PIPESTATUS[0]}
 
 echo ""

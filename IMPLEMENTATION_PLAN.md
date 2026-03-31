@@ -57,3 +57,30 @@
 - [SKIPPED] **Task 13: Integrate email sending**
   Future work. Connect to an email sending service for auto_send targets. Send templated emails, log attempts and responses.
   Spec: `specs/send-classification.md`
+
+## Phase 4: Hunter.io Email Enrichment
+
+- [x] **Task 14: Add Hunter.io API client module**
+  Create `hunter.py` with `find_email()` function. Reads `HUNTER_API_KEY` from
+  environment. Returns None on any failure (missing key, HTTP error, credits
+  exhausted). Includes rate limiting and credit-exhaustion circuit breaker.
+  Mocked unit tests in `tests/test_hunter.py`.
+  Spec: `specs/hunter-enrichment.md`
+
+- [x] **Task 15: Add enrich_contact_email function to extractors**
+  Added `enrich_contact_email(author_name, domain)` to `extractors.py` that calls
+  `hunter.find_email()` and falls back to `generate_email_candidates()` on failure.
+  Added `verified_email` and `email_source` fields to `OutreachResult` in `models.py`.
+  Spec: `specs/hunter-enrichment.md`
+
+- [x] **Task 16: Wire enrichment into pipeline**
+  Replaced `generate_email_candidates()` call in `outreach_finder.py` with
+  `enrich_contact_email()`. Updated `run_tests.sh` to exclude integration tests.
+  Added `tests/test_hunter_integration.py` (skipped without API key).
+  Spec: `specs/hunter-enrichment.md`
+
+- [x] **Task 17: Add quality rules for enriched emails**
+  Updated `specs/test-fix-loop.md` with rules R11 (verified_email format) and
+  R12 (email_source consistency). Updated `specs/contact-identification.md`
+  with Hunter.io enrichment fields.
+  Spec: `specs/test-fix-loop.md`, `specs/contact-identification.md`

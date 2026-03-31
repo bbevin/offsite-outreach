@@ -108,6 +108,20 @@ If the extraction is pulling in junk, the `extract_affiliate_instructions()` fun
 
 If a page cannot be scraped (Forbes, Reddit, etc.), the `notes` field should explain this clearly. The result should still have correct site_type and company_name from the known lists.
 
+### R11: verified_email must be a valid email format
+
+If `verified_email` is non-empty, it must:
+- Contain exactly one `@`
+- Have a domain part matching the `domain` column (or a known alias)
+- Not be a generic address (info@, support@, admin@, noreply@)
+
+### R12: email_source must be consistent
+
+- If `verified_email` is non-empty, `email_source` must be "hunter"
+- If `verified_email` is empty and `author_email_candidates` is non-empty,
+  `email_source` must be "pattern"
+- If both are empty, `email_source` must be ""
+
 ## Severity Classification
 
 | Severity | Definition | Action |

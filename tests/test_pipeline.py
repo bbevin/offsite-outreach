@@ -17,6 +17,13 @@ from outreach_finder import process_url, classify_send, read_input, write_output
 from models import OutreachResult
 
 
+@pytest.fixture(autouse=True)
+def _no_hunter_api():
+    """Ensure Hunter API is never called in pipeline tests."""
+    with patch("hunter.find_email", return_value=None):
+        yield
+
+
 def _make_mock_scraper(html=None, url_exists=False):
     """Create a mock scraper that returns given HTML as soup."""
     scraper = MagicMock()

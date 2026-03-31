@@ -23,6 +23,7 @@ from extractors import (
     extract_author,
     extract_company_name,
     find_team_contacts,
+    enrich_contact_email,
     generate_email_candidates,
 )
 from known_sites import get_known_site_result
@@ -159,11 +160,16 @@ def process_url(url: str, priority: str, scraper: Scraper, send_override: str = 
         result.team_contacts = "; ".join(f"{t.name} ({t.role})" for t in team)
         print(f"  Team contacts: {result.team_contacts}")
 
-    # 7. Generate email candidates for outreach targets with a known author
+    # 7. Enrich contact email (Hunter.io with pattern fallback)
     if result.site_type != "Affiliate/Review" and author.name:
-        result.author_email_candidates = generate_email_candidates(author.name, domain)
-        if result.author_email_candidates:
-            print(f"  Email candidates: {result.author_email_candidates}")
+        verified, candidates, source = enrich_contact_email(author.name, domain)
+        result.author_email_candidates = candidates
+        result.verified_email = verified
+        result.email_source = source
+        if verified:
+            print(f"  Verified email (Hunter): {verified}")
+        elif candidates:
+            print(f"  Email candidates (patterns): {candidates}")
 
     # 8. LinkedIn search — use author name for targeted search when available
     result.linkedin_search_url = build_linkedin_search_url(result.company_name, result.author_name)

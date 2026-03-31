@@ -10,7 +10,9 @@ The output must include:
 - **Author name** — The actual human who wrote the article. Must be a real name (2-4 capitalized words), not a navigation element, brand name, or junk text.
 - **Author URL** — Link to the author's profile page on the site (if available).
 - **Author LinkedIn** — A LinkedIn search URL that includes the author's full name and company, not just a generic company search.
-- **Author email candidates** — Pattern-generated emails based on author name + domain (Phase 2).
+- **Author email candidates** — Verified email from Hunter.io when available, otherwise pattern-generated emails based on author name + domain.
+- **Verified email** — Hunter.io-verified email address (empty if unavailable or low confidence).
+- **Email source** — Provenance tracking: "hunter" if verified, "pattern" if fallback-generated.
 - **Team contacts** — Marketing/partnerships people from the about/team page. Must be actual names and roles, not cookie banner text or legal boilerplate.
 
 ### Affiliate play (Affiliate/Review)
