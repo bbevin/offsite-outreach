@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from urllib.parse import quote_plus
 
+import anthropic
 from bs4 import BeautifulSoup
 
+import apollo
 import hunter
 from models import AuthorInfo, ContactInfo, TeamContact
 from scraper import Scraper, get_base_url, make_absolute, rate_limit
@@ -28,12 +31,24 @@ _GENERIC_BLOCKLIST = {
     "admin", "administrator", "editor", "staff", "team", "contributor",
     "guest", "anonymous", "author", "writer", "editorial", "editorial team",
     "staff writer", "guest author", "guest contributor", "the team",
-    "marketing team", "content team", "editorial staff",
+    "marketing team", "content team", "editorial staff", "content writer",
+    "senior writer", "senior editor", "managing editor", "chief editor",
 }
 
 _JUNK_CHARS_RE = re.compile(r"[<>@#$%^&*(){}[\]|\\/:;]")
 _URL_RE = re.compile(r"https?://|www\.|\.com|\.org|\.net")
 _EMAIL_RE = re.compile(r"\S+@\S+\.\S+")
+
+
+def _clean_author_text(text: str) -> str:
+    """Strip common prefixes/suffixes from author text to isolate the name."""
+    text = text.strip()
+    # Strip "By " or "by " prefix
+    text = re.sub(r"^[Bb]y\s+", "", text)
+    # Strip role/title after comma (e.g., ", VP Professional Services")
+    if "," in text:
+        text = text.split(",")[0].strip()
+    return text
 
 
 def _is_valid_author_name(name: str, domain: str = "") -> bool:
@@ -50,6 +65,14 @@ def _is_valid_author_name(name: str, domain: str = "") -> bool:
     words = name.split()
     if len(words) > 4 or len(words) < 2:
         return False
+
+    # Reject names with abnormally long words or concatenated text (e.g. "RuslanaContent")
+    _camelcase_re = re.compile(r"[a-z][A-Z]")
+    for w in words:
+        if len(w) > 15:
+            return False
+        if _camelcase_re.search(w):
+            return False
 
     # Blocklist checks (case-insensitive)
     lower = name.lower().strip()
@@ -83,6 +106,75 @@ def _is_valid_author_name(name: str, domain: str = "") -> bool:
     return True
 
 
+# ---------------------------------------------------------------------------
+# LLM-based author extraction (fallback)
+# ---------------------------------------------------------------------------
+
+_anthropic_client: anthropic.Anthropic | None = None
+
+
+def _get_anthropic_client() -> anthropic.Anthropic | None:
+    """Lazy-init Anthropic client. Returns None if no API key is set."""
+    global _anthropic_client
+    if _anthropic_client is None:
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            return None
+        _anthropic_client = anthropic.Anthropic(api_key=api_key)
+    return _anthropic_client
+
+
+def _llm_extract_author(soup: BeautifulSoup, page_url: str) -> AuthorInfo:
+    """Use Claude as a fallback to extract author name from page text.
+
+    Sends the visible page text (trimmed) to Claude and asks for the article
+    author. Returns an empty AuthorInfo if the API key is missing, the call
+    fails, or no author is found.
+    """
+    client = _get_anthropic_client()
+    if client is None:
+        return AuthorInfo()
+
+    # Extract meaningful visible text — skip scripts/styles, cap at ~4000 chars
+    for tag in soup(["script", "style", "noscript"]):
+        tag.decompose()
+    page_text = soup.get_text(separator="\n", strip=True)
+    page_text = re.sub(r"\n{3,}", "\n\n", page_text)[:4000]
+
+    try:
+        response = client.messages.create(
+            model="claude-opus-4-6",
+            max_tokens=64,
+            output_config={"effort": "low"},
+            system=(
+                "You are an author-name extractor. "
+                "Given article page text, return ONLY the byline author's first and last name "
+                "(e.g. 'Jane Smith'). "
+                "If no individual human author is identifiable, return null. "
+                "Never return team names, company names, or job titles."
+            ),
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"URL: {page_url}\n\n{page_text}",
+                }
+            ],
+        )
+        raw = next(
+            (b.text.strip() for b in response.content if b.type == "text"), ""
+        )
+        if raw and raw.lower() not in ("null", "none", ""):
+            # Strip surrounding quotes if present
+            name = raw.strip('"').strip("'").strip()
+            domain = _extract_domain(page_url)
+            if _is_valid_author_name(name, domain):
+                return AuthorInfo(name=name)
+    except Exception:
+        pass
+
+    return AuthorInfo()
+
+
 def _extract_domain(page_url: str) -> str:
     """Extract bare domain from a URL."""
     from urllib.parse import urlparse
@@ -102,7 +194,7 @@ def extract_author(soup: BeautifulSoup, page_url: str) -> AuthorInfo:
     # 1. <meta name="author">
     meta = soup.find("meta", attrs={"name": "author"})
     if meta and meta.get("content", "").strip():
-        name = meta["content"].strip()
+        name = _clean_author_text(meta["content"].strip())
         if _is_valid_author_name(name, domain):
             return AuthorInfo(name=name)
 
@@ -132,21 +224,43 @@ def extract_author(soup: BeautifulSoup, page_url: str) -> AuthorInfo:
         "[rel='author']",
         ".author-name", ".author a", ".byline a", ".post-author a",
         ".entry-author a", ".article-author a", ".contributor a",
+        "[class*='author'] [class*='name']",
         ".author", ".byline", ".post-author", ".entry-author",
+        "[class*='author']",
     ]
+    _nav_classes = {"breadcrumb", "nav", "menu", "sidebar", "footer", "header-nav", "navigation"}
     for sel in selectors:
         el = soup.select_one(sel)
         if el:
+            # Skip elements whose classes also indicate navigation/breadcrumb
+            el_classes = {c.lower() for c in el.get("class", [])}
+            if el_classes & _nav_classes:
+                continue
             name = el.get_text(strip=True)
             href = el.get("href", "")
-            if name and _is_valid_author_name(name, domain):
+            # Try raw text first, then cleaned text
+            cleaned = _clean_author_text(name)
+            if cleaned and _is_valid_author_name(cleaned, domain):
                 url = make_absolute(base, href) if href else ""
-                return AuthorInfo(name=name, url=url)
+                return AuthorInfo(name=cleaned, url=url)
+            # If container text didn't validate, check child elements
+            if not _is_valid_author_name(cleaned, domain):
+                for child in el.find_all(["a", "span", "p", "div", "strong", "em"], recursive=True):
+                    child_text = _clean_author_text(child.get_text(strip=True))
+                    if child_text and _is_valid_author_name(child_text, domain):
+                        child_href = child.get("href", "") or href
+                        url = make_absolute(base, child_href) if child_href else ""
+                        return AuthorInfo(name=child_text, url=url)
 
     # 4. Look for "By <name>" pattern near article top
-    for tag in soup.find_all(["p", "span", "div", "a"], limit=50):
+    _menu_classes = {"mega-menu", "nav", "menu", "sidebar", "footer", "breadcrumb", "navigation", "header-nav", "tab-content"}
+    for tag in soup.find_all(["p", "span", "div", "a"], limit=200):
+        # Skip elements inside menus/navigation
+        tag_classes = " ".join(tag.get("class", []) + [c for p in tag.parents for c in (p.get("class") or [])]).lower()
+        if any(mc in tag_classes for mc in _menu_classes):
+            continue
         text = tag.get_text(strip=True)
-        m = re.match(r"^[Bb]y\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})$", text)
+        m = re.match(r"^[Bb]y\s+([A-Z][a-z]+(?:[-\s]+[A-Z][a-z]+){1,3})(?:\s*,.*)?$", text)
         if m:
             candidate = m.group(1)
             if _is_valid_author_name(candidate, domain):
@@ -154,7 +268,8 @@ def extract_author(soup: BeautifulSoup, page_url: str) -> AuthorInfo:
                 url = make_absolute(base, href) if href else ""
                 return AuthorInfo(name=candidate, url=url)
 
-    return AuthorInfo()
+    # 5. LLM fallback
+    return _llm_extract_author(soup, page_url)
 
 
 # ---------------------------------------------------------------------------
@@ -615,13 +730,13 @@ def _parse_author_name(author_name: str) -> tuple[str, str]:
 
 
 def enrich_contact_email(author_name: str, domain: str) -> tuple[str, str, str]:
-    """Attempt Hunter.io email lookup, fall back to pattern generation.
+    """Attempt Hunter.io email lookup, then Apollo.io, fall back to patterns.
 
     Returns:
         (verified_email, candidate_emails, email_source) where:
-        - verified_email: Hunter-verified email or ""
+        - verified_email: verified email or ""
         - candidate_emails: semicolon-separated email list
-        - email_source: "hunter", "pattern", or ""
+        - email_source: "hunter", "apollo", "pattern", or ""
     """
     if not author_name or not domain:
         return ("", "", "")
@@ -630,11 +745,19 @@ def enrich_contact_email(author_name: str, domain: str) -> tuple[str, str, str]:
     if not first or not last:
         return ("", "", "")
 
+    clean_domain = domain.replace("www.", "")
+
     # Try Hunter.io first
-    result = hunter.find_email(domain.replace("www.", ""), first, last)
+    result = hunter.find_email(clean_domain, first, last)
     if result and result.get("email") and result.get("score", 0) >= 50:
         verified = result["email"]
         return (verified, verified, "hunter")
+
+    # Try Apollo.io as fallback
+    apollo_result = apollo.find_email(clean_domain, first, last)
+    if apollo_result and apollo_result.get("email"):
+        verified = apollo_result["email"]
+        return (verified, verified, "apollo")
 
     # Fall back to pattern generation
     candidates = generate_email_candidates(author_name, domain)

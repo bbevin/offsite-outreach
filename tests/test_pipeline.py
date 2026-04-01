@@ -18,9 +18,10 @@ from models import OutreachResult
 
 
 @pytest.fixture(autouse=True)
-def _no_hunter_api():
-    """Ensure Hunter API is never called in pipeline tests."""
-    with patch("hunter.find_email", return_value=None):
+def _no_enrichment_apis():
+    """Ensure Hunter/Apollo APIs are never called in pipeline tests."""
+    with patch("hunter.find_email", return_value=None), \
+         patch("apollo.find_email", return_value=None):
         yield
 
 

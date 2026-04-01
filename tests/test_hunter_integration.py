@@ -23,8 +23,8 @@ pytestmark = pytest.mark.skipif(
 
 class TestHunterIntegration:
     def test_find_email_known_person(self):
-        """Test against a well-known public figure at a known domain."""
-        result = find_email("stripe.com", "Patrick", "Collison")
+        """Test against a known marketing contact at a large company."""
+        result = find_email("hubspot.com", "Caroline", "Forsey")
         assert result is not None
         assert "@" in result.get("email", "")
         assert result.get("score", 0) > 0
