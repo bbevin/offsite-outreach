@@ -81,7 +81,7 @@ def scraper():
 SAMPLE_URLS = [
     # (url, expected_site_type, expected_send_classification)
     ("https://techradar.com/best/the-best-crm-for-startups", "Affiliate/Review", "not_applicable"),
-    ("https://capsulecrm.com/blog/best-crm-for-founders/", "Vendor Blog", "manual_send"),
+    ("https://capsulecrm.com/blog/best-crm-for-founders/", "Outreach", "manual_send"),
     ("https://pcmag.com/picks/the-best-small-business-crm-software", "Affiliate/Review", "not_applicable"),
     ("https://forbes.com/advisor/business/software/best-crm-software/", "Affiliate/Review", "not_applicable"),
     ("https://uschamber.com/co/start/strategy/low-cost-crm-tools", "Outreach", "manual_send"),
@@ -168,7 +168,7 @@ class TestBatchProcessing:
         for r in results:
             assert r.url != ""
             assert r.domain != ""
-            assert r.site_type in ("Affiliate/Review", "Vendor Blog", "Outreach")
+            assert r.site_type in ("Affiliate/Review", "Outreach", "Outreach")
             assert r.send_classification in ("not_applicable", "manual_send", "auto_send")
             assert r.company_name != ""
 

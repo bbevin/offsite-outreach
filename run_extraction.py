@@ -11,6 +11,14 @@ from urllib.parse import urlparse
 import extractors as ext_module
 
 
+def _split_author_name(full_name: str) -> tuple[str, str]:
+    """Split 'First Last' into ('First', 'Last')."""
+    parts = full_name.strip().split(None, 1)
+    if not parts:
+        return "", ""
+    return parts[0], parts[1] if len(parts) > 1 else ""
+
+
 def infer_page_type(url: str) -> str:
     """Infer page type from URL path patterns."""
     parsed = urlparse(url)
@@ -194,7 +202,7 @@ for i, row in enumerate(rows, 1):
     # Skip non-article page types
     page_type = infer_page_type(url)
     if page_type in SKIP_PAGE_TYPES:
-        results.append({**row, "author": "", "author_url": "", "extraction_method": "skipped", "page_type": page_type})
+        results.append({**row, "author_first_name": "", "author_last_name": "", "author_url": "", "extraction_method": "skipped", "page_type": page_type})
         print(f"[{i}/{total}] SKIP  [{page_type}]  {url}", flush=True)
         continue
 
@@ -204,7 +212,7 @@ for i, row in enumerate(rows, 1):
         # Prefer DataForSEO's page_type; fall back to URL inference
         page_type = infer_page_type(url)
         if not soup:
-            results.append({**row, "author": "", "author_url": "", "extraction_method": "fetch_failed", "page_type": page_type})
+            results.append({**row, "author_first_name": "", "author_last_name": "", "author_url": "", "extraction_method": "fetch_failed", "page_type": page_type})
             print(f"[{i}/{total}] FAIL  [{page_type}]  {url}", flush=True)
             continue
         before_rule = _rule_count
@@ -218,17 +226,18 @@ for i, row in enumerate(rows, 1):
         else:
             method = "none"
 
-        results.append({**row, "author": info.name or "", "author_url": info.url or "", "extraction_method": method, "page_type": page_type})
+        first, last = _split_author_name(info.name or "")
+        results.append({**row, "author_first_name": first, "author_last_name": last, "author_url": info.url or "", "extraction_method": method, "page_type": page_type})
         print(f"[{i}/{total}] {method.upper():4s}  {info.name or '(none)':30s}  [{page_type}]  {url}", flush=True)
 
     except Exception as e:
-        results.append({**row, "author": "", "author_url": "", "extraction_method": "error", "page_type": infer_page_type(url)})
+        results.append({**row, "author_first_name": "", "author_last_name": "", "author_url": "", "extraction_method": "error", "page_type": infer_page_type(url)})
         print(f"[{i}/{total}] ERR   {e}  {url}", flush=True)
 
 # Write output
 ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 outfile = f"test_results/author_extraction_all_{ts}.csv"
-fieldnames = list(rows[0].keys()) + ["author", "author_url", "extraction_method", "page_type"]
+fieldnames = list(rows[0].keys()) + ["author_first_name", "author_last_name", "author_url", "extraction_method", "page_type"]
 with open(outfile, "w", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()

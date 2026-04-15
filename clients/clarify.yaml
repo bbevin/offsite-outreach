@@ -1,0 +1,14 @@
+# Clarify competitor blacklist
+# Domains listed here will be skipped during outreach enrichment.
+# Add bare domains (no www, no https). Subdomains are matched automatically.
+
+name: Clarify
+
+competitors:
+  - hubspot.com       # HubSpot
+  - salesforce.com    # Salesforce
+  - attio.com         # Attio
+  - folk.app          # Folk
+  - close.com         # Close
+  - affinity.co       # Affinity
+  - apollo.io         # Apollo

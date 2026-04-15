@@ -14,7 +14,6 @@ from classifier import (
     _detect_affiliate_disclosure,
     _detect_affiliate_links,
     _detect_affiliate_content_structure,
-    _detect_vendor_blog,
 )
 
 
@@ -40,9 +39,9 @@ class TestClassifySite:
         assert classify_site(domain) == expected
 
     @pytest.mark.parametrize("domain,expected", [
-        ("capsulecrm.com", "Vendor Blog"),
-        ("salesflare.com", "Vendor Blog"),
-        ("blog.salesflare.com", "Vendor Blog"),
+        ("capsulecrm.com", "Outreach"),
+        ("salesflare.com", "Outreach"),
+        ("blog.salesflare.com", "Outreach"),
     ])
     def test_known_outreach_sites(self, domain, expected):
         assert classify_site(domain) == expected
@@ -56,7 +55,7 @@ class TestClassifySite:
 
     def test_www_prefix_stripped(self):
         assert classify_site("www.g2.com") == "Affiliate/Review"
-        assert classify_site("www.capsulecrm.com") == "Vendor Blog"
+        assert classify_site("www.capsulecrm.com") == "Outreach"
         assert classify_site("www.uschamber.com") == "Outreach"
 
     def test_unknown_domain_returns_unknown(self):
@@ -66,7 +65,7 @@ class TestClassifySite:
         assert classify_site("reviews.pcmag.com") == "Affiliate/Review"
 
     def test_subdomain_of_known_outreach(self):
-        assert classify_site("blog.capsulecrm.com") == "Vendor Blog"
+        assert classify_site("blog.capsulecrm.com") == "Outreach"
 
 
 # ── get_site_name ─────────────────────────────────────────────────────────
@@ -190,20 +189,6 @@ class TestDetectAffiliateContentStructure:
         assert _detect_affiliate_content_structure(soup) is False
 
 
-# ── _detect_vendor_blog ───────────────────────────────────────────────────
-
-
-class TestDetectVendorBlog:
-
-    def test_blog_subdomain(self):
-        assert _detect_vendor_blog("blog.salesflare.com") is True
-        assert _detect_vendor_blog("blog.example.com") is True
-
-    def test_non_blog_domain(self):
-        assert _detect_vendor_blog("salesflare.com") is False
-        assert _detect_vendor_blog("www.example.com") is False
-
-
 # ── classify_site_with_content ────────────────────────────────────────────
 
 
@@ -216,7 +201,7 @@ class TestClassifySiteWithContent:
 
     def test_known_outreach_returns_known_list(self):
         site_type, reason = classify_site_with_content("capsulecrm.com")
-        assert site_type == "Vendor Blog"
+        assert site_type == "Outreach"
         assert reason == "known_list"
 
     def test_unknown_domain_no_content_defaults_outreach(self):
@@ -224,10 +209,10 @@ class TestClassifySiteWithContent:
         assert site_type == "Outreach"
         assert "unknown_default" in reason
 
-    def test_vendor_blog_domain_pattern(self):
+    def test_blog_subdomain_defaults_outreach(self):
         site_type, reason = classify_site_with_content("blog.unknowncompany.com")
-        assert site_type == "Vendor Blog"
-        assert reason == "domain_pattern"
+        assert site_type == "Outreach"
+        assert "unknown_default" in reason
 
     def test_content_signals_disclosure(self):
         html = """
@@ -276,5 +261,5 @@ class TestClassifySiteWithContent:
         soup = BeautifulSoup(html, "html.parser")
         # Domain is in known outreach list
         site_type, reason = classify_site_with_content("capsulecrm.com", soup)
-        assert site_type == "Vendor Blog"
+        assert site_type == "Outreach"
         assert reason == "known_list"

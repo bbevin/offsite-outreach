@@ -4,13 +4,43 @@ import re
 from urllib.parse import urlparse, parse_qs
 
 # ---------------------------------------------------------------------------
+# Ecommerce platforms — never worth scraping for outreach. Product/category
+# pages don't have authors or editorial contacts. Maintained as a hardcoded
+# allowlist; expand as we encounter new ones.
+# ---------------------------------------------------------------------------
+
+ECOMMERCE_BLACKLIST: set[str] = {
+    "amazon.com",
+    "ebay.com",
+    "walmart.com",
+    "target.com",
+    "etsy.com",
+    "shopify.com",
+    "alibaba.com",
+    "aliexpress.com",
+    "bestbuy.com",
+    "costco.com",
+    "wayfair.com",
+    "homedepot.com",
+    "lowes.com",
+    "kroger.com",
+    "walgreens.com",
+    "cvs.com",
+    "bjs.com",
+    "wegmans.com",
+    "priceritemarketplace.com",
+}
+
+# ---------------------------------------------------------------------------
 # Known affiliate sites — business model depends on sending traffic to other
 # companies' products and earning commissions (CPC, CPL, CPA, affiliate links,
 # pay-for-inclusion). Organized by category.
 # ---------------------------------------------------------------------------
 
-KNOWN_AFFILIATE_SITES: dict[str, str] = {
-    # --- Software review aggregators ---
+# Review aggregators: users leave reviews on vendor profiles. Getting listed
+# means claiming/creating a vendor profile (often self-serve). Engagement model
+# is vendor profile management + soliciting customer reviews.
+KNOWN_REVIEW_AGGREGATORS: dict[str, str] = {
     "g2.com": "G2",
     "capterra.com": "Capterra",
     "trustradius.com": "TrustRadius",
@@ -27,18 +57,20 @@ KNOWN_AFFILIATE_SITES: dict[str, str] = {
     "goodfirms.co": "GoodFirms",
     "saasgenius.com": "SaaSGenius",
     "comparecamp.com": "CompareCamp",
-    "financesonline.com": "FinancesOnline",
-    "technologyadvice.com": "TechnologyAdvice",
     "featuredcustomers.com": "Featured Customers",
     "trustpilot.com": "Trustpilot",
-    "betterbuys.com": "Better Buys",
     "spiceworks.com": "Spiceworks",
     "saashub.com": "SaaSHub",
     "stackshare.io": "StackShare",
     "slant.co": "Slant",
     "alternativeto.net": "AlternativeTo",
     "producthunt.com": "Product Hunt",
+}
 
+# Affiliate/editorial sites: editors write "best X" listicles monetized via
+# affiliate commissions. Getting listed means pitching an editor or going
+# through a partner/media kit intake process.
+KNOWN_AFFILIATE_SITES: dict[str, str] = {
     # --- Tech editorial / review sites ---
     "pcmag.com": "PCMag",
     "techradar.com": "TechRadar",
@@ -74,6 +106,9 @@ KNOWN_AFFILIATE_SITES: dict[str, str] = {
     "money.com": "Money",
     "creditcards.com": "CreditCards.com",
     "usnews.com": "U.S. News 360 Reviews",
+    "financesonline.com": "FinancesOnline",
+    "technologyadvice.com": "TechnologyAdvice",
+    "betterbuys.com": "Better Buys",
 
     # --- Niche / comparison / listicle affiliate sites ---
     "emailtooltester.com": "EmailToolTester",
@@ -88,9 +123,22 @@ KNOWN_AFFILIATE_SITES: dict[str, str] = {
     "backlinko.com": "Backlinko",
     "crm.org": "CRM.org",
     "boringbusinessnerd.com": "Boring Business Nerd",
+}
 
-    # --- Social / ad platforms (formal intake via ad system) ---
-    "reddit.com": "Reddit",
+# Social platforms are NEVER classified as affiliate, even if they have ad
+# platforms. They require a fundamentally different engagement model
+# (community participation, organic posting) than affiliate outreach.
+SOCIAL_PLATFORM_BLACKLIST: set[str] = {
+    "reddit.com",
+    "youtube.com",
+    "linkedin.com",
+    "x.com",
+    "twitter.com",
+    "tiktok.com",
+    "facebook.com",
+    "instagram.com",
+    "quora.com",
+    "medium.com",
 }
 
 # ---------------------------------------------------------------------------
@@ -99,19 +147,15 @@ KNOWN_AFFILIATE_SITES: dict[str, str] = {
 # NOT to earn affiliate commissions.
 # ---------------------------------------------------------------------------
 
-KNOWN_OUTREACH_SITES: dict[str, str] = {
-    "capsulecrm.com": "Capsule CRM",
-    "salesflare.com": "Salesflare",
-    "blog.salesflare.com": "Salesflare",
-}
-
 # ---------------------------------------------------------------------------
-# Known non-affiliate sites that look like affiliates but aren't.
-# Industry orgs, analyst firms, platform marketplaces, etc.
-# Treated as outreach targets.
+# Known non-affiliate sites — vendor blogs, industry orgs, analyst firms,
+# platform marketplaces, etc. Treated as outreach targets.
 # ---------------------------------------------------------------------------
 
 KNOWN_NON_AFFILIATE_SITES: dict[str, str] = {
+    "capsulecrm.com": "Capsule CRM",
+    "salesflare.com": "Salesflare",
+    "blog.salesflare.com": "Salesflare",
     "uschamber.com": "US Chamber of Commerce",
     "nytimes.com": "The New York Times",
 }
@@ -130,23 +174,73 @@ AFFILIATE_PARENT_COMPANIES = {
 }
 
 
+def _matches_blacklist(domain: str, blacklist: set[str]) -> bool:
+    """Return True if domain exactly matches or is a subdomain of any entry."""
+    clean = domain.replace("www.", "")
+    if clean in blacklist:
+        return True
+    return any(clean.endswith("." + d) for d in blacklist)
+
+
+def should_skip_url(url: str, competitor_domains: list[str] | None = None) -> tuple[bool, str]:
+    """Decide whether a URL should be skipped before any scraping work.
+
+    Returns (skip, reason) where reason is one of:
+    - "competitor"    — domain in client competitor blacklist
+    - "social"        — domain in SOCIAL_PLATFORM_BLACKLIST
+    - "ecommerce"     — domain in ECOMMERCE_BLACKLIST
+    - "landing_page"  — URL path is empty or "/" (bare domain or subdomain)
+    - ""              — do not skip
+    """
+    # Normalize: ensure scheme so urlparse populates netloc correctly
+    if not url.startswith("http"):
+        url = "https://" + url
+
+    parsed = urlparse(url)
+    domain = parsed.netloc.lower()
+
+    # Competitor check first — these should never be enriched
+    if competitor_domains and _matches_blacklist(domain, competitor_domains):
+        return True, "competitor"
+
+    if _matches_blacklist(domain, SOCIAL_PLATFORM_BLACKLIST):
+        return True, "social"
+
+    if _matches_blacklist(domain, ECOMMERCE_BLACKLIST):
+        return True, "ecommerce"
+
+    # Landing page: bare domain or subdomain with no meaningful path.
+    # A query string alone (e.g. "/?utm=foo") still counts as a landing page.
+    if parsed.path in ("", "/"):
+        return True, "landing_page"
+
+    return False, ""
+
+
 def classify_site(domain: str) -> str:
-    """Return 'Affiliate/Review' or 'Vendor Blog' (or fallback for edge cases)."""
+    """Return site classification based on known domain lists."""
     clean = domain.replace("www.", "")
 
-    # Check known affiliate sites
+    # Social platforms are never affiliate — they need a different engagement model
+    if clean in SOCIAL_PLATFORM_BLACKLIST:
+        return "Social"
+    for social_domain in SOCIAL_PLATFORM_BLACKLIST:
+        if clean.endswith("." + social_domain):
+            return "Social"
+
+    # Check known review aggregators
+    if clean in KNOWN_REVIEW_AGGREGATORS:
+        return "Review Aggregator"
+    for known_domain in KNOWN_REVIEW_AGGREGATORS:
+        if clean.endswith("." + known_domain):
+            return "Review Aggregator"
+
+    # Check known affiliate/editorial sites
     if clean in KNOWN_AFFILIATE_SITES:
-        return "Affiliate/Review"
+        return "Affiliate/Editorial"
     for known_domain in KNOWN_AFFILIATE_SITES:
         if clean.endswith("." + known_domain):
-            return "Affiliate/Review"
-
-    # Check known outreach (vendor) sites
-    if clean in KNOWN_OUTREACH_SITES:
-        return "Vendor Blog"
-    for known_domain in KNOWN_OUTREACH_SITES:
-        if clean.endswith("." + known_domain):
-            return "Vendor Blog"
+            return "Affiliate/Editorial"
 
     # Check known non-affiliate sites
     if clean in KNOWN_NON_AFFILIATE_SITES:
@@ -327,30 +421,19 @@ def _detect_affiliate_content_structure(soup) -> bool:
     return signals >= 2
 
 
-def _detect_vendor_blog(domain: str) -> bool:
-    """Check if domain pattern suggests a vendor blog."""
-    # blog.company.com or company.com (will be checked in context)
-    parts = domain.split(".")
-    if parts[0] == "blog" and len(parts) >= 3:
-        return True
-    return False
-
-
 def classify_site_with_content(domain: str, soup=None) -> tuple[str, str]:
     """Classify a site using known lists first, then page content signals.
 
     Returns (site_type, classification_reason) tuple.
-    site_type is one of: "Affiliate/Review", "Vendor Blog", "Outreach"
+    site_type is one of: "Affiliate/Review", "Outreach"
     """
     # First try the static known-list classification
     static_result = classify_site(domain)
     if static_result != "Unknown":
         return static_result, "known_list"
 
-    # If no page content available, use domain heuristics
+    # If no page content available, default to outreach
     if soup is None:
-        if _detect_vendor_blog(domain):
-            return "Vendor Blog", "domain_pattern"
         return "Outreach", "unknown_default"
 
     # Content-based classification for unknown domains
@@ -385,10 +468,6 @@ def classify_site_with_content(domain: str, soup=None) -> tuple[str, str]:
     if has_affiliate_structure:
         return "Affiliate/Review", "content_signals:structure"
 
-    # Check vendor blog pattern
-    if _detect_vendor_blog(domain):
-        return "Vendor Blog", "domain_pattern"
-
     # Default to outreach for unknown sites, flag for review
     return "Outreach", "unknown_default:needs_review"
 
@@ -397,7 +476,7 @@ def get_site_name(domain: str) -> str | None:
     """Return the known site name for a domain, or None."""
     clean = domain.replace("www.", "")
 
-    for registry in (KNOWN_AFFILIATE_SITES, KNOWN_OUTREACH_SITES, KNOWN_NON_AFFILIATE_SITES):
+    for registry in (KNOWN_REVIEW_AGGREGATORS, KNOWN_AFFILIATE_SITES, KNOWN_NON_AFFILIATE_SITES):
         if clean in registry:
             return registry[clean]
         for known_domain, name in registry.items():

@@ -342,6 +342,81 @@ def detect_contact_method(soup: BeautifulSoup, page_url: str, scraper: Scraper) 
 
 
 # ---------------------------------------------------------------------------
+# Article title extraction
+# ---------------------------------------------------------------------------
+
+
+def _is_junk_title(title: str) -> bool:
+    """Return True if the title looks like a Cloudflare challenge, CTA, or other non-article text."""
+    import re
+    lower = title.lower().strip()
+    junk_patterns = [
+        r"^one moment",           # Cloudflare "One moment, please..."
+        r"^just a moment",        # Cloudflare variant
+        r"^checking your browser",
+        r"^please wait",
+        r"^attention required",
+        r"^access denied",
+        r"^book a demo",
+        r"^need investors",
+        r"^sign up",
+        r"^log ?in",
+        r"^subscribe",
+        r"^404",
+        r"^page not found",
+    ]
+    if any(re.match(p, lower) for p in junk_patterns):
+        return True
+    # Too short (single word) or too long (probably concatenated nav text)
+    if len(title.split()) < 2 or len(title) > 200:
+        return True
+    return False
+
+
+def extract_article_title(soup: BeautifulSoup, url: str) -> str:
+    """Extract the article/page title from HTML.
+
+    Priority: first <h1> → og:title → <title> tag → URL path fallback.
+    H1 is preferred because og:title and <title> often include site name
+    prefixes/suffixes (e.g. "Clarify - Best CRMs for startups").
+    Falls back to og:title if the H1 looks like junk (Cloudflare page, CTA, etc.).
+    """
+    import re
+
+    title = ""
+
+    # 1. First <h1> — cleanest article-specific title
+    h1 = soup.find("h1")
+    if h1:
+        h1_text = h1.get_text(strip=True)
+        if not _is_junk_title(h1_text):
+            title = h1_text
+
+    # 2. og:title — fallback if no usable h1
+    if not title:
+        og = soup.find("meta", property="og:title")
+        if og and og.get("content", "").strip():
+            og_text = og["content"].strip()
+            if not _is_junk_title(og_text):
+                title = og_text
+
+    # 3. <title> tag
+    if not title and soup.title and soup.title.string:
+        t = soup.title.string.strip()
+        if not _is_junk_title(t):
+            title = t
+
+    # 4. URL path fallback
+    if not title and url:
+        path = url.rstrip("/").split("/")[-1]
+        title = path.replace("-", " ").replace("_", " ").title()
+
+    # Strip trailing site name suffixes (e.g. "Best CRM Tools | TechRadar")
+    title = re.split(r"\s*[|\u2013\u2014\u2015–—]\s*", title, maxsplit=1)[0].strip()
+
+    return title
+
+
 # Company name extraction
 # ---------------------------------------------------------------------------
 

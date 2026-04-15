@@ -36,7 +36,9 @@ class OutreachResult:
     contact_form_url: str = ""
     affiliate_instructions: str = ""
     affiliate_network: str = ""
-    author_name: str = ""
+    article_title: str = ""
+    author_first_name: str = ""
+    author_last_name: str = ""
     author_url: str = ""
     author_email_candidates: str = ""
     verified_email: str = ""
@@ -44,16 +46,24 @@ class OutreachResult:
     linkedin_search_url: str = ""
     company_about_url: str = ""
     team_contacts: str = ""
+    marketing_contacts: str = ""
     notes: str = ""
     extras: dict = field(default_factory=dict)
+
+    @property
+    def author_name(self) -> str:
+        """Full author name, derived from first + last."""
+        parts = [self.author_first_name, self.author_last_name]
+        return " ".join(p for p in parts if p)
 
     _BASE_HEADERS = [
         "url", "priority", "domain", "company_name", "site_type", "classification_reason",
         "send_classification", "authority_score",
         "contact_type", "contact_form_url", "affiliate_instructions", "affiliate_network",
-        "author_name", "author_url", "author_email_candidates", "verified_email", "email_source",
+        "article_title",
+        "author_first_name", "author_last_name", "author_url", "author_email_candidates", "verified_email", "email_source",
         "linkedin_search_url", "company_about_url",
-        "team_contacts", "notes",
+        "team_contacts", "marketing_contacts", "notes",
     ]
 
     def csv_headers(self) -> list[str]:
@@ -66,10 +76,11 @@ class OutreachResult:
             self.site_type, self.classification_reason,
             self.send_classification, self.authority_score,
             self.contact_type, self.contact_form_url, self.affiliate_instructions, self.affiliate_network,
-            self.author_name, self.author_url, self.author_email_candidates,
+            self.article_title,
+            self.author_first_name, self.author_last_name, self.author_url, self.author_email_candidates,
             self.verified_email, self.email_source,
             self.linkedin_search_url, self.company_about_url,
-            self.team_contacts, self.notes,
+            self.team_contacts, self.marketing_contacts, self.notes,
         ]
         extra_keys = sorted(self.extras.keys()) if self.extras else []
         return base + [self.extras.get(k, "") for k in extra_keys]

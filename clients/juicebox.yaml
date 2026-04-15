@@ -1,0 +1,14 @@
+# Juicebox competitor blacklist
+# Domains listed here will be skipped during outreach enrichment.
+# Add bare domains (no www, no https). Subdomains are matched automatically.
+
+name: Juicebox
+
+competitors:
+  - gem.com           # Gem
+  - seekout.com       # SeekOut
+  - hireez.com        # hireEZ
+  - findem.com        # Findem
+  - linkedin.com      # LinkedIn Recruiter
+  - pin.com           # Pin
+  - metaview.ai       # Metaview

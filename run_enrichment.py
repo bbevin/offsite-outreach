@@ -63,7 +63,7 @@ def main():
 
     # Only enrich rows that have an author name and are article/unknown page types
     skip_page_types = {"social", "ecommerce", "landing_page", "reference", "homepage"}
-    to_enrich = [r for r in rows if r.get("author", "").strip()
+    to_enrich = [r for r in rows if (r.get("author_first_name", "").strip() or r.get("author", "").strip())
                  and r.get("page_type", "unknown") not in skip_page_types]
     print(f"Loaded {len(rows)} rows, {len(to_enrich)} have an author to enrich.")
 
@@ -74,9 +74,14 @@ def main():
     results = []
     for i, row in enumerate(to_enrich, 1):
         url    = row.get("url", "").strip()
-        author = row.get("author", "").strip()
         domain = extract_domain(url)
-        first, last = split_name(author)
+        # Support both new split columns and legacy single 'author' column
+        first = row.get("author_first_name", "").strip()
+        last  = row.get("author_last_name", "").strip()
+        if not first:
+            author = row.get("author", "").strip()
+            first, last = split_name(author)
+        author = f"{first} {last}".strip()
 
         email = ""
         email_source = ""

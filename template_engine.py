@@ -129,11 +129,10 @@ def build_variables_from_result(result, product_name: str = "",
         Dict of variable_name -> value for template rendering.
     """
     author_name = result.author_name or ""
-    author_first_name = author_name.split()[0] if author_name else "there"
+    author_first_name = result.author_first_name or (author_name.split()[0] if author_name else "there")
 
-    # Derive article title from URL path as a fallback
-    article_title = ""
-    if result.url:
+    article_title = result.article_title or ""
+    if not article_title and result.url:
         path = result.url.rstrip("/").split("/")[-1]
         article_title = path.replace("-", " ").replace("_", " ").title()
 

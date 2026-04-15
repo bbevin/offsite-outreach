@@ -20,18 +20,20 @@ from extractors import (
     detect_affiliate_networks,
     detect_contact_method,
     extract_affiliate_instructions,
+    extract_article_title,
     extract_author,
     extract_company_name,
     find_team_contacts,
     enrich_contact_email,
     generate_email_candidates,
 )
+import hunter
 from known_sites import get_known_site_result
 from classifier import (
     classify_site,
     classify_site_with_content,
     get_site_name,
-    KNOWN_OUTREACH_SITES,
+    should_skip_url,
     KNOWN_NON_AFFILIATE_SITES,
 )
 
@@ -42,7 +44,7 @@ def classify_send(result: OutreachResult, send_override: str = "") -> None:
     Logic:
     - If send_override is provided in the input CSV, use it directly.
     - Affiliate/Review sites → not_applicable.
-    - Known brand domains (in KNOWN_OUTREACH_SITES or KNOWN_NON_AFFILIATE_SITES) → manual_send.
+    - Known brand domains (in KNOWN_NON_AFFILIATE_SITES) → manual_send.
     - Unknown domains that defaulted to Outreach → auto_send.
     """
     # Manual override from input CSV takes priority
@@ -57,24 +59,16 @@ def classify_send(result: OutreachResult, send_override: str = "") -> None:
         result.authority_score = "affiliate_site"
         return
 
-    # Check if domain is a known brand (vendor or non-affiliate org)
+    # Check if domain is a known brand (non-affiliate org)
     clean_domain = result.domain.replace("www.", "")
     is_known_brand = (
-        clean_domain in KNOWN_OUTREACH_SITES
-        or clean_domain in KNOWN_NON_AFFILIATE_SITES
-        or any(clean_domain.endswith("." + d) for d in KNOWN_OUTREACH_SITES)
+        clean_domain in KNOWN_NON_AFFILIATE_SITES
         or any(clean_domain.endswith("." + d) for d in KNOWN_NON_AFFILIATE_SITES)
     )
 
     if is_known_brand:
         result.send_classification = "manual_send"
         result.authority_score = "known_brand"
-        return
-
-    # Known-list classification (e.g. domain_pattern for blog.company.com)
-    if result.classification_reason == "domain_pattern":
-        result.send_classification = "manual_send"
-        result.authority_score = "heuristic:vendor_blog_pattern"
         return
 
     # Default: unknown/low-authority publisher → auto_send
@@ -117,16 +111,21 @@ def process_url(url: str, priority: str, scraper: Scraper, send_override: str = 
     if "needs_review" in result.classification_reason:
         result.notes = "Classification uncertain — flagged for human review"
 
-    # 3. Extract company name
+    # 3. Extract company name and article title
     result.company_name = extract_company_name(soup, domain)
     print(f"  Company: {result.company_name}")
+    result.article_title = extract_article_title(soup, url)
+    if result.article_title:
+        print(f"  Article: {result.article_title}")
 
     # 4. Extract author
     author = extract_author(soup, url)
-    result.author_name = author.name
-    result.author_url = author.url
     if author.name:
+        parts = author.name.strip().split(None, 1)
+        result.author_first_name = parts[0] if parts else ""
+        result.author_last_name = parts[1] if len(parts) > 1 else ""
         print(f"  Author: {author.name}")
+    result.author_url = author.url
 
     # 5. Detect contact method
     rate_limit()
@@ -170,6 +169,22 @@ def process_url(url: str, priority: str, scraper: Scraper, send_override: str = 
             print(f"  Verified email (Hunter): {verified}")
         elif candidates:
             print(f"  Email candidates (patterns): {candidates}")
+
+    # 7b. Department fallback — if author-based enrichment found nothing,
+    # try Hunter domain-search for marketing contacts at the company.
+    if (
+        result.site_type != "Affiliate/Review"
+        and not result.verified_email
+        and not result.author_email_candidates
+    ):
+        rate_limit()
+        contacts = hunter.find_department_contacts(domain, "marketing", limit=5)
+        if contacts:
+            result.marketing_contacts = "; ".join(
+                f"{c['name']} ({c.get('position') or 'marketing'}) <{c['email']}>"
+                for c in contacts if c.get("email")
+            )
+            print(f"  Marketing fallback: {len(contacts)} contacts")
 
     # 8. LinkedIn search — use author name for targeted search when available
     result.linkedin_search_url = build_linkedin_search_url(result.company_name, result.author_name)
@@ -233,30 +248,118 @@ def write_output(filepath: str, results: list[OutreachResult]):
             writer.writerow(r.to_row())
 
 
+def _make_skipped_result(url: str, priority: str, reason: str, extras: dict) -> OutreachResult:
+    """Build a stub OutreachResult for a URL that was filtered out before scraping."""
+    from scraper import get_domain
+    result = OutreachResult(url=url, priority=priority)
+    result.domain = get_domain(url)
+    result.site_type = "Skipped"
+    result.classification_reason = f"prefilter:{reason}"
+    result.send_classification = "not_applicable"
+    result.authority_score = f"skipped:{reason}"
+    result.notes = f"Skipped before scraping: {reason}"
+    result.extras = extras
+    return result
+
+
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python outreach_finder.py <input.csv> <output.csv>")
+    # Parse --client and --no-skip flags
+    args = sys.argv[1:]
+    client_slug = None
+    no_skip = False
+    positional = []
+
+    i = 0
+    while i < len(args):
+        if args[i] == "--client" and i + 1 < len(args):
+            client_slug = args[i + 1]
+            i += 2
+        elif args[i] == "--no-skip":
+            no_skip = True
+            i += 1
+        else:
+            positional.append(args[i])
+            i += 1
+
+    if len(positional) < 2 or not client_slug:
+        from client_config import list_clients
+        available = ", ".join(list_clients()) or "(none created yet)"
+        print("Usage: python outreach_finder.py --client <CLIENT> <input.csv> <output.csv> [--no-skip]")
+        print(f"\nAvailable clients: {available}")
+        print("Client configs live in clients/<name>.yaml with competitor blacklists.")
         sys.exit(1)
 
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    # Load client config — will exit if competitors list is empty
+    from client_config import load_client
+    client = load_client(client_slug)
+    competitor_domains = client["competitors"]
+    print(f"Client: {client['name']} ({len(competitor_domains)} competitor domains blacklisted)")
+
+    input_file = positional[0]
+    output_file = positional[1]
 
     entries = read_input(input_file)
     print(f"Loaded {len(entries)} URLs from {input_file}")
 
-    results = []
+    # Pre-filter: partition into to_process and skipped
+    to_process: list[tuple[str, str, dict]] = []
+    skipped_results: list[OutreachResult] = []
+    skip_counts: dict[str, int] = {}
+
+    if no_skip:
+        to_process = entries
+        print("Pre-filtering disabled (--no-skip)")
+    else:
+        for url, priority, extras in entries:
+            # Skip pages that already mention the client
+            mentioned = extras.get("mentioned", "").strip().lower()
+            if mentioned == "mentioned":
+                skip, reason = True, "already_mentioned"
+            else:
+                skip, reason = should_skip_url(url, competitor_domains)
+            if skip:
+                skip_counts[reason] = skip_counts.get(reason, 0) + 1
+                skipped_results.append(_make_skipped_result(url, priority, reason, extras))
+            else:
+                to_process.append((url, priority, extras))
+
+        if skip_counts:
+            summary = ", ".join(f"{n} {r}" for r, n in sorted(skip_counts.items()))
+            print(f"Pre-filtered: skipping {len(skipped_results)} URLs ({summary})")
+        print(f"Processing {len(to_process)} URLs")
+
+    results: list[OutreachResult] = []
+    checkpoint_file = output_file.replace(".csv", "_checkpoint.csv")
     with Scraper() as scraper:
-        for i, (url, priority, extras) in enumerate(entries, 1):
-            print(f"\n[{i}/{len(entries)}]", end="")
+        for i, (url, priority, extras) in enumerate(to_process, 1):
+            print(f"\n[{i}/{len(to_process)}]", end="")
             send_override = extras.pop("send_override", "").strip()
             result = process_url(url, priority, scraper, send_override=send_override)
             result.extras = extras
             results.append(result)
 
-    write_output(output_file, results)
+            # Save checkpoint every 10 rows
+            if i % 10 == 0:
+                write_output(checkpoint_file, results + skipped_results)
+                print(f"  [checkpoint saved: {i}/{len(to_process)}]")
+
+    # Remove checkpoint after successful completion
+    import os
+    if os.path.exists(checkpoint_file):
+        os.remove(checkpoint_file)
+
+    # Raw log file: all results including skipped stubs
+    all_results = results + skipped_results
+    write_output(output_file, all_results)
     print(f"\n{'='*60}")
-    print(f"Done! Results written to {output_file}")
-    print(f"Processed {len(results)} URLs")
+    print(f"Raw log written to {output_file} ({len(all_results)} rows)")
+
+    # Clean file: only actionable outreach targets (no skipped rows)
+    clean_file = output_file.replace(".csv", "_clean.csv")
+    if results:
+        write_output(clean_file, results)
+    print(f"Clean file written to {clean_file} ({len(results)} rows)")
+    print(f"  Filtered out {len(skipped_results)} skipped rows")
 
 
 if __name__ == "__main__":

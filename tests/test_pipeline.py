@@ -50,7 +50,7 @@ class TestClassifySend:
         assert r.authority_score == "affiliate_site"
 
     def test_known_outreach_brand_gets_manual(self):
-        r = OutreachResult(site_type="Vendor Blog", domain="capsulecrm.com")
+        r = OutreachResult(site_type="Outreach", domain="capsulecrm.com")
         classify_send(r)
         assert r.send_classification == "manual_send"
         assert r.authority_score == "known_brand"
@@ -61,12 +61,12 @@ class TestClassifySend:
         assert r.send_classification == "manual_send"
         assert r.authority_score == "known_brand"
 
-    def test_domain_pattern_gets_manual(self):
-        r = OutreachResult(site_type="Vendor Blog", domain="blog.newco.com",
-                           classification_reason="domain_pattern")
+    def test_unknown_blog_subdomain_gets_auto(self):
+        r = OutreachResult(site_type="Outreach", domain="blog.newco.com",
+                           classification_reason="unknown_default:needs_review")
         classify_send(r)
-        assert r.send_classification == "manual_send"
-        assert r.authority_score == "heuristic:vendor_blog_pattern"
+        assert r.send_classification == "auto_send"
+        assert r.authority_score == "heuristic:unknown_publisher"
 
     def test_unknown_publisher_gets_auto(self):
         r = OutreachResult(site_type="Outreach", domain="randomsite.com",
@@ -114,9 +114,10 @@ class TestProcessUrl:
         """
         scraper = _make_mock_scraper(html)
         result = process_url("https://capsulecrm.com/blog/best-crm", "medium", scraper)
-        assert result.site_type == "Vendor Blog"
+        assert result.site_type == "Outreach"
         assert result.send_classification == "manual_send"
-        assert result.author_name == "Sarah Founder"
+        assert result.author_first_name == "Sarah"
+        assert result.author_last_name == "Founder"
         assert result.author_email_candidates != ""  # should generate candidates
         assert "sarah@capsulecrm.com" in result.author_email_candidates
 
