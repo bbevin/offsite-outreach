@@ -1,0 +1,201 @@
+url,priority,rank,category,mentioned,share,share_delta,article_title,author_first_name,author_last_name,author_url,extraction_method,email,email_source,email_score
+https://techradar.com/best/the-best-crm-for-startups,high,1,Earned Media,Not Mentioned,4.77,0.93,Best CRM for startups of 2026,Matt,Moran,https://www.techradar.com/author/matt-moran,rule,,,
+https://crm.org/crmland/best-crm-for-startups,high,2,Other,Not Mentioned,3.94,0.92,Best CRM for Startups: 8 Picks for Early-Stage Growth,Kiera,Abbamonte,https://crm.org/author/kiera-abbamonte,rule,,,
+https://boringbusinessnerd.com/post/best-crms-for-startups,high,5,Earned Media,Not Mentioned,2.47,0.17,10 Best CRMs for Startups (2024),Kieran,Ryan,,llm,kieran@boringbusinessnerd.com,hunter,96
+https://uschamber.com/co/start/strategy/low-cost-crm-tools,high,8,Other,Not Mentioned,2.06,0.22,10 Free or Low-CostCRM Tools for Small Businesses,Jessica,Elliott,,rule,,,
+https://pcmag.com/picks/the-best-small-business-crm-software,high,9,Earned Media,Not Mentioned,2.04,0,The Best Small Business CRM Software for 2026,Rob,Marvin,,llm,rob.marvin@kensho.com,apollo,
+https://blog.salesflare.com/best-crm-for-startups,medium,10,Other,Not Mentioned,1.71,-0.39,7 Best CRMs for Startups in 2026,Jeroen,Corthout,,rule,jeroen@salesflare.com,hunter,98
+https://clarify.ai/blog/top-7-crms-for-founders-in-2026,medium,14,Competition,Not Mentioned,1.06,1.06,Top 7 CRMs for founders in 2026,Chris,Eberhardt,,rule,chris@clarify.ai,hunter,97
+https://folk.app/articles/best-crms-software-for-startups,low,16,Other,Not Mentioned,0.97,0.11,18 Best CRMs Software for Startups in 2026,Simo,Lemhandez,www.folk.app/authors/simo-lemhandez,rule,simo@folk.app,hunter,98
+https://startup.unitelvoice.com/simple-crm-systems,low,18,Other,Not Mentioned,0.92,0.8,"One moment, please...",Greg,Roth,,rule,gregr@unitelvoice.com,hunter,97
+https://monday.com/blog/crm-and-sales/crm-for-small-business/,low,20,Other,Not Mentioned,0.9,0.53,Crm For Small Business,Rebecca,Noori,,rule,,,
+https://emailtooltester.com/en/best-crm-for-small-business/,low,21,Earned Media,Not Mentioned,0.89,-0.05,What’s the Best CRM for Small Business Owners?,Roberta,Phillips,https://www.emailtooltester.com/en/blog/author/roberta/,rule,roberta@emailtooltester.com,hunter,95
+https://techradar.com/best/best-crm-for-small-business,low,23,Earned Media,Not Mentioned,0.87,-0.12,Best small business CRM of 2026,Christian,Rigg,https://www.techradar.com/author/christian-rigg,rule,,,
+https://clarify.ai/blog/crms-for-startup-founders,low,24,Competition,Mentioned,0.85,-0.71,Best CRMs for startups: Comparing tools in 2026,Chris,Eberhardt,,rule,chris@clarify.ai,hunter,97
+https://zapier.com/blog/best-crms-for-small-business/,low,25,Other,Not Mentioned,0.84,0.04,The 12 best CRMs for small business,Miguel,Rebelo,https://zapier.com/blog/author/miguel-rebelo,rule,,,
+https://techradar.com/reviews/freshworks-review,low,26,Earned Media,Not Mentioned,0.83,-0.05,Freshworks review,Serguei,Solokhine,https://www.techradar.com/author/serguei-solokhine,rule,serguei@candrone.com,apollo,
+https://pcmag.com/picks/the-best-crm-software,low,27,Earned Media,Not Mentioned,0.77,-0.3,The Best CRM Software for 2026,Rob,Marvin,,llm,rob.marvin@kensho.com,apollo,
+https://techradar.com/best/the-best-crm-software,low,28,Earned Media,Not Mentioned,0.76,0.47,The 13 best CRM platforms in 2026,Owain,Williams,https://www.techradar.com/author/owain-williams,rule,,,
+https://crm.org/crmland/best-crm-software,low,29,Other,Not Mentioned,0.76,0.61,Best CRM Software in 2026,Christopher,Sirk,https://crm.org/author/christopher-sirk,rule,chris@crm.org,hunter,98
+https://bigcontacts.com/blog/crm-for-startups/,low,30,Other,Not Mentioned,0.71,0.18,Best Cheap Crm For Startups Solutions for 2026,BIGContacts,Editorial Team,https://www.bigcontacts.com/blog/author/editorial-team/,rule,,,
+https://instantly.ai/blog/best-crm-for-startups/,low,32,Other,Not Mentioned,0.65,-0.06,The Best CRM for Startups That Want to Scale in 2026,Hans,Dekker,https://instantly.ai/blog/author/hans/,rule,hans@instantly.ai,hunter,99
+https://teamgate.com/blog/4-best-crm-for-startups/,low,34,Other,Not Mentioned,0.62,0.4,4 Best CRM for Startups,Andrew,Martin,https://www.teamgate.com/blog/author/andrew-martin/,rule,andrew.martin@teamgate.com,hunter,97
+https://routine-automation.com/blog/best-crm-for-small-business/,low,36,Other,Not Mentioned,0.61,-0.09,10 Best CRM Software for Small Business 2026,Helena,Dzementej,,rule,elena.dementey@routine-automation.com,apollo,
+https://blog.hubspot.com/sales/startup-crm,low,39,Competition,Not Mentioned,0.57,0.03,9 Popular Startup CRMs & Which is Best For You,Precious,Oboidhe,https://blog.hubspot.com/sales/author/precious-oboidhe?hubs_content=blog.hubspot.com/sales/startup-crm&hubs_content-cta=cl-textLink,rule,,,
+https://close.com/blog/crms-for-startups,low,40,Other,Not Mentioned,0.56,-0.02,"10 Best CRMs for Startups in 2026: Ultimate Guide, Reviews & Pricing Comparison",Steli,Efti,,rule,steli@close.com,hunter,95
+https://fayedigital.com/blog/best-crm-for-small-business/,low,41,Other,Not Mentioned,0.56,0.13,Best CRM Software for Small Business: A Simple Guide,Ross,Peetoom,,rule,ross.peetoom@fayedigital.com,hunter,95
+https://innowise.com/blog/best-crm-for-small-business/,low,42,Other,Not Mentioned,0.54,-0.14,Best CRM software for a small business in 2026,Kiryl,Drabysheuski,https://innowise.com/authors/kiryl-drabysheuski/,rule,kiryl.drabysheuski@innowise.com,hunter,81
+https://crmsreviewed.com/the-10-best-crms-for-startups-in-2025/,low,44,Earned Media,Not Mentioned,0.53,-0.37,10 Best CRMs for Startups 2025: Ranked by Features & Scalability,Tom,Wilson,,rule,,,
+https://clearout.io/blog/crm-software-tools/,low,45,Other,Not Mentioned,0.53,0.53,10 Best CRM Software Tools for 2026 (Top Picks & Pricing),Priyanshi,Sharma,,rule,priyanshi@clearout.io,hunter,95
+https://folk.app/articles/best-crm-for-entrepreneurs,low,47,Other,Not Mentioned,0.5,-0.25,5 Best CRMs for entrepreneurs,Jean-Elie,Tanguy,,llm,,,
+https://tech.co/crm-software/best-crm-startups,low,48,Earned Media,Not Mentioned,0.48,0.13,Best CRM Software for Startups,Conor,Cawley,,rule,conor@tech.co,hunter,95
+https://toolpilot.dev/blog/best-crm-software-2026/,low,49,Earned Media,Not Mentioned,0.47,0.47,Best CRM Software in 2026,AI,Tools Hub,,rule,,,
+https://onepagecrm.com/,low,50,Other,Not Mentioned,0.47,0.25,Simple CRM.Clean & affordable.Set up in 4 minutes.,Bruce,Henry,,rule,,,
+https://techradar.com/reviews/pipedrive-crm-review,low,51,Earned Media,Not Mentioned,0.47,-0.2,Pipedrive CRM: Hands-on testing - I can't believe how easy it is to navigate,Desire,Athow,,llm,desire@techradar.com,hunter,99
+https://bigcontacts.com/blog/best-crm-for-small-business/,low,52,Other,Not Mentioned,0.45,-0.03,13 Best CRM Software for Small Business in 2026: Top Tools Compared,BIGContacts,Editorial Team,https://www.bigcontacts.com/blog/author/editorial-team/,rule,,,
+https://mogulnetworking.com/startup-founders,low,55,Other,Not Mentioned,0.42,0.13,HowStartup Foundersmanage their network,Lucy,Guo,,rule,,,
+https://salesforce.com/blog/top-free-crms-for-startups/,low,56,Competition,Not Mentioned,0.41,-0.1,Best Free CRMs for Startups and SMBs in 2026,Benny,Spiewak,,llm,bspiewak@salesforce.com,hunter,96
+https://podium.com/article/best-crm-for-startups,low,60,Other,Not Mentioned,0.41,-0.36,The 8 Most Reliable CRM Platforms for Startups,Logan,Wooden,,rule,logan@mercury.com,apollo,
+https://vibegrowthstack.io/blog/best-crm-for-startups,low,63,Other,Not Mentioned,0.36,-1.01,8 Best CRMs for Startups 2026: Free to $50/Month,Marco,Delvane,,rule,,,
+https://monday.com/blog/crm-and-sales/simple-crm/,low,68,Other,Not Mentioned,0.31,0.23,Simple Crm,Stephanie,Trovato,,rule,,,
+https://salesforce.com/blog/best-free-crms-for-startups/,low,69,Competition,Not Mentioned,0.31,0.09,Best Free CRMs for Startups and SMBs in 2026,Benny,Spiewak,,llm,bspiewak@salesforce.com,hunter,96
+https://pipermind.com/blog/best-crms-for-startups-2026/,low,71,Other,Not Mentioned,0.31,-0.08,Best CRM System for Startups: Top Picks for 2026,Andy,Ellenburg,,rule,,,
+https://vcbacked.co/blog/best-crm-for-startup-sales-2026,low,72,Other,Not Mentioned,0.31,0.31,Best CRM for Startup Sales in 2026,VCBacked,Team,https://www.vcbacked.co,rule,,,
+https://makersfuel.com/blog/sales/best-crm-tools-for-first-time-founders-that-won-t-break-the-bank,low,73,Other,Not Mentioned,0.31,0.08,Best CRM Tools for First-Time Founders (That Won’t Break the Bank),Sachin,Sharma,,rule,,,
+https://pipedrive.com/en/blog/crm-for-startups,low,75,Competition,Not Mentioned,0.29,-0.19,CRM for startups: Finding the best customer relationship management tool,Zahra,Jivá,https://www.pipedrive.com/en/blog/blog-authors#zahra-jiv,rule,zahra.jiva@pipedrive.com,hunter,99
+https://onepagecrm.com/crm-solution/fundraising-crm/,low,76,Other,Not Mentioned,0.28,0.06,BestFundraising CRMfor Founders,Laura,Lynch,,rule,,,
+https://teamgate.com/blog/best-crm-for-small-business/,low,77,Other,Not Mentioned,0.28,0.16,10 Best CRM for Small Businesses in 2026,Andrew,Martin,https://www.teamgate.com/blog/author/andrew-martin/,rule,andrew.martin@teamgate.com,hunter,97
+https://nutshell.com/blog/best-affordable-crm,low,80,Other,Not Mentioned,0.27,-0.05,The 10 Best Affordable CRM Software for Small Businesses,Sam,Poole,,rule,spoole@nutshell.com,hunter,91
+https://crowdspring.com/blog/best-crm-small-business/,low,81,Other,Not Mentioned,0.26,-0.25,12 Best CRMs for Small Businesses,Ross,Kimbarovsky,,rule,ross@jurat.io,apollo,
+https://fueler.io/blog/best-crm-tools-for-us-founders-and-agencies,low,82,Other,Not Mentioned,0.26,-0.08,Best CRM Tools for US Founders and Agencies in 2025,Riten,Debnath,,rule,riten@fueler.io,hunter,97
+https://techradar.com/best/best-client-management-software-of-year,low,83,Earned Media,Not Mentioned,0.26,0.26,Best client management software of 2026,Barclay,Ballard,https://www.techradar.com/author/barclay-ballard,rule,,,
+https://zapier.com/blog/best-crm-app/,low,84,Other,Not Mentioned,0.26,-0.29,The best CRM software,Miguel,Rebelo,https://zapier.com/blog/author/miguel-rebelo,rule,,,
+https://onepagecrm.com/blog/best-affordable-crms/,low,85,Other,Not Mentioned,0.26,0.26,18 Most Affordable CRMs for Small Businesses,Hannah,Richards,,rule,,,
+https://sbdc.uh.edu/sbdc/small-business-crm.asp,low,88,Institution,Not Mentioned,0.25,0.13,Top CRM Platforms For Your Small Business,Michelle,Loredo,,rule,mloredo@uh.edu,hunter,99
+https://withallo.com/blog/best-crms-for-startups,low,90,Other,Not Mentioned,0.23,-0.08,8 Best CRMs for Startups in 2026,María,Correa,,rule,maria@withallo.com,hunter,99
+https://crm.org/crmland/best-crm-for-small-business,low,91,Other,Not Mentioned,0.23,-0.2,10 Best CRM Software for Small Business in 2026,Christopher,Sirk,https://crm.org/author/christopher-sirk,rule,chris@crm.org,hunter,98
+https://staxpayments.com/blog/best-crm-for-small-business/,low,93,Other,Not Mentioned,0.23,0,Best Crm For Small Business,Eric,Simmons,,rule,eric.simmons@staxpayments.com,hunter,98
+https://clarify.ai/blog/the-5-best-crms-for-founder-led-sales-in-2025,low,95,Competition,Not Mentioned,0.23,0,The 5 best CRMs for founder-led sales in 2025,Chris,Eberhardt,,rule,chris@clarify.ai,hunter,97
+https://nethunt.com/blog/the-best-crms-for-small-business/,low,96,Other,Not Mentioned,0.23,0,Best CRM for Small Business: CRM that Automates Your Business Operations,Kirill,Skurikhin,https://nethunt.com/blog/author/kirill/,rule,kirill.skurikhin@prjctr.com,apollo,
+https://tech.co/crm-software/simplest-crm-systems,low,97,Earned Media,Not Mentioned,0.23,0,Simplest CRM Systems: Which Easy-to-Use Platform Is Best?,Aaron,Drapkin,,rule,aaron.drapkin@startups.co.uk,apollo,
+https://founderuniversity.substack.com/p/a-tight-crm-is-your-secret-weapon,low,101,Social,Not Mentioned,0.23,0,Founder University Newsletter,Bianca,Veltri,,rule,biancaveltri@substack.com,hunter,90
+https://ventureharbour.com/best-free-or-cheap-crm-platforms/,low,106,Other,Not Mentioned,0.22,0.07,10 Best Cheap & Free CRMs for 2026,Aaron,Brooks,,rule,,,
+https://nimble.com/blog/top-crms-for-small-business-owners/,low,108,Other,Not Mentioned,0.22,0,Top 6 CRMs for Small Business Owners,Nimble,Editorial Team,,rule,,,
+https://expertmarket.com/crm/best-crm-systems-for-small-businesses,low,109,Earned Media,Not Mentioned,0.21,-0.11,The 5 Best CRM Software Systems for Small Businesses,Rob,Binns,,rule,,,
+https://techradar.com/reviews/insightly-crm-review,low,111,Earned Media,Not Mentioned,0.21,0.21,Insightly CRM review 2026,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://bigin.com/small-business-express/top-CRMs-of-2026-for-small-businesses.html,low,112,Other,Not Mentioned,0.21,0.07,Top CRMs of 2026 for small businesses,Tamanna,Kovoor,,rule,,,
+https://act.com/blog/what-is-the-best-crm-for-startup-businesses/,low,116,Other,Not Mentioned,0.2,0.1,What Is the Best CRM for Startup Businesses?,Act!,Team,,rule,,,
+https://nfx.com/post/signal-to-fix-fundraising,low,118,Other,Not Mentioned,0.2,0.17,Signal - The Fundraising CRM for Startup Founders,The,NFX Team,,rule,,,
+https://salesforce.com/ap/blog/best-free-crms-for-startups/,low,122,Competition,Not Mentioned,0.19,0.06,Best Free CRMs for Startups and SMBs in 2026,Benny,Spiewak,,llm,bspiewak@salesforce.com,hunter,96
+https://salesforce.com/crm/crm-for-small-business/,low,123,Competition,Not Mentioned,0.18,0.18,CRM For Small Business,Caylin,White,,llm,caylin.white@salesforce.com,hunter,97
+https://waveup.com/blog/5-best-crms-for-startups-in-2025/,low,124,Other,Not Mentioned,0.18,0.03,5 best CRMs for startups in 2025,Igor,Shaversky,,llm,igor@waveup.com,hunter,97
+https://appvizer.com/magazine/customer/client-relationship-mgt/crm-startup,low,127,Earned Media,Not Mentioned,0.18,-0.25,Our Selection of the 15 Best CRM Software Packages for Start-Ups in 2025,Jennifer,Montérémal,https://www.appvizer.com/magazine/author/monteremal-jennifer,rule,jennifer.monteremal@appvizer.com,hunter,98
+https://worldofbooks.com/products/salesforce-essentials-for-administrators-book-mohith-shrivastava-9781784398071?sku=NIN9781784398071,low,138,Other,Not Mentioned,0.18,0.18,Salesforce Essentials for AdministratorsbyMohith Shrivastava,Bill,Jelen,,rule,,,
+https://folk.app/articles/best-crm-startups-free,low,151,Other,Not Mentioned,0.17,0.01,5 Best free CRMs for startups,Simo,Lemhandez,www.folk.app/authors/simo-lemhandez,rule,simo@folk.app,hunter,98
+https://smith.ai/blog/the-top-10-crms-for-small-businesses-solopreneurs-on-a-budget-free-and-cheap-solutions-for-customer-relationship-management-without-compromise,low,152,Other,Not Mentioned,0.17,0.11,The Top 10 CRMs for Small Businesses & Solopreneurs On a Budget: Free and Cheap Solutions for Customer Relationship Management without Compromise,Elizabeth,Lockwood,,rule,elizabeth.lockwood@situational.com,apollo,
+https://broadly.com/blog/crm-for-small-business/,low,156,Other,Not Mentioned,0.16,-0.03,The Ultimate Guide to Choosing the Best CRM for Small Business,Mary-Margaret,Bennett,,rule,,,
+https://smallbusinesshq.co/best-crm-for-startups/,low,158,Earned Media,Not Mentioned,0.16,0.03,15 Best CRM for Startups in 2025 (Reviews & Pricing),Brett,Shapiro,https://smallbusinesshq.co/author/brett-shapiro/,rule,brett@smallbusinesshq.co,apollo,
+https://adratechsystems.com/en/resources/best-crm-small-business-2026,low,163,Other,Not Mentioned,0.16,0.05,Best CRM for Small Businesses in 2026: Complete Comparison,Adratech,Team,,rule,,,
+https://techradar.com/reviews/freshsales-crm-review,low,164,Earned Media,Not Mentioned,0.16,0.1,Freshsales CRM review,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://techradar.com/pro/software-services/less-annoying-crm-review,low,168,Earned Media,Not Mentioned,0.16,-0.07,Less Annoying CRM review 2026,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://baserow.io/blog/best-crm-tools-for-startups,low,172,Other,Not Mentioned,0.14,0.02,Best Crm Tools For Startups,Sonali,Verma,,rule,,,
+https://monday.com/blog/crm-and-sales/free-crm/,low,177,Other,Not Mentioned,0.13,0.1,Free Crm,Alicia,Schneider,,rule,,,
+https://nutshell.com/blog/best-crms-for-small-businesses,low,178,Other,Not Mentioned,0.13,-0.26,"14 Best CRM Software for Small Businesses: Affordable, AI-Powered Solutions Compared",Will,Gordon,,rule,wgordon@nutshell.com,hunter,96
+https://larksuite.com/en_us/blog/crm-for-startups,low,182,Other,Not Mentioned,0.11,0.05,CRM for Startups: Ultimate Guide for 2026,Vivienne,Quinn,,llm,,,
+https://ventureharbour.com/crm-software-small-business/,low,184,Other,Not Mentioned,0.11,0.08,14 Best CRM Software for Small Businesses,Marcus,Taylor,,rule,marcus.taylor@ventureharbour.com,hunter,98
+https://techradar.com/reviews/hubspot-crm-review,low,188,Earned Media,Not Mentioned,0.1,0.05,HubSpot CRM review,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://uschamber.com/co/grow/customers/choosing-the-best-crm-software,low,190,Other,Not Mentioned,0.1,0.1,Choosing theBest CRM Software for Small Businesses,Jessica,Elliott,,rule,,,
+https://zeeg.me/en/blog/post/best-crms-for-start-ups,low,196,Other,Not Mentioned,0.1,-0.06,Best CRMs for Start-ups: Top 11 Platforms Compared,Doğa,Kaplan,https://zeeg.me/en/blog/authors/doga-kaplan,rule,,,
+https://techradar.com/reviews/zoho-crm-review,low,197,Earned Media,Not Mentioned,0.1,-0.06,Zoho CRM review 2026,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://morriscountyedc.org/10-best-crm-software-of-2025/,low,198,Institution,Not Mentioned,0.1,0.1,10 Best CRM Software Of 2025 - Morris County Economic Development Corporation (MCEDC),Noelle,Pacifico,,rule,,,
+https://gain.io/blog/crm-platforms-for-new-startups,low,199,Other,Not Mentioned,0.1,0.07,Comparing CRM Platforms For New Startups Step By Step,Alex,Thompson,https://gain.io/author/alex-thompson,rule,,,
+https://biztechscout.com/en/article/best-crm-for-small-business-2026,low,201,Earned Media,Not Mentioned,0.1,0.1,Best CRM for Small Business 2026: Top 10 Compared,Ibrahim,Hassan,,rule,ibrahim@biztechscout.com,hunter,95
+https://sybill.ai/blogs/best-crm-software-for-small-business,low,202,Other,Not Mentioned,0.1,0.05,Best Crm Software For Small Business,Mamta,Tainwala,,rule,mamta@sybill.ai,hunter,97
+https://yena.ai/blog/the-12-best-crm-software-for-startups-in-2025,low,208,Other,Not Mentioned,0.08,0.02,12 Best CRMs for Startups in 2026 (4 Free Options),Yena,Team,https://www.yena.ai/about,rule,,,
+https://zdnet.com/article/best-small-business-crm-software/,low,209,Earned Media,Not Mentioned,0.08,-0.31,Best small business CRM software of 2026: Affordable solutions for boosting customer service,Alison,Neville,,llm,,,
+https://jotform.com/blog/crm-for-small-businesses/,low,210,Other,Not Mentioned,0.08,-0.04,The 10 best CRMs for small businesses,John,Boitnott,,rule,john.boitnott@tsn.com,apollo,
+https://insidea.com/blog/hubspot/crm-for-construction-companies/,low,212,Other,Not Mentioned,0.08,0.08,CRM for Construction Companies: 5 Amazing Platforms,Jigar,Thakker,,rule,jigar@insidea.com,hunter,97
+https://solutionsreview.com/crm/2026/01/05/best-crm-companies-to-know-about/,low,215,Earned Media,Not Mentioned,0.08,-0.18,27 of the Best CRM Software Companies to Know About for 2026,William,Jepma,,rule,wjepma@solutionsreview.com,hunter,96
+https://blog.salesflare.com/best-crm-for-startups?mc_eid=bdb5d8d29b,low,218,Other,Not Mentioned,0.08,-0.48,7 Best CRMs for Startups in 2026,Jeroen,Corthout,,rule,jeroen@salesflare.com,hunter,98
+https://jetpack.com/resources/cheap-affordable-crm-software/,low,219,Other,Not Mentioned,0.08,0.08,10 Affordable CRM Options for Small Businesses & Sales Teams,Mike,Stott,,rule,,,
+https://startups.co.uk/crm-software/best-crm-for-small-business-uk/,low,227,Earned Media,Not Mentioned,0.06,0.03,The 7 best CRM systems for small businesses for 2026,Emily,Clark,,rule,,,
+https://blog.salesflare.com/best-simple-crm,low,228,Other,Not Mentioned,0.06,-0.01,7 Best Simple CRMs in 2026,Jeroen,Corthout,,rule,jeroen@salesflare.com,hunter,98
+https://lindy.ai/blog/best-crm-software-small-business,low,229,Other,Not Mentioned,0.06,-0.47,The 8 Best CRM Software for Small Businesses in 2026,Marvin,Aziz,,rule,marvin@lindy.ai,hunter,95
+https://cxtoday.com/crm/the-best-crm-for-small-businesses-the-ultimate-guide/,low,230,Earned Media,Not Mentioned,0.06,-0.01,The Best CRM for Small Businesses: The Ultimate Guide,Rebekah,Carter,,rule,,,
+https://zdnet.com/article/best-crm-software/,low,231,Earned Media,Not Mentioned,0.06,0.06,The best CRM software: Top solutions for improving customer relationships in 2026,Charlie,Osborne,https://www.zdnet.com/meet-the-team/charlie-osborne/,rule,charlie.osborne@zdnet.com,apollo,
+https://zoflowx.com/blogs/best-crm-for-startups,low,232,Other,Not Mentioned,0.06,-0.19,Best CRM for Startups: Top CRM Software to Grow Your Startup,Arul,Raj,,rule,arul@zoflowx.com,hunter,97
+https://pitchwise.se/blog/crm-for-fundraising,low,233,Other,Not Mentioned,0.06,0.06,CRM for Fundraising: Do Founders Actually Need One? (2026 Guide),Oluwadamilare,Akinpelu,,rule,,,
+https://nethunt.com/blog/best-simple-crm-solutions/,low,236,Other,Not Mentioned,0.06,0.03,Easy CRM Software for Small Business: The Complete 2026 Guide,Tetiana,Fadina,https://nethunt.com/blog/author/tetiana/,rule,,,
+https://nutshell.com/blog/best-simple-crms,low,237,Other,Not Mentioned,0.06,-0.08,Best Simple CRMs: 9 Easy-to-Use Solutions Your Team Will Actually Use,Sam,Poole,,rule,spoole@nutshell.com,hunter,91
+https://assetmule.ai/blog/sales-tool-recommendations-for-founder-led-selling,low,239,Other,Not Mentioned,0.06,0.06,,Jorge,Soto,,llm,jorge@assetmule.ai,hunter,95
+https://leadloft.com/blog/best-crm-for-startup-fundraising,low,240,Other,Not Mentioned,0.06,-0.01,Need Investors? Book a demo!,Zack,Olivas,https://www.leadloft.com/team-members/zack-olivas,rule,zack@leadloft.com,hunter,95
+https://monday.com/blog/crm-and-sales/crm-software/,low,242,Other,Not Mentioned,0.06,-0.06,Crm Software,Alicia,Schneider,,rule,,,
+https://supportbench.com/top-crm-tools-for-small-businesses/,low,243,Other,Not Mentioned,0.06,0.03,Best CRM Tools for Startups and Small Businesses in 2025,Eric,Klimuk,,rule,eric.klimuk@supportbench.com,hunter,98
+https://scoro.com/blog/crm-tools-for-consulting/,low,246,Other,Not Mentioned,0.06,0.06,The 7 Best CRM Tools for Consulting Businesses,Megan,Ross,,rule,,,
+https://omr.com/en/reviews/category/crm/enterprise-market-segment,low,250,Earned Media,Not Mentioned,0.05,0.05,Enterprise CRM Software,Chantal,Seiter,https://omr.com/en/reviews/contenthub/author/chantal-seiter,rule,chantal.seiter@omr.com,hunter,99
+https://capsulecrm.com/blog/best-crm-for-startups/,low,254,Other,Not Mentioned,0.05,-0.15,Best CRM for startups: smart tools for teams in 2025,Jon,Davis,,rule,jon.davis@zestia.com,hunter,98
+https://expertmarket.com/crm/best-cheap-crm-systems,low,255,Earned Media,Not Mentioned,0.05,0.05,Cheapest CRM Software Plans in 2026,Matt,Reed,,rule,,,
+https://expertmarket.com/crm/best-crm-software,low,260,Earned Media,Not Mentioned,0.05,0.05,Best CRM Software Solutions (2026): Find the Right Fit for Your Team,Rob,Binns,,rule,,,
+https://elevatiq.com/post/zoho-crm-vs-pipedrive/,low,262,Other,Not Mentioned,0.05,0.05,Zoho vs Pipedrive CRM: Independent Review,Shrestha,Dash,,rule,shrestha.dash@elevatiq.com,hunter,98
+https://monday.com/blog/crm-and-sales/affordable-crm-options-for-small-businesses/,low,263,Other,Not Mentioned,0.05,0,Affordable CRM options for small businesses: 12 platforms teams actually use,Chaviva,Gordon-Bennett,,rule,,,
+https://creatio.com/glossary/crm-software,low,264,Other,Not Mentioned,0.05,0.05,CRM Software: Key Things to Know + Best CRM Tools for 2026,Irene,Zavada,https://www.creatio.com/author/irene-zavada,rule,i.zavada@creatio.com,hunter,94
+https://rtdynamic.com/blog/top-free-low-cost-crms-for-pre-seed-startups/,low,265,Other,Not Mentioned,0.05,-0.03,Top Free & Low-Cost CRMs for Pre-Seed Startups,Katy,Robinson,https://www.rtdynamic.com/blog/author/katy/,rule,katy@rtdynamic.com,hunter,99
+https://softr.io/create/crm-for-startups,low,266,Other,Not Mentioned,0.05,0.05,"Build your own CRM for startups, no code required",Ashley,Kalinauskas,,rule,,,
+https://pipedrive.com/en/blog/crm-tool,low,269,Competition,Not Mentioned,0.05,-0.06,Best CRM tools: 15 top solutions for 2026,William,Sigsworth,https://www.pipedrive.com/en/blog/blog-authors#will-sigsworth,rule,will@polychrome.com,apollo,
+https://b2breviews.com/crm-software/,low,270,Earned Media,Not Mentioned,0.05,0.05,Best CRM Software for Small Business,Raechel,Conover,,llm,,,
+https://datastackguide.com/best/best-crm-for-startups/,low,273,Earned Media,Not Mentioned,0.05,-0.22,5 Best CRMs for Startups (2026),Rome,Thorndike,https://www.linkedin.com/in/romethorndike/,rule,,,
+https://nethunt.com/crm-for-startups,low,275,Other,Not Mentioned,0.05,0.05,Best CRM for startups in 2026,Jeorrfey,Burton,,rule,,,
+https://pipedrive.com/en/crm-comparison,low,277,Competition,Not Mentioned,0.05,0.05,CRM software comparison,Nirmal,Gyanwali,,rule,,,
+https://tech.yahoo.com/business/articles/best-crm-software-2026-162739551.html/,low,279,Earned Media,Not Mentioned,0.05,-0.06,The Best CRM Software for 2026,Ben,Moore,,rule,mb@yahoo.com,hunter,53
+https://nimble.com/blog/top-features-to-consider-when-buying-a-crm-for-your-startup/,low,280,Other,Not Mentioned,0.05,0.05,Top Features to Consider When Buying a CRM for Your Startup,Nimble,Editorial Team,,rule,,,
+https://stackedcrm.com/blog/easy-crms,low,282,Earned Media,Not Mentioned,0.05,-0.17,The Easiest CRM to Use in 2025,See,All Posts,https://stackedcrm.com/blog,rule,,,
+https://techradar.com/reviews/bitrix24-crm-review,low,284,Earned Media,Not Mentioned,0.05,0.05,Bitrix24 CRM review,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://techradar.com/reviews/capsule-crm-review,low,285,Earned Media,Not Mentioned,0.05,-0.06,Capsule CRM review 2026,Ritoban,Mukherjee,https://www.techradar.com/author/ritoban-mukherjee,rule,ritoban@findaway.media,apollo,
+https://onepagecrm.com/blog/best-small-business-crms/,low,291,Other,Not Mentioned,0.05,-0.07,17 Best CRM for Small Business (2026),Samuel,Oyebode,,rule,,,
+https://saleshousestack.com/comparisons/pipedrive-hubspot-salesforce,low,292,Other,Not Mentioned,0.05,0.05,Best CRM for 2026: Pipedrive vs HubSpot vs Salesforce,David,Varan,,rule,,,
+https://blog.hubspot.com/sales/all-in-one-crm,low,294,Competition,Not Mentioned,0.05,0,17 Best CRMs for Small Businesses [+ Why You Need One],Curt,del Principe,https://blog.hubspot.com/sales/author/curt-del-principe?hubs_content=blog.hubspot.com/sales/all-in-one-crm&hubs_content-cta=cl-textLink,rule,,,
+https://tech.co/crm-software/best-crm-software-small-business,low,298,Earned Media,Not Mentioned,0.05,0,Best CRM Software for Small Business,Conor,Cawley,,rule,conor@tech.co,hunter,95
+https://monsterinsights.com/which-is-the-best-crm-for-small-business/,low,299,Other,Not Mentioned,0.05,0.05,9 Best CRM Software For Startups & Small Businesses,Aazim,Akhtar,,rule,,,
+https://nutshell.com/blog/easy-to-use-crms,low,313,Other,Not Mentioned,0.05,0.05,Easy Sales CRM: The Top User-Friendly Tools for Small Businesses Compared,Sam,Poole,,rule,spoole@nutshell.com,hunter,91
+https://flowii.com/en/blog/crm-software-price-comparison/,low,316,Other,Not Mentioned,0.05,0.05,8 Best CRM Software Price Comparisons in 2026,David,Fačko,,rule,,,
+https://brevo.com/blog/crm-software-for-small-business/,low,323,Other,Not Mentioned,0.03,0.03,The 8 Best CRM Software for Small Business,Samantha,Bansil,https://www.brevo.com/blog/authors/samantha-bansil/,rule,samantha.bansil@brevo.com,hunter,98
+https://salesmate.io/blog/crm-for-small-business/,low,325,Other,Not Mentioned,0.03,0.03,15 Best CRM for small business in 2026,Sonali,Negi,,rule,sonali.negi@salesmate.io,hunter,98
+https://hugoinc.com/resources/top-crm-options-for-startups-guide/,low,328,Other,Not Mentioned,0.03,-0.03,EnergizingYourStartup:ADeepDiveintoTopCRMOptions,Hugo,H.,,rule,,,
+https://salesmate.io/blog/best-crm-for-startups/,low,330,Other,Not Mentioned,0.03,0.03,Best CRM for startups in 2026,Dhara,Thakkar,,rule,dhara.thakkar@salesmate.io,hunter,96
+https://startups.co.uk/crm-software/best-free-crm-software/,low,332,Earned Media,Not Mentioned,0.03,0.03,Best free CRM software for small businesses,Emily,Clark,,rule,,,
+https://nethunt.com/blog/choosing-the-best-crm-system-for-startup-a-comprehensive-guide/,low,333,Other,Not Mentioned,0.03,0.03,7 Best CRM for Startups That Will Help You Grow,Tetiana,Fadina,https://nethunt.com/blog/author/tetiana/,rule,,,
+https://larksuite.com/en_us/blog/best-crm,low,334,Other,Not Mentioned,0.03,-0.03,Best CRM Software for 2026: Free & Paid Options for Every Business,Owyn,Thomas Kerr,,llm,,,
+https://croclub.com/tools/streak-review/,low,336,Earned Media,Not Mentioned,0.03,0.03,"Streak Review 2026: Pros, Cons, Features, and Pricing",The,CRO Club,,rule,,,
+https://zapier.com/blog/best-free-crm/,low,339,Other,Mentioned,0.03,0.03,The best free CRM software in 2026,Miguel,Rebelo,https://zapier.com/blog/author/miguel-rebelo,rule,,,
+https://onepagecrm.com/blog/best-crm-for-small-business/,low,342,Other,Not Mentioned,0.03,0.03,17 Best CRM for Small Business (2026),Samuel,Oyebode,,rule,,,
+https://4degrees.ai/blog/venture-capital-crm-the-complete-guide,low,343,Other,Not Mentioned,0.03,0.03,Venture Capital CRM: The Complete Guide,Alexander,Fish,,llm,,,
+https://axongarside.com/blog/best-crm-systems,low,344,Other,Not Mentioned,0.03,0.03,The Best 21 CRM Systems in 2025,Rob,White,https://www.axongarside.com/blog/author/rob-white,rule,rob.white@axongarside.com,hunter,97
+https://zenmedia.com/blog/b2b-crm-strategies-guide/,low,345,Other,Not Mentioned,0.03,0.03,"Trends, Tools, and Strategies Shaping Customer Relationship Management Systems for B2Bs",Megan,Noorman,,rule,,,
+https://cloudeagle.ai/blogs/10-best-crm-software-to-grow-your-small-business-in-2021,low,346,Other,Not Mentioned,0.03,0.03,10 Best CRM Software to Grow Your Small Business in 2026,Joel,Platini,,rule,joel@cloudeagle.ai,hunter,96
+https://techtarget.com/searchcustomerexperience/tip/Microsoft-Dynamics-365-vs-Salesforce-How-do-they-differ,low,347,Earned Media,Not Mentioned,0.03,0.03,Microsoft Dynamics 365 vs. Salesforce: How do they differ?,Christine,Campbell,,rule,ccampbell@techtarget.com,hunter,89
+https://nutshell.com/blog/best-crm-for-travel-agency,low,348,Other,Not Mentioned,0.03,0.03,The Best CRM For Travel Agencies: Simplify Lead Management And Grow Your Business,Sean,Divinagracia,,rule,sdivinagracia@nutshell.com,hunter,92
+https://text.com/blog/salesforce-alternatives/,low,350,Other,Not Mentioned,0.03,0.03,Top 15 Salesforce Alternatives & Competitors [2026],Natalia,Misiukiewicz,,rule,n.misiukiewicz@text.com,apollo,
+https://viasocket.com/discovery/blog/cth8cq/sales-and-crm/top-crm-tools-to-supercharge-startup-lead-generation,low,351,Other,Not Mentioned,0.03,0.03,Top CRM Tools to Supercharge Startup Lead Generation,Vaishali,Raghuvanshi,,rule,vaishali@viasocket.com,hunter,98
+https://bigcontacts.com/blog/crm-pricing/,low,353,Other,Not Mentioned,0.03,0.03,How Much Does CRM Cost?,BIGContacts,Editorial Team,https://www.bigcontacts.com/blog/author/editorial-team/,rule,,,
+https://folk.app/articles/best-crm-networking-professionals,low,354,Other,Not Mentioned,0.03,0.03,Best CRM for networking,Simo,Lemhandez,www.folk.app/authors/simo-lemhandez,rule,simo@folk.app,hunter,98
+https://startups.co.uk/crm-software/best-crm-for-healthcare-marketing/,low,357,Earned Media,Not Mentioned,0.03,0.03,5 best healthcare CRM software for small businesses,Helena,Young,,rule,,,
+https://croclub.com/tools/best-zoho-crm-alternatives/,low,359,Earned Media,Not Mentioned,0.03,0.03,22 Best Zoho CRM Alternatives Reviewed In 2026,The,CRO Club,,rule,,,
+https://blog.sharpai.app/comparing-crm-software/,low,360,Other,Not Mentioned,0.03,0.03,Comparing CRM Software for Small Businesses,Sharp,Ai,,rule,,,
+https://monday.com/blog/crm-and-sales/sales-tracking-software/,low,361,Other,Not Mentioned,0.03,0.03,Best Sales Tracking Software: 15 Top Tools Compared For 2026,Alina,Dallal,,llm,,,
+https://pipedrive.com/en/crm-comparison/pipedrive-vs-monday,low,362,Competition,Not Mentioned,0.03,0.03,Pipedrive vs. monday.com,Carolyn,Pearson,,rule,,,
+https://business.com/categories/crm-software/,low,363,Earned Media,Not Mentioned,0.03,-0.03,The Best CRM Software of 2026,Mark,Fairlie,https://www.business.com/author/mark-fairlie/,rule,mark.fairlie@business.com,hunter,98
+https://syncmatters.com/blog/best-crm-for-sales,low,364,Other,Not Mentioned,0.03,0.03,Choosing The Best CRM for Independent Sales Reps in 2025,Ivan,Karp,https://syncmatters.com/blog/author/ivan-karp,rule,ivan@syncmatters.com,hunter,99
+https://ventureharbour.com/growth-marketing-software/,low,365,Other,Not Mentioned,0.03,0.03,Growth Marketing Software: 10 Essential Tools for Growth Marketers,Aaron,Brooks,,rule,,,
+https://theciotimes.com/8-popular-free-crm-tools-for-small-business-owners/,low,367,Earned Media,Not Mentioned,0.03,-0.03,8 Popular Free CRM Tools for Small Business Owners,CIO,Times,,rule,,,
+https://solutions.trustradius.com/buyer-blog/crm-pros-cons/,low,368,Social,Not Mentioned,0.03,0.03,The Pros and Cons of CRM Software,Chayanika,Sen,https://solutions.trustradius.com/author/chayanika-sen/,rule,chayanika.sen@trustradius.com,apollo,
+https://getvoip.com/blog/crm-software-examples/,low,369,Earned Media,Not Mentioned,0.03,0.03,25 Best Examples of CRM Software,Rebecca,Drew,https://getvoip.com/staff/rebeccadrew/,rule,rebecca@getvoip.com,hunter,99
+https://salesmate.io/blog/inside-sales-software/,low,372,Other,Not Mentioned,0.03,0.03,16 Best inside sales software & tools for 2026,Sonali,Negi,,rule,sonali.negi@salesmate.io,hunter,98
+https://webfx.com/blog/marketing/best-crm-for-small-business/,low,373,Other,Not Mentioned,0.03,0.03,Best CRM for Small Businesses in 2026: 8 Top Picks,Sarah,Berry,,rule,sarah@webfx.com,hunter,84
+https://nutshell.com/blog/best-crm-for-coaches,low,376,Other,Not Mentioned,0.03,0.03,Best CRM for Coaches: The Complete 2026 Guide,Sam,Poole,,rule,spoole@nutshell.com,hunter,91
+https://recruiterslineup.com/best-customer-relationship-management-software/,low,378,Other,Not Mentioned,0.03,0.03,17 Best Customer Relationship Management (CRM) Software in 2026,Colin,Gordon,,rule,colin@recruiterslineup.com,hunter,99
+https://evnedev.com/blog/development/crm-for-startup/,low,379,Other,Not Mentioned,0.03,0.03,The Top CRM for Startups,Roman,Bondarenko,,rule,rbondarenko@evnedev.com,hunter,97
+https://fulminoussoftware.com/best-crm-software-for-startups,low,382,Other,Not Mentioned,0.03,0,Best CRM Software for Startups in the USA,Manish,Kumawat,,llm,manish@fulminoussoftware.com,hunter,98
+https://enginy.ai/blog/pipelines-management-software,low,383,Other,Not Mentioned,0.03,0.03,The 10 Best pipeline management software 2026,Andrea,Lopez,https://www.enginy.ai/,rule,andrea.lopez@enginy.ai,hunter,98
+https://europeanbusinessmagazine.com/european-news/best-crm-software-for-european-businesses-2025/,low,385,Earned Media,Not Mentioned,0.03,0.03,"One moment, please...",EBM,ADMIN Team,https://europeanbusinessmagazine.com/author/nick/,rule,,,
+https://rings.ai/blog/the-best-crms-for-venture-capital-firms,low,386,Other,Not Mentioned,0.03,0.03,The 5 Best CRMs for Venture Capital Firms in 2026,Mark,Cinotti,,llm,mark@rings.ai,hunter,98
+https://bigcontacts.com/blog/best-capsule-crm-alternatives/,low,388,Other,Not Mentioned,0.03,0.03,Top 8 Capsule Alternatives & Competitors in 2026,Muskan,Ghai,https://www.bigcontacts.com/blog/author/muskan/,rule,,,
+https://emarketingplatform.com/blog/customer-relationship-management-strategies-that-will-drive-your-business-forward/,low,389,Other,Not Mentioned,0.03,0.03,Customer Relationship Management Strategies That Will Drive Your Business Forward,Joe,Ramsey,,rule,jramsey@emfluence.com,apollo,
+https://streak.com/post/best-crm-for-startups,low,390,Other,Not Mentioned,0.03,-0.06,Best CRM for startups: Top picks for new business growth in 2024,Ron,Tuch,,rule,,,
+https://solutionsreview.com/crm/2021/10/15/the-best-zoho-crm-tutorials-and-demos-to-watch-on-youtube/,low,397,Earned Media,Not Mentioned,0.03,0.03,The Best Zoho CRM Tutorials and Demos to Watch on YouTube,William,Jepma,,rule,wjepma@solutionsreview.com,hunter,96
+https://dynamicssquare.co.uk/blog/what-crm-software-is-best-for-small-startups/,low,400,Other,Not Mentioned,0.03,0.03,Which CRM Software Is Right for Small Startups?,Vivek,Gururani,https://www.dynamicssquare.co.uk/blog/author/Vivek-Gururani/,rule,,,
+https://nutshell.com/blog/the-best-crm-for-insurance-agents,low,401,Other,Not Mentioned,0.03,0.03,The Best CRM for Insurance Agents: Complete Buyer’s Guide,Sean,Divinagracia,,rule,sdivinagracia@nutshell.com,hunter,92
+https://xero.com/ca/guides/crm-for-small-business/,low,402,Other,Not Mentioned,0.03,0.03,"CRM for small business: Choosing, using, and getting the most from your CRM system",Lena,Hanna,,llm,,,
+https://limble.com/learn/cmms/simple-affordable-cmms/,low,407,Other,Not Mentioned,0.03,0.03,9 Simple & Affordable CMMS Software to Consider for 2026,Limble,CMMS,,rule,,,
+https://apyhub.com/blog/essential-startup-tools,low,408,Other,Not Mentioned,0.03,0.03,Top 15 Essential Startup Tools and Software for Smart Founders,Muskan,Sidana,,rule,muskan@apyhub.com,hunter,99
+https://goiq.com/blog/7-must-know-features-of-the-best-crm-for-small-businesses-solutions/,low,412,Other,Not Mentioned,0.03,0.03,7 Must-Know Features of the Best CRM for Small Businesses Solutions,Lexi,Cox,https://goiq.com/blog/author/lexi/,rule,,,
+https://rtdynamic.com/blog/affordable-crm-software-2026/,low,415,Other,Not Mentioned,0.03,-0.08,Best CRM Under $20/Month in 2026,John,Schuett,https://www.rtdynamic.com/blog/author/john-schuett/,rule,john.schuett@rtdynamic.com,hunter,96
+https://4degrees.ai/blog/best-crm-for-deal-flow-what-to-look-for-and-top-options-for-private-market-teams,low,417,Other,Not Mentioned,0.03,0,Best CRM for Deal Flow: What to Look For,Alexander,Fish,https://www.4degrees.ai/author/alexander,rule,,,
+https://damcogroup.com/blogs/salesforce-crm-implementation-challenges-and-steps-for-success,low,418,Other,Not Mentioned,0.03,0.03,,Tech,Talk,,rule,,,
+https://folk.app/articles/best-crms-for-pre-seed-startups,low,424,Other,Not Mentioned,0.03,0.03,10 Best CRMs for Pre-Seed Startups (2026),Simo,Lemhandez,www.folk.app/authors/simo-lemhandez,rule,simo@folk.app,hunter,98
+https://guideflow.com/blog/best-sales-analytics-software-tools,low,431,Other,Mentioned,0.03,0.03,15 best sales analytics software tools for 2026,Team,Guideflow,https://www.guideflow.com/blog/authors/team-guideflow-18n9l,rule,team@guideflow.com,hunter,77
+https://bigcontacts.com/blog/what-is-saas-crm/,low,433,Other,Not Mentioned,0.03,0.03,What Is CRM Saas Solutions? [2026 Comprehensive Guide],BIGContacts,Editorial Team,https://www.bigcontacts.com/blog/author/editorial-team/,rule,,,
+https://salescaptain.io/blog/linkedin-outreach-automation-tools,low,437,Other,Not Mentioned,0.03,0.03,20+ Best LinkedIn Outreach Automation Tools (2026) + How to Use Them Safely,Peter,Emad,,rule,peter@salescaptain.io,hunter,99
+https://softr.io/blog/best-crm-software-for-small-business,low,439,Other,Not Mentioned,0.03,0,Best CRM software for small businesses: top 6 picks (2026),Elena,Alston,,rule,elena@softr.io,hunter,98
+https://smartsuite.com/blog/project-management-tools-for-startups?338ea48f_page=8,low,440,Other,Not Mentioned,0.03,0.03,10 Best Project Management Tools for Startups [2026],Jon,Darbyshire,,rule,jon@smartsuite.com,hunter,96
+https://mopinion.com/best-crm-software-for-small-businesses-smb/,low,442,Other,Not Mentioned,0.03,0.03,Top 15 Best CRM Software for Small Businesses in 2021,Erin,Gilliam Haije,,rule,erin@enviu.org,apollo,
+https://fahimai.com/best-crm-software,low,443,Earned Media,Not Mentioned,0.03,0.03,9 Best CRM Software: Compare & Choose the Right One in 2026,Fahim,Joharder,https://www.fahimai.com/author/fahim-joharder,rule,fahim@fahimai.com,hunter,98
